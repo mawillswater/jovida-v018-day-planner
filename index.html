@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jovida v0.18 · Day Planner — 概念稿</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Urbanist:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1c1813; --ink-2:#5b5347; --ink-3:#938976; --paper:#f4f1ea; --paper-2:#ebe6db;
+  --amber:#cf7c33; --amber-soft:#f0d9bf; --line:rgba(28,24,19,.12);
+  --sx-bg:#E7E9EC; --sx-surf:#FFFFFF; --sx-surf2:#F2F2F2;
+  --sx-t1:#000; --sx-t2:rgba(0,0,0,.42); --sx-t3:rgba(0,0,0,.22);
+  --g-green:linear-gradient(180deg,#00C040,#41F58A); --g-purple:linear-gradient(180deg,#6E68FF,#ADAAFF);
+  --g-blue:linear-gradient(180deg,#1A9CFF,#92D7FF); --g-orange:linear-gradient(160deg,#FF8A1E,#EBC95E);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter','Noto Sans SC',-apple-system,system-ui,sans-serif;
+  background:var(--paper); color:var(--ink); line-height:1.6;
+  background-image:radial-gradient(900px 500px at 88% -4%,rgba(207,124,51,.10),transparent),radial-gradient(700px 600px at -8% 18%,rgba(207,124,51,.06),transparent);
+}
+img{display:block;}
+a{color:inherit;text-decoration:none;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 40px;}
+
+/* ---- nav ---- */
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(244,241,234,.82);border-bottom:1px solid var(--line);}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px;}
+.nav-brand{font-weight:800;letter-spacing:-.02em;font-size:18px;display:flex;align-items:center;gap:9px;}
+.nav-brand .dot{width:22px;height:22px;border-radius:7px;background:var(--ink);display:grid;place-items:center;}
+.nav-brand .dot img{width:18px;height:18px;}
+.nav-links{display:flex;gap:7px;}
+.nav-links a{font-size:13.5px;font-weight:600;color:var(--ink-2);padding:7px 13px;border-radius:99px;transition:.2s;}
+.nav-links a:hover{background:rgba(28,24,19,.06);color:var(--ink);}
+@media(max-width:720px){.nav-links{display:none;}}
+
+/* ---- hero ---- */
+.hero{padding:74px 0 56px;position:relative;}
+.hero .wrap{display:grid;grid-template-columns:1.32fr .9fr;gap:36px;align-items:center;}
+.eyebrow{font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:20px;}
+.hero h1{font-size:62px;line-height:1.04;letter-spacing:-.035em;font-weight:800;font-family:'Inter','Noto Sans SC',sans-serif;}
+.hero h1 .br{color:var(--amber);}
+.hero .lede{margin-top:22px;font-size:18px;color:var(--ink-2);max-width:30em;font-weight:500;}
+.hero .lede b{color:var(--ink);font-weight:700;}
+.hero-art{position:relative;display:grid;place-items:center;}
+.hero-art .halo{position:absolute;width:330px;height:330px;border-radius:50%;background:radial-gradient(circle,rgba(207,124,51,.22),transparent 66%);}
+.hero-art img{width:290px;position:relative;filter:drop-shadow(0 26px 34px rgba(120,80,30,.26));}
+.tagstrip{margin-top:30px;display:flex;flex-wrap:wrap;gap:9px;}
+.tagstrip span{font-size:12.5px;font-weight:600;color:var(--ink-2);background:rgba(255,255,255,.7);border:1px solid var(--line);padding:6px 12px;border-radius:99px;}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr;}.hero h1{font-size:42px;}.hero-art{order:-1;}.hero-art img{width:200px;}}
+
+/* ---- section frame ---- */
+.section{padding:64px 0;border-top:1px solid var(--line);}
+.sec-label{font-size:12.5px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);}
+.sec-title{font-size:34px;line-height:1.15;letter-spacing:-.03em;font-weight:800;margin:12px 0 8px;}
+.sec-intro{font-size:16.5px;color:var(--ink-2);max-width:44em;font-weight:500;}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.in{opacity:1;transform:none;}
+
+/* ---- research cards ---- */
+.capps{margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.capp{background:rgba(255,255,255,.74);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:transform .3s ease,box-shadow .3s ease;}
+.capp:hover{transform:translateY(-4px);box-shadow:0 18px 34px -16px rgba(120,80,30,.34);}
+.capp-shot{aspect-ratio:1330/840;overflow:hidden;background:#edeef0;border-bottom:1px solid var(--line);}
+.capp-shot img{width:100%;height:100%;object-fit:cover;display:block;}
+.capp-body{padding:17px 19px 19px;}
+.capp-head{display:flex;gap:11px;align-items:center;}
+.capp-icon{width:44px;height:44px;border-radius:11px;flex:none;box-shadow:0 2px 7px rgba(0,0,0,.14);}
+.capp-name{font-size:17px;font-weight:800;letter-spacing:-.01em;}
+.capp-pos{font-size:12.5px;color:var(--ink-2);margin-top:1px;}
+.capp-stats{display:flex;gap:9px;margin-top:14px;}
+.cstat{flex:1;background:var(--paper);border-radius:11px;padding:9px 11px;}
+.cs-l{display:block;font-size:10px;font-weight:700;letter-spacing:.05em;color:var(--ink-3);}
+.cs-v{font-size:14.5px;font-weight:800;font-family:'Urbanist','Inter',sans-serif;margin-top:3px;display:block;letter-spacing:-.01em;}
+.cs-v small{font-size:10px;font-weight:700;color:#9a571c;background:var(--amber-soft);padding:1px 5px;border-radius:5px;margin-left:4px;}
+.capp-note{font-size:12.5px;color:var(--ink-2);margin-top:11px;line-height:1.55;}
+.capp-note b{color:var(--ink);font-weight:700;}
+@media(max-width:760px){.capps{grid-template-columns:1fr;}}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:34px;}
+.stat{background:var(--ink);color:#fff;border-radius:20px;padding:22px 20px;}
+.stat .num{font-family:'Urbanist',sans-serif;font-weight:800;font-size:32px;letter-spacing:-.02em;color:#f0c79a;}
+.stat .lab{font-size:13px;color:rgba(255,255,255,.72);margin-top:6px;font-weight:500;line-height:1.45;}
+@media(max-width:860px){.stats{grid-template-columns:repeat(2,1fr);}}
+
+.takeaways{margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:14px 30px;}
+.takeaways li{list-style:none;font-size:14.5px;color:var(--ink-2);padding-left:26px;position:relative;}
+.takeaways li b{color:var(--ink);font-weight:700;}
+.takeaways li::before{content:"";position:absolute;left:0;top:9px;width:11px;height:11px;border-radius:3px;background:var(--amber);}
+@media(max-width:760px){.takeaways{grid-template-columns:1fr;}}
+
+/* ---- positioning ---- */
+.winline{font-size:30px;line-height:1.32;font-weight:800;letter-spacing:-.02em;margin-top:28px;max-width:21em;}
+.winline .hi{background:linear-gradient(180deg,transparent 62%,rgba(207,124,51,.34) 62%);}
+.persona{margin-top:20px;display:grid;grid-template-columns:.95fr 1.4fr;gap:0;background:rgba(255,255,255,.72);border:1px solid var(--line);border-radius:22px;overflow:hidden;}
+.persona-l{padding:30px;background:linear-gradient(165deg,#2a241c,#171310);color:#fff;}
+.persona-l .pk{font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#e0a868;}
+.persona-l h3{font-size:30px;font-weight:800;margin:10px 0 3px;letter-spacing:-.02em;}
+.persona-l .meta{color:rgba(255,255,255,.66);font-size:14px;}
+.persona-l .quote{margin-top:20px;font-size:14.5px;line-height:1.6;color:rgba(255,255,255,.9);border-left:2px solid #e0a868;padding-left:13px;}
+.persona-r{padding:28px 30px;}
+.prow{display:flex;gap:12px;padding:12px 0;}
+.prow+.prow{border-top:1px solid var(--line);}
+.prow .pi{font-size:18px;flex:none;width:30px;text-align:center;}
+.prow .pt{font-size:13.5px;}
+.prow .pt b{display:block;font-size:14.5px;font-weight:700;margin-bottom:2px;}
+.prow .pt span{color:var(--ink-2);}
+@media(max-width:760px){.persona{grid-template-columns:1fr;}}
+
+/* ---- finch comparison ---- */
+.fcmp{margin-top:26px;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:rgba(255,255,255,.74);}
+.fcmp-head{display:grid;grid-template-columns:1fr 1.25fr;}
+.fcmp-head div{padding:15px 22px;font-weight:800;font-size:15px;display:flex;align-items:center;gap:9px;}
+.fcmp-head .fc-them{background:#efebe4;color:var(--ink-2);}
+.fcmp-head .fc-us{background:var(--ink);color:#fff;}
+.fcmp-head img{width:24px;height:24px;border-radius:7px;}
+.fcmp-row{display:grid;grid-template-columns:1fr 1.25fr;border-top:1px solid var(--line);}
+.fcmp-row>div{padding:15px 22px;font-size:13px;line-height:1.55;}
+.fcmp-row .fc-them{color:var(--ink-3);}
+.fcmp-row .fc-us{border-left:1px solid var(--line);color:var(--ink-2);background:rgba(207,124,51,.05);}
+.fcmp-row .fc-us b{color:var(--ink);font-weight:700;}
+.fcmp-k{font-size:10.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--amber);margin-bottom:5px;}
+.pseg{display:flex;gap:8px;align-items:flex-start;margin-top:8px;}
+.pseg .pg{font-size:9px;font-weight:800;padding:2px 6px;border-radius:5px;flex:none;margin-top:2px;letter-spacing:.03em;}
+.pseg .pg.p0{background:var(--amber);color:#fff;}
+.pseg .pg.p1{background:#e7ddcb;color:#9a571c;}
+@media(max-width:760px){.fcmp-head,.fcmp-row{grid-template-columns:1fr;}.fcmp-row .fc-us{border-left:none;border-top:1px solid var(--line);}}
+
+/* ---- mechanism ---- */
+.mech{margin-top:32px;display:grid;gap:16px;}
+.mcard{background:rgba(255,255,255,.72);border:1px solid var(--line);border-radius:22px;padding:28px 30px;}
+.mcard h3{font-size:20px;font-weight:800;letter-spacing:-.01em;}
+.mcard .msub{font-size:14.5px;color:var(--ink-2);margin-top:5px;max-width:50em;}
+.layerwrap{margin-top:20px;display:grid;gap:12px;}
+.layer{border-radius:16px;padding:17px 20px;display:flex;gap:16px;align-items:flex-start;}
+.layer.hard{background:#ecebe8;border:1px dashed rgba(0,0,0,.2);}
+.layer.soft{background:linear-gradient(120deg,#fff3e3,#ffe6c8);border:1px solid var(--amber-soft);}
+.layer .ltag{font-size:11px;font-weight:800;letter-spacing:.05em;padding:4px 9px;border-radius:7px;flex:none;margin-top:2px;}
+.layer.hard .ltag{background:#3a352c;color:#fff;}
+.layer.soft .ltag{background:var(--amber);color:#fff;}
+.layer .lt b{font-size:15px;font-weight:800;}
+.layer .lt p{font-size:13.5px;color:var(--ink-2);margin-top:3px;}
+.moments{margin-top:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:13px;}
+.moment{background:#faf6ef;border:1px solid var(--line);border-radius:16px;padding:18px;}
+.moment .mn{font-family:'Urbanist',sans-serif;font-weight:800;font-size:13px;color:var(--amber);}
+.moment .mt{font-size:15px;font-weight:800;margin:6px 0 6px;}
+.moment .mp{font-size:13px;color:var(--ink-2);}
+@media(max-width:760px){.moments{grid-template-columns:1fr;}}
+.warmrule{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.wr{border-radius:14px;padding:16px 18px;font-size:13.5px;}
+.wr.yes{background:#e8f6ec;border:1px solid #bfe6c9;}
+.wr.no{background:#fbeceb;border:1px solid #f0c9c5;}
+.wr .wrh{font-weight:800;font-size:13px;margin-bottom:7px;}
+.wr.yes .wrh{color:#1f8f43;} .wr.no .wrh{color:#c4453a;}
+.wr ul{padding-left:17px;color:var(--ink-2);}
+@media(max-width:760px){.warmrule{grid-template-columns:1fr;}}
+
+/* ---- prototype gallery ---- */
+.act{margin-top:48px;}
+.act:first-of-type{margin-top:34px;}
+.act-head{display:flex;align-items:baseline;gap:14px;border-bottom:2px solid var(--ink);padding-bottom:12px;flex-wrap:wrap;}
+.act-no{font-family:'Urbanist',sans-serif;font-weight:800;font-size:14px;color:var(--amber);}
+.act-head h3{font-size:23px;font-weight:800;letter-spacing:-.02em;}
+.act-head .ad{font-size:14px;color:var(--ink-2);font-weight:500;}
+.gallery{margin-top:30px;display:flex;flex-wrap:wrap;gap:46px 40px;}
+.ph{width:392px;}
+figcaption.cap{margin-top:16px;font-size:13.5px;color:var(--ink-2);line-height:1.55;}
+figcaption.cap .capn{display:inline-block;font-family:'Urbanist',sans-serif;font-weight:800;font-size:12px;color:#fff;background:var(--ink);border-radius:6px;padding:2px 7px;margin-right:7px;}
+figcaption.cap b{color:var(--ink);font-weight:800;}
+@media(max-width:900px){.ph{width:100%;max-width:392px;margin:0 auto;}}
+
+/* ---- phone device ---- */
+.phone{width:392px;}
+.frame{background:#121212;border-radius:54px;padding:13px;box-shadow:0 30px 50px -16px rgba(60,40,15,.4),0 0 0 2px rgba(255,255,255,.5);transition:transform .35s ease;}
+.ph:hover .frame{transform:translateY(-7px);}
+.screen{width:366px;height:792px;background:var(--sx-bg);border-radius:43px;overflow:hidden;position:relative;display:flex;flex-direction:column;
+  font-family:-apple-system,'SF Pro Text','Inter','Noto Sans SC',sans-serif;color:var(--sx-t1);}
+.di{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:108px;height:31px;background:#000;border-radius:99px;z-index:30;}
+.sb{flex:none;z-index:20;height:52px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 24px 7px;font-size:14px;font-weight:700;font-family:'Urbanist',sans-serif;background:var(--sx-bg);}
+.sb.dark{background:transparent;color:#fff;}
+.sb .si{display:flex;gap:5px;align-items:center;font-size:12px;}
+.sx{padding:6px 16px 30px;flex:1;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;}
+.sx::-webkit-scrollbar{display:none;}
+/* bottom nav + voice fab */
+.navbar{flex:none;display:flex;align-items:flex-end;background:rgba(255,255,255,.95);backdrop-filter:blur(14px);border-top:1px solid rgba(0,0,0,.05);padding:9px 20px 15px;}
+.nb-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10px;font-weight:700;color:var(--sx-t3);}
+.nb-item.on{color:#000;}
+.nb-item .nb-ic{width:23px;height:23px;}
+.nb-chat{color:var(--sx-t2);}
+.nb-chat .nb-rb{width:31px;height:31px;border-radius:50%;background:#FFEBCB;display:grid;place-items:center;overflow:hidden;border:1.5px solid #fff;box-shadow:0 3px 9px rgba(207,124,51,.34);}
+.nb-chat .nb-rb img{width:29px;}
+.voicefab{position:absolute;right:16px;bottom:80px;z-index:24;width:64px;height:64px;}
+.voicefab .vf-glow{position:absolute;inset:-13px;border-radius:50%;background:radial-gradient(circle,rgba(207,124,51,.6),rgba(110,104,255,.32) 56%,transparent 73%);filter:blur(3px);animation:vpulse 2.4s ease-in-out infinite;}
+@keyframes vpulse{0%,100%{transform:scale(.9);opacity:.78}50%{transform:scale(1.1);opacity:1}}
+.voicefab .vf-btn{position:absolute;inset:0;border-radius:50%;background:linear-gradient(150deg,#cf7c33,#e8a35f);display:grid;place-items:center;font-size:25px;box-shadow:0 12px 24px rgba(207,124,51,.5),inset 0 2px 4px rgba(255,255,255,.4);}
+.voicefab .vf-hint{position:absolute;right:74px;top:16px;white-space:nowrap;background:#1c1813;color:#fff;font-size:11.5px;font-weight:700;padding:7px 11px;border-radius:13px 13px 4px 13px;box-shadow:0 8px 16px rgba(0,0,0,.24);}
+/* week calendar */
+.datehead{display:flex;align-items:baseline;justify-content:space-between;padding:4px 2px 0;}
+.datehead .dh-t{font-size:23px;font-weight:800;letter-spacing:-.02em;}
+.datehead .dh-m{font-size:13px;font-weight:700;color:var(--sx-t2);}
+.weekcal{display:flex;gap:3px;margin:8px 0 4px;}
+.weekcal .wc{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 0 6px;border-radius:13px;}
+.weekcal .wc .wcd{font-size:10px;color:var(--sx-t2);font-weight:700;}
+.weekcal .wc .wcn{font-size:15px;font-weight:800;font-family:'Urbanist',sans-serif;}
+.weekcal .wc .wdot{width:4px;height:4px;border-radius:50%;background:var(--amber);}
+.weekcal .wc.on{background:linear-gradient(180deg,#1c1813,#3a342b);}
+.weekcal .wc.on .wcd{color:rgba(255,255,255,.6);}
+.weekcal .wc.on .wcn{color:#fff;}
+.weekcal .wc.on .wdot{background:#e8a35f;}
+/* jovida-style option cards */
+.jopt{display:flex;align-items:center;gap:10px;background:var(--sx-surf);border:2px solid transparent;border-radius:14px;padding:12px 13px;margin-bottom:8px;box-shadow:0 4px 12px rgba(0,0,0,.05);}
+.jopt.on{border-color:#cf7c33;background:#fff9f1;}
+.jopt .joi{font-size:19px;flex:none;}
+.jopt .jot{font-size:14px;font-weight:800;flex:1;}
+.jopt .jot small{display:block;font-size:11px;font-weight:500;color:var(--sx-t2);margin-top:2px;}
+.jopt .jock{flex:none;width:21px;height:21px;border-radius:50%;border:2px solid var(--sx-t3);display:grid;place-items:center;font-size:10px;font-weight:800;}
+.jopt.on .jock{background:#cf7c33;border-color:#cf7c33;color:#fff;}
+.thoughtp{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:800;background:var(--sx-surf);border-radius:12px;padding:9px 12px;margin:4px 0 12px;box-shadow:0 3px 8px rgba(0,0,0,.05);}
+.thoughtp .tpck{width:18px;height:18px;border-radius:50%;background:#0a8e3b;color:#fff;display:grid;place-items:center;font-size:10px;flex:none;}
+.thoughtp .tparr{margin-left:auto;color:var(--sx-t3);}
+.pseg .pgi{font-size:15px;flex:none;line-height:1.4;}
+.fex{font-size:11.5px;background:rgba(207,124,51,.08);border-radius:9px;padding:8px 10px;margin-top:7px;line-height:1.55;color:var(--ink-2);}
+.fex b{color:var(--ink);font-weight:700;}
+
+/* phone components */
+.x-top{display:flex;align-items:center;justify-content:space-between;padding:6px 0 14px;}
+.x-top .menu{width:38px;height:38px;border-radius:12px;background:var(--sx-surf);display:grid;place-items:center;box-shadow:0 4px 8px rgba(0,0,0,.05);}
+.x-top .menu div{width:15px;height:2px;background:#000;border-radius:2px;position:relative;}
+.x-top .menu div::before,.x-top .menu div::after{content:"";position:absolute;left:0;width:15px;height:2px;background:#000;border-radius:2px;}
+.x-top .menu div::before{top:-5px;}.x-top .menu div::after{top:5px;}
+.x-stats{display:flex;gap:8px;}
+.pill{display:flex;align-items:center;gap:4px;background:var(--sx-surf);border-radius:99px;padding:7px 12px;font-family:'Urbanist',sans-serif;font-weight:800;font-size:14px;box-shadow:0 4px 8px rgba(0,0,0,.05);}
+.x-h1{font-size:27px;font-weight:800;letter-spacing:-.02em;padding:2px 2px 3px;}
+.x-h1 .day{color:var(--sx-t2);font-weight:700;font-size:18px;}
+.x-eyebrow{font-size:12px;font-weight:800;letter-spacing:.04em;color:var(--sx-t2);text-transform:uppercase;padding:0 2px;}
+
+.bub{display:flex;gap:9px;align-items:flex-start;margin:13px 0;}
+.bub .rb{width:42px;height:42px;border-radius:50%;background:#fff;flex:none;display:grid;place-items:center;box-shadow:0 4px 8px rgba(0,0,0,.05);overflow:hidden;}
+.bub .rb img{width:38px;height:38px;}
+.bub .btxt{background:#fff;border-radius:5px 18px 18px 18px;padding:13px 15px;font-size:14px;line-height:1.55;box-shadow:0 4px 10px rgba(0,0,0,.05);}
+.bub .btxt b{font-weight:700;}
+.bub.me{flex-direction:row-reverse;}
+.bub.me .btxt{background:linear-gradient(180deg,#000,#3a3a3a);color:#fff;border-radius:18px 5px 18px 18px;}
+
+.x-sec{font-size:13px;font-weight:800;color:var(--sx-t2);margin:20px 2px 9px;display:flex;align-items:center;gap:7px;letter-spacing:.01em;}
+.x-sec .lk{font-size:12px;}
+
+.action{display:flex;align-items:center;gap:13px;background:var(--sx-surf);border-radius:20px;padding:14px;margin-bottom:11px;box-shadow:0 5px 12px rgba(0,0,0,.05);}
+.action .aic{width:54px;height:54px;border-radius:15px;display:grid;place-items:center;font-size:26px;flex:none;}
+.aic.green{background:#C9EFD6;}.aic.purple{background:#E2E1FF;}.aic.blue{background:#D8EEFF;}.aic.orange{background:#FFEBCB;}
+.action .am{flex:1;min-width:0;}
+.action .at{font-size:15.5px;font-weight:700;line-height:1.3;}
+.atag{display:inline-block;font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:99px;margin-top:6px;}
+.atag.green{background:#C9EFD6;color:#0a8e3b;}.atag.purple{background:#E2E1FF;color:#4f49d6;}
+.atag.blue{background:#D8EEFF;color:#1377cc;}.atag.orange{background:#FFEBCB;color:#cc7a0a;}
+.action .aside{display:flex;flex-direction:column;align-items:flex-end;gap:9px;flex:none;}
+.gem{font-family:'Urbanist',sans-serif;font-weight:800;font-size:13px;color:#1377cc;background:#D8EEFF;border-radius:99px;padding:4px 9px;white-space:nowrap;}
+.arrow{width:30px;height:30px;border-radius:50%;background:linear-gradient(180deg,#000,#444);color:#ACFF4E;display:grid;place-items:center;font-size:15px;font-weight:700;}
+
+.btn{height:50px;border-radius:99px;display:flex;align-items:center;justify-content:center;gap:7px;font-size:15.5px;font-weight:700;font-family:inherit;width:100%;}
+.btn.primary{background:linear-gradient(180deg,#000,#575757);color:#ACFF4E;box-shadow:0 8px 18px rgba(0,0,0,.18);}
+.btn.ghost{background:rgba(255,255,255,.7);color:#000;border:1px solid rgba(0,0,0,.08);box-shadow:0 4px 10px rgba(0,0,0,.04);height:46px;font-size:14.5px;}
+.btnrow{margin-top:14px;display:grid;gap:9px;}
+
+.card{background:var(--sx-surf);border-radius:20px;padding:16px;box-shadow:0 5px 12px rgba(0,0,0,.05);margin-bottom:11px;}
+.card.tint{background:linear-gradient(140deg,#fff7ec,#ffedd6);border:1px solid #f3dcb9;}
+.card-h{font-size:13px;font-weight:800;color:var(--sx-t2);margin-bottom:10px;}
+.line{display:flex;gap:9px;font-size:13.5px;padding:7px 0;line-height:1.5;}
+.line+.line{border-top:1px solid rgba(0,0,0,.05);}
+.line .ln{font-family:'Urbanist',sans-serif;font-weight:800;color:#fff;background:#000;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;flex:none;margin-top:1px;}
+.line .lc{font-size:14px;flex:none;}
+.line b{font-weight:700;}
+.muted{color:var(--sx-t2);}
+
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+.chip{font-size:13px;font-weight:700;background:var(--sx-surf);border:1px solid rgba(0,0,0,.07);border-radius:99px;padding:9px 14px;box-shadow:0 3px 8px rgba(0,0,0,.04);}
+.chip.dark{background:linear-gradient(180deg,#000,#444);color:#fff;border:none;}
+.chip.on{background:#fff7ec;border-color:#cf7c33;color:#a86a24;}
+
+.flame{display:flex;align-items:center;gap:14px;background:linear-gradient(140deg,#FF8A1E,#FFB347);border-radius:22px;padding:20px;color:#fff;box-shadow:0 12px 24px rgba(255,138,30,.3);}
+.flame .fbig{font-size:48px;line-height:1;}
+.flame .fn{font-family:'Urbanist',sans-serif;font-weight:800;font-size:36px;line-height:1;}
+.flame .fl{font-size:13px;opacity:.92;font-weight:600;margin-top:3px;}
+
+.lock-wall{position:absolute;inset:0;background:linear-gradient(170deg,#3b3654,#1a1726 60%,#0e0c16);}
+.lock-wall::after{content:"";position:absolute;inset:0;background:radial-gradient(420px 280px at 78% 16%,rgba(207,124,51,.34),transparent),radial-gradient(360px 320px at 14% 84%,rgba(90,80,170,.4),transparent);}
+.lock-time{position:relative;text-align:center;color:#fff;padding-top:70px;}
+.lock-time .ld{font-size:15px;font-weight:600;opacity:.82;}
+.lock-time .lt{font-size:78px;font-weight:700;letter-spacing:-.03em;font-family:'Urbanist',sans-serif;line-height:1;margin-top:2px;}
+.notif{position:relative;z-index:2;margin:14px 14px 0;background:rgba(255,255,255,.18);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.16);border-radius:20px;padding:14px;color:#fff;}
+.notif .nh{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;opacity:.86;margin-bottom:7px;}
+.notif .nh .nico{width:22px;height:22px;border-radius:6px;background:#fff;display:grid;place-items:center;}
+.notif .nh .nico img{width:18px;height:18px;}
+.notif .nh .ntime{margin-left:auto;font-weight:500;}
+.notif .nb{font-size:14px;line-height:1.5;}
+
+.note{font-size:12.5px;color:var(--sx-t2);line-height:1.55;padding:11px 13px;background:rgba(0,0,0,.035);border-radius:13px;margin-top:10px;}
+.note b{color:var(--sx-t1);font-weight:700;}
+.whytoday{display:flex;gap:8px;align-items:flex-start;background:#fff7ec;border:1px solid #f3dcb9;border-radius:13px;padding:11px 13px;font-size:12.5px;line-height:1.5;margin-top:10px;}
+.whytoday .wi{font-size:14px;}
+.donerow{display:flex;align-items:center;gap:9px;font-size:14px;padding:8px 0;}
+.donerow .dck{width:22px;height:22px;border-radius:50%;background:linear-gradient(180deg,#000,#575757);color:#ACFF4E;display:grid;place-items:center;font-size:12px;font-weight:800;flex:none;}
+
+.letter{background:linear-gradient(150deg,#2a241c,#161310);border-radius:20px;padding:20px;color:#fff;margin-bottom:11px;}
+.letter .lseal{width:46px;height:46px;border-radius:13px;background:linear-gradient(150deg,#cf7c33,#e0a868);display:grid;place-items:center;font-size:24px;margin-bottom:12px;}
+.letter .lh{font-size:16px;font-weight:800;}
+.letter .lp{font-size:13px;color:rgba(255,255,255,.78);margin-top:6px;line-height:1.6;}
+
+/* ---- onboarding ---- */
+.ob-top{display:flex;align-items:center;gap:12px;padding:4px 0 14px;}
+.ob-prog{flex:1;height:7px;border-radius:99px;background:rgba(0,0,0,.08);overflow:hidden;}
+.ob-prog i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#cf7c33,#e7a866);}
+.ob-skip{font-size:12.5px;font-weight:700;color:var(--sx-t2);}
+.imp{display:flex;align-items:center;gap:11px;background:var(--sx-surf);border-radius:17px;padding:13px;margin-bottom:9px;box-shadow:0 5px 12px rgba(0,0,0,.05);}
+.imp .ii{width:45px;height:45px;border-radius:13px;display:grid;place-items:center;font-size:22px;flex:none;}
+.imp .im{flex:1;min-width:0;}
+.imp .it{font-size:14.5px;font-weight:700;}
+.imp .id{font-size:11.5px;color:var(--sx-t2);margin-top:2px;}
+.imp-btn{font-size:12.5px;font-weight:700;padding:8px 15px;border-radius:99px;background:linear-gradient(180deg,#000,#575757);color:#ACFF4E;flex:none;}
+.imp-on{font-size:12.5px;font-weight:700;color:#0a8e3b;flex:none;}
+.opt{display:flex;align-items:center;gap:11px;background:var(--sx-surf);border:2px solid transparent;border-radius:15px;padding:12px 13px;margin-bottom:8px;box-shadow:0 4px 10px rgba(0,0,0,.05);}
+.opt.on{border-color:#cf7c33;background:#fff7ec;}
+.opt .ock{width:23px;height:23px;border-radius:50%;border:2px solid var(--sx-t3);flex:none;display:grid;place-items:center;font-size:12px;font-weight:800;}
+.opt.on .ock{background:#cf7c33;border-color:#cf7c33;color:#fff;}
+.opt .otx{font-size:14px;font-weight:700;}
+.opt .osub{font-size:11.5px;color:var(--sx-t2);font-weight:400;margin-top:1px;}
+.custom-in{display:flex;align-items:flex-start;gap:9px;background:var(--sx-surf);border:1.5px dashed rgba(0,0,0,.2);border-radius:15px;padding:13px;font-size:13px;line-height:1.5;margin-bottom:9px;color:var(--sx-t3);}
+.custom-in .cv{color:var(--sx-t1);font-weight:600;}
+.gen-ring{width:92px;height:92px;border-radius:50%;border:7px solid rgba(207,124,51,.16);border-top-color:#cf7c33;margin:34px auto 22px;animation:spin 1s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.gstep{display:flex;align-items:center;gap:9px;font-size:13.5px;padding:8px 0;}
+.gstep+.gstep{border-top:1px solid rgba(0,0,0,.05);}
+.gstep .gck{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;flex:none;}
+.gstep.done .gck{background:linear-gradient(180deg,#000,#575757);color:#ACFF4E;font-weight:800;}
+.gstep.now .gck{border:2px solid #cf7c33;}
+.gstep.wait{color:var(--sx-t3);}
+.gstep.wait .gck{border:2px solid rgba(0,0,0,.12);}
+.freq{font-size:10px;font-weight:800;padding:4px 8px;border-radius:7px;flex:none;}
+.freq.daily{background:#C9EFD6;color:#0a8e3b;}
+.freq.some{background:#D8EEFF;color:#1377cc;}
+.freq.once{background:#FFEBCB;color:#cc7a0a;}
+.freq.free{background:rgba(0,0,0,.07);color:var(--sx-t2);}
+.synth{display:flex;gap:11px;background:var(--sx-surf);border-radius:15px;padding:13px;margin-bottom:8px;box-shadow:0 4px 10px rgba(0,0,0,.05);}
+.synth .syi{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;font-size:18px;flex:none;}
+.synth .syt{font-size:13.5px;font-weight:700;}
+.synth .syd{font-size:11.5px;color:var(--sx-t2);margin-top:2px;}
+
+/* ---- home todo list ---- */
+.voicebar{display:flex;align-items:center;gap:11px;background:linear-gradient(135deg,#1c1813,#3a342b);border-radius:16px;padding:12px 14px;margin:12px 0 2px;box-shadow:0 8px 18px rgba(0,0,0,.18);}
+.voicebar .vmic{width:38px;height:38px;border-radius:50%;background:#ACFF4E;display:grid;place-items:center;font-size:17px;flex:none;}
+.voicebar .vtx{color:#fff;font-size:13.5px;font-weight:700;line-height:1.3;}
+.voicebar .vtx span{display:block;font-size:10.5px;font-weight:500;color:rgba(255,255,255,.6);margin-top:2px;}
+.voicebar .vwave{margin-left:auto;display:flex;gap:3px;align-items:center;height:22px;}
+.voicebar .vwave i{width:3px;background:#ACFF4E;border-radius:2px;}
+.grp{display:flex;align-items:center;gap:6px;margin:17px 2px 9px;}
+.grp .gname{font-size:13.5px;font-weight:800;}
+.grp .gcount{font-size:12px;font-weight:700;color:var(--sx-t2);}
+.grp .gchev{margin-left:auto;color:var(--sx-t3);font-size:11px;}
+.todo{display:flex;align-items:center;gap:11px;background:var(--sx-surf);border-radius:16px;padding:12px 13px;margin-bottom:8px;box-shadow:0 5px 12px rgba(0,0,0,.05);}
+.todo.hard{background:#e7e6e3;box-shadow:none;border:1px dashed rgba(0,0,0,.17);}
+.todo .tic{width:43px;height:43px;border-radius:12px;display:grid;place-items:center;font-size:20px;flex:none;}
+.todo .tm{flex:1;min-width:0;}
+.todo .tt{font-size:14.5px;font-weight:700;line-height:1.3;}
+.todo .tmeta{font-size:11px;color:var(--sx-t2);margin-top:3px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.tsrc{font-size:9.5px;font-weight:700;background:rgba(0,0,0,.07);color:var(--sx-t2);padding:2px 6px;border-radius:5px;}
+.tgem{font-family:'Urbanist',sans-serif;font-weight:800;color:#1377cc;}
+.tcheck{width:29px;height:29px;border-radius:50%;border:2.5px solid var(--sx-t3);flex:none;display:grid;place-items:center;font-size:14px;font-weight:800;}
+.tcheck.on{background:linear-gradient(180deg,#000,#575757);border-color:#000;color:#ACFF4E;}
+.todo.done{box-shadow:none;background:#eef0ee;}
+.todo.done .tt{text-decoration:line-through;color:var(--sx-t3);}
+.todo.done .tic{filter:grayscale(.7);opacity:.55;}
+/* ---- todo detail ---- */
+.fold{background:var(--sx-surf);border-radius:15px;box-shadow:0 5px 12px rgba(0,0,0,.05);margin-bottom:10px;overflow:hidden;}
+.fold summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;padding:14px;font-size:14px;font-weight:700;}
+.fold summary::-webkit-details-marker{display:none;}
+.fold .fchev{margin-left:auto;color:var(--sx-t3);font-size:12px;transition:transform .2s;}
+.fold[open] .fchev{transform:rotate(180deg);}
+.fold .fbody{padding:2px 14px 8px;}
+.res{display:flex;align-items:center;gap:11px;background:var(--sx-surf);border-radius:14px;padding:11px 12px;margin-bottom:8px;box-shadow:0 4px 10px rgba(0,0,0,.05);}
+.res .rico{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;font-size:16px;flex:none;}
+.res .rt{font-size:13px;font-weight:700;}
+.res .rd{font-size:11px;color:var(--sx-t2);margin-top:2px;}
+/* ---- quick import ---- */
+.capshot{border-radius:13px;overflow:hidden;border:1px solid rgba(0,0,0,.08);background:#fff;box-shadow:0 6px 16px rgba(0,0,0,.1);}
+.capshot .cs-img{height:116px;background:linear-gradient(150deg,#ffd9c2,#ff9e7a);display:flex;align-items:flex-end;padding:11px;}
+.capshot .cs-cap{font-size:11px;color:var(--sx-t2);padding:8px 11px;}
+.qmenu{display:flex;align-items:center;gap:11px;background:var(--sx-surf);border-radius:15px;padding:13px;margin-bottom:8px;box-shadow:0 4px 10px rgba(0,0,0,.05);}
+.qmenu .qi{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;font-size:18px;flex:none;}
+.qmenu .qt{font-size:14px;font-weight:700;flex:1;}
+.qmenu .qt .qd{font-size:11px;color:var(--sx-t2);font-weight:400;margin-top:1px;display:block;}
+.qmenu .qchev{color:var(--sx-t3);font-size:18px;}
+/* ---- celebration ---- */
+.celebrate{text-align:center;padding:22px 0 6px;position:relative;}
+.cele-rb{width:118px;height:118px;margin:4px auto;animation:cbounce 1.5s ease-in-out infinite;}
+.cele-rb img{width:100%;}
+@keyframes cbounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}
+.spark{position:absolute;font-size:19px;animation:twinkle 1.4s ease-in-out infinite;}
+@keyframes twinkle{0%,100%{opacity:.25;transform:scale(.7)}50%{opacity:1;transform:scale(1.15)}}
+.cele-big{font-size:23px;font-weight:800;letter-spacing:-.02em;}
+.cele-rew{display:flex;justify-content:center;gap:10px;margin-top:13px;}
+.cele-rew div{background:var(--sx-surf2);border-radius:13px;padding:9px 16px;font-family:'Urbanist',sans-serif;font-weight:800;font-size:15px;box-shadow:0 5px 12px rgba(0,0,0,.06);}
+.cele-toast{position:absolute;left:14px;right:14px;top:60px;z-index:26;background:#fff;border-radius:18px;padding:11px 13px;display:flex;align-items:center;gap:11px;box-shadow:0 16px 34px rgba(60,40,15,.32);border:1.5px solid #f3dcb9;}
+.cele-toast .ct-rb{width:42px;height:42px;border-radius:50%;background:#FFEBCB;flex:none;display:grid;place-items:center;overflow:hidden;}
+.cele-toast .ct-rb img{width:40px;}
+.cele-toast .ct-t{font-size:14px;font-weight:800;}
+.cele-toast .ct-d{font-size:11px;color:var(--sx-t2);margin-top:1px;}
+.cele-toast .ct-rew{margin-left:auto;text-align:right;font-family:'Urbanist',sans-serif;font-weight:800;font-size:12.5px;flex:none;line-height:1.35;}
+.substep{display:flex;align-items:center;gap:10px;padding:9px 0;font-size:13.5px;line-height:1.5;}
+.substep+.substep{border-top:1px solid rgba(0,0,0,.05);}
+.sscheck{width:22px;height:22px;border-radius:50%;border:2px solid var(--sx-t3);flex:none;display:grid;place-items:center;font-size:11px;font-weight:800;}
+.sscheck.on{background:linear-gradient(180deg,#000,#575757);border-color:#000;color:#ACFF4E;}
+.substep.done>div{text-decoration:line-through;color:var(--sx-t3);}
+/* ---- dot board ---- */
+.dotcal{background:var(--sx-surf);border-radius:16px;padding:15px;box-shadow:0 5px 12px rgba(0,0,0,.05);margin-bottom:10px;}
+.dc-row+.dc-row{margin-top:13px;padding-top:13px;border-top:1px solid rgba(0,0,0,.05);}
+.dc-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;}
+.dc-name{font-size:13px;font-weight:700;}
+.dc-cnt{font-size:11px;font-weight:800;color:var(--sx-t2);font-family:'Urbanist',sans-serif;}
+.dc-grid{display:flex;flex-wrap:wrap;gap:4px;}
+.dc-dot{width:14px;height:14px;border-radius:4px;background:rgba(0,0,0,.07);}
+.dc-dot.g{background:linear-gradient(160deg,#00C040,#41F58A);}
+.dc-dot.p{background:linear-gradient(160deg,#6E68FF,#ADAAFF);}
+.dc-dot.b{background:linear-gradient(160deg,#1A9CFF,#92D7FF);}
+/* ---- live activity / dynamic island ---- */
+.live{position:relative;z-index:2;margin:18px 14px 0;background:rgba(20,18,28,.62);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:14px;color:#fff;}
+.live .lvh{display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;opacity:.82;margin-bottom:10px;}
+.live .lvh .nico{width:20px;height:20px;border-radius:6px;background:#fff;display:grid;place-items:center;}
+.live .lvh .nico img{width:16px;height:16px;}
+.live .lvh .lvtag{margin-left:auto;font-weight:600;opacity:.7;}
+.live .lvrow{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;}
+.live .lvbar{flex:1;height:8px;border-radius:99px;background:rgba(255,255,255,.16);overflow:hidden;}
+.live .lvbar i{display:block;height:100%;background:linear-gradient(90deg,#FF8A1E,#FFC15E);}
+.island{margin:10px auto 0;width:max-content;max-width:330px;background:#000;border-radius:27px;padding:13px 17px;color:#fff;display:flex;align-items:center;gap:11px;position:relative;z-index:3;}
+.island.big{border-radius:24px;padding:15px 18px;align-items:flex-start;}
+.island .isl-ic{width:34px;height:34px;border-radius:50%;background:#fff;display:grid;place-items:center;flex:none;overflow:hidden;}
+.island .isl-ic img{width:32px;height:32px;}
+.island .isl-t{font-size:12.5px;line-height:1.45;}
+.island .isl-btns{display:flex;gap:7px;margin-top:9px;}
+.island .isl-btns span{font-size:11.5px;font-weight:700;padding:6px 12px;border-radius:99px;}
+.fakefeed{position:absolute;inset:0;background:var(--sx-bg);}
+.fakefeed .ff-card{margin:0 14px 12px;border-radius:16px;height:150px;background:linear-gradient(160deg,#dfe3ea,#cdd3dd);}
+.fakefeed .ff-card:first-child{margin-top:8px;}
+.share-vid{border-radius:14px;overflow:hidden;background:#1c1813;color:#fff;}
+.share-vid .sv-img{height:96px;background:linear-gradient(150deg,#6E68FF,#ADAAFF);display:grid;place-items:center;font-size:28px;color:#fff;}
+.share-vid .sv-cap{font-size:11.5px;padding:8px 11px;opacity:.8;}
+/* iOS home-screen widget */
+.homescreen{position:absolute;inset:0;background:linear-gradient(165deg,#f0d3ad,#e3b083 48%,#cf9a86);}
+.homescreen::after{content:"";position:absolute;inset:0;background:radial-gradient(420px 300px at 80% 12%,rgba(255,238,205,.55),transparent);}
+.hs-body{position:relative;z-index:2;padding:6px 22px 0;}
+.hs-tag{font-size:11px;font-weight:700;color:rgba(255,255,255,.95);text-shadow:0 1px 3px rgba(0,0,0,.32);margin:2px 2px 9px;}
+.jwidget{background:rgba(255,255,255,.93);backdrop-filter:blur(12px);border-radius:24px;padding:14px 15px;box-shadow:0 16px 30px rgba(70,45,15,.32);}
+.jw-head{display:flex;align-items:center;gap:8px;margin-bottom:9px;}
+.jw-rb{width:25px;height:25px;border-radius:50%;background:#FFEBCB;display:grid;place-items:center;overflow:hidden;flex:none;}
+.jw-rb img{width:23px;}
+.jw-name{font-size:12.5px;font-weight:800;}
+.jw-meta{margin-left:auto;font-size:12px;font-weight:800;font-family:'Urbanist',sans-serif;color:#cf7c33;}
+.jw-todo{display:flex;align-items:center;gap:9px;padding:6.5px 0;font-size:13px;font-weight:600;}
+.jw-todo+.jw-todo{border-top:1px solid rgba(0,0,0,.05);}
+.jw-ck{width:19px;height:19px;border-radius:50%;border:2px solid var(--sx-t3);flex:none;display:grid;place-items:center;font-size:9px;font-weight:800;}
+.jw-ck.on{background:linear-gradient(180deg,#000,#575757);border-color:#000;color:#ACFF4E;}
+.jw-todo.done .jt{text-decoration:line-through;color:var(--sx-t3);}
+.jw-todo .jtime{margin-left:auto;font-size:11px;color:var(--sx-t2);font-family:'Urbanist',sans-serif;font-weight:700;}
+.jw-foot{font-size:11px;color:var(--sx-t2);margin-top:9px;font-weight:600;}
+.appgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px 16px;margin-top:26px;}
+.appicon{aspect-ratio:1;border-radius:15px;box-shadow:0 5px 10px rgba(0,0,0,.2);display:grid;place-items:center;font-size:22px;}
+
+.foot{padding:54px 0 70px;border-top:1px solid var(--line);text-align:center;}
+.foot .fbig{font-size:23px;font-weight:800;letter-spacing:-.02em;max-width:20em;margin:0 auto;}
+.foot .fsm{font-size:13.5px;color:var(--ink-3);margin-top:14px;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="nav-brand"><span class="dot"><img src="assets/rabbit-hello-t.png" alt=""></span>Jovida</div>
+    <div class="nav-links">
+      <a href="#research">市场调研</a>
+      <a href="#positioning">产品定位</a>
+      <a href="#mechanism">核心机制</a>
+      <a href="#prototype">界面原型</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="reveal in">
+      <div class="eyebrow">Jovida v0.18 · Day Planner · 概念稿</div>
+      <h1>把「想变好」<br>翻译成<span class="br">今天能做的小事</span></h1>
+      <p class="lede">Day Flow 帮你把今天<b>排出来</b>。Jovida 帮你把今天<b>过成你想成为的人</b>——一个懂你、会陪你、用动力系统推着你走的 Agent。</p>
+      <div class="tagstrip">
+        <span>🐰 有情绪的陪伴者</span><span>🧩 Agent 替你拆解</span><span>🔥 暖版动力系统</span><span>📲 截图 / 语音导入</span>
+      </div>
+    </div>
+    <div class="hero-art reveal in">
+      <div class="halo"></div>
+      <img src="assets/rabbit-cheer-t.png" alt="Jovida 兔子">
+    </div>
+  </div>
+</header>
+
+<!-- ============ RESEARCH ============ -->
+<section class="section" id="research">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-label">01 — 市场调研</div>
+      <h2 class="sec-title">这个赛道,谁在赚钱,有多大</h2>
+      <p class="sec-intro">8 个参考产品(各配一张核心界面 / 宣传图)+ 目标人群规模。收入多为第三方估算,已标注置信度;截图取自 App Store 与各产品官网,数据采集于 2026 年 5 月。</p>
+    </div>
+
+    <div class="capps reveal">
+
+      <article class="capp">
+        <div class="capp-shot"><img src="assets/card-finch.jpg" alt="Finch 界面截图" loading="lazy"></div>
+        <div class="capp-body">
+          <div class="capp-head"><img class="capp-icon" src="assets/comp-finch-icon.jpg" alt=""><div><div class="capp-name">Finch</div><div class="capp-pos">完成自我照顾任务,养一只虚拟小鸟</div></div></div>
+          <div class="capp-stats">
+            <div class="cstat"><span class="cs-l">收入量级</span><span class="cs-v">~$24M ARR<small>2024</small></span></div>
+            <div class="cstat"><span class="cs-l">用户规模</span><span class="cs-v">500万+ 下载</span></div>
+          </div>
+          <div class="capp-note">75% 女性、25–35 岁;仅 $12.5 万种子轮,<b>基本零融资</b>却跑到了 $30M+。</div>
+        </div>
+      </article>
+
+      <article class="capp">
+        <div class="capp-shot"><img src="assets/card-tolan.jpg" alt="Tolan 界面" loading="lazy"></div>
+        <div class="capp-body">
+          <div class="capp-head"><img class="capp-icon" src="assets/comp-tolan-icon.jpg" alt=""><div><div class="capp-name">Tolan</div><div class="capp-pos">反恋爱路线的 AI 陪伴(外星人),主打「一起成长」</div></div></div>
+          <div class="capp-stats">
+            <div class="cstat"><span class="cs-l">收入量级</span><span class="cs-v">~$12M ARR</span></div>
+            <div class="cstat"><span class="cs-l">用户规模</span><span class="cs-v">300万下载 / 10万付费</span></div>
+          </div>
+          <div class="capp-note">半年融资 <b>$3000 万</b>——全场扩张最快的产品,验证了 AI 陪伴能放量。</div>
+        </div>
+      </article>
+
+      <article class="capp">
+        <div class="capp-shot"><img src="assets/card-habitica.jpg" alt="Habitica 界面截图" loading="lazy"></div>
+        <div class="capp-body">
+          <div class="capp-head"><img class="capp-icon" src="assets/comp-habitica-icon.jpg" alt=""><div><div class="capp-name">Habitica</div><div class="capp-pos">把 todo 做成 RPG——经验、金币、装备、打 boss</div></div></div>
+          <div class="capp-stats">
+            <div class="cstat"><span class="cs-l">收入量级</span><span class="cs-v">~$5.3M/年<small>估</small></span></div>
+            <div class="cstat"><span class="cs-l">用户规模</span><span class="cs-v">~400万用户</span></div>
+          </div>
+          <div class="capp-note"><b>警示样本</b>:用户很多、变现却弱——付费墙太软是真实风险。</div>
+        </div>
+      </article>
+
+      <article class="capp">
+        <div class="capp-shot"><img src="assets/card-meplus.jpg" alt="Me+ 界面截图" loading="lazy"></div>
+        <div class="capp-body">
+          <div class="capp-head"><img class="capp-icon" src="assets/comp-meplus-icon.jpg" alt=""><div><div class="capp-name">Me+</div><div class="capp-pos">自我照顾 + 每日 routine planner,带 AI 助手</div></div></div>
+          <div class="capp-stats">
+            <div class="cstat"><span class="cs-l">收入量级</span><span class="cs-v">~$300万/月<small>估</small></span></div>
+            <div class="cstat"><span class="cs-l">用户规模</span><span class="cs-v">2100万累计下载</span></div>
+          </div>
+          <div class="capp-note">高漏斗、低客单的典型——下载量很大,但单用户收入低。</div>
+        </div>
+      </article>
+
+      <article class="capp">
+        <div class="capp-shot"><img src="assets/card-tiimo.jpg" alt="Tiimo 界面截图" loading="lazy"></div>
+        <div class="capp-body">
+          <div class="capp-head"><img class="capp-icon" src="assets/comp-tiimo-icon.jpg" alt=""><div><div class="capp-name">Tiimo</div><div class="capp-pos">为 ADHD / 神经多样人群设计的可视化日程</div></div></div>
+          <div class="capp-stats">
+            <div class="cstat"><span class="cs-l">收入量级</span><span class="cs-v">~$2–3M ARR<small>估</small></span></div>
+            <div class="cstat"><span class="cs-l">用户规模</span><span class="cs-v">50万 / 5万付费</span></div>
+          </div>
+          <div class="capp-note">付费用户 <b>75%+ 自认神经多样</b>——精准定位换来了付费意愿。</div>
+        </div>
+      </article>
+
+      <article class="capp">
+        <div class="capp-shot"><img src="assets/card-rosebud.jpg" alt="Rosebud 界面截图" loading="lazy"></div>
+        <div class="capp-body">
+          <div class="capp-head"><img class="capp-icon" src="assets/comp-rosebud-icon.jpg" alt=""><div><div class="capp-name">Rosebud</div><div class="capp-pos">AI 引导式写日记,做个人成长 / 心理健康</div></div></div>
+          <div class="capp-stats">
+            <div class="cstat"><span class="cs-l">收入量级</span><span class="cs-v">~$1M ARR<small>估</small></span></div>
+            <div class="cstat"><span class="cs-l">用户规模</span><span class="cs-v">7500+ 付费</span></div>
+          </div>
+          <div class="capp-note">$600 万种子轮,Bessemer 领投——AI 日记这条线也有人买单。</div>
+        </div>
+      </article>
+
+      <article class="capp">
+        <div class="capp-shot"><img src="assets/card-myfutureself.jpg" alt="MyFutureSelf 官网" loading="lazy"></div>
+        <div class="capp-body">
+          <div class="capp-head"><img class="capp-icon" src="assets/comp-myfutureself-icon.jpg" alt=""><div><div class="capp-name">MyFutureSelf</div><div class="capp-pos">和「未来更成功的你」对话的 AI 习惯教练</div></div></div>
+          <div class="capp-stats">
+            <div class="cstat"><span class="cs-l">收入量级</span><span class="cs-v">暂无公开</span></div>
+            <div class="cstat"><span class="cs-l">用户规模</span><span class="cs-v">新品 · 起量中</span></div>
+          </div>
+          <div class="capp-note">概念和我们<b>高度重叠</b>(陪伴 + 计划 + 身份牵引)——最该盯防的对象。</div>
+        </div>
+      </article>
+
+      <article class="capp">
+        <div class="capp-shot"><img src="assets/card-dayflow.jpg" alt="Day Flow 官网" loading="lazy"></div>
+        <div class="capp-body">
+          <div class="capp-head"><img class="capp-icon" src="assets/comp-dayflow-icon.jpg" alt=""><div><div class="capp-name">Day Flow</div><div class="capp-pos">语音说出一天,AI 排成日程</div></div></div>
+          <div class="capp-stats">
+            <div class="cstat"><span class="cs-l">收入量级</span><span class="cs-v">暂无公开</span></div>
+            <div class="cstat"><span class="cs-l">用户规模</span><span class="cs-v">iOS ~3千评分</span></div>
+          </div>
+          <div class="capp-note">独立开发;<b>方向被验证,收入未验证</b>——可借鉴形态,不可当大盘证据。</div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="stats reveal">
+      <div class="stat"><div class="num">2200万+</div><div class="lab">美国 ADHD 确诊人群(儿童+成人),且仍在上升;全球成人 ADHD ~3.1% ≈ 1.5 亿+</div></div>
+      <div class="stat"><div class="num">$484 亿</div><div class="lab">个人成长市场(2024);其中数字 / App 部分 ~19.6% 年增,是大盘的 3–4 倍</div></div>
+      <div class="stat"><div class="num">~950万</div><div class="lab">仅美国大学生中「想变好但长期拖延」的核心人群(1930 万 × ~50%)</div></div>
+      <div class="stat"><div class="num">$15–19 亿</div><div class="lab">习惯类 App 市场,~13–15% 年增;邻近的 AI 陪伴赛道 ~27–31% 年增</div></div>
+    </div>
+
+    <ul class="takeaways reveal">
+      <li><b>变现差距极大。</b>Finch / tolan($12–30M)证明陪伴 + 游戏化能放大;Habitica(400 万用户却只 ~$5M)证明付费墙太软是真风险。</li>
+      <li><b>这其实是两个赛道,别混为一谈:</b>① 用 todo / 日历帮人「把事做成、变好」(Day Flow、Tiimo、Habitica…);② AI 陪伴(tolan、Rosebud…)。两边在 2025 都跑得很快——而 Jovida 的核心优势,正是<b>把这两个赛道组合起来</b>。</li>
+      <li><b>ADHD 是被验证、可防守的精准人群</b>,但我们不押临床 ADHD——见下一节对人群的选择。</li>
+      <li><b>定价基准:</b>年付集中在 $40–70;AI 重的 App 月付 $10–13。变现要在情绪上升期触发。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ POSITIONING ============ -->
+<section class="section" id="positioning">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-label">02 — 产品定位</div>
+      <h2 class="sec-title">不是 AI 日历,是一个推着你的 Agent</h2>
+      <div class="winline">
+        Day Flow 帮你把今天<span class="hi">排出来</span>;<br>
+        Jovida 帮你把今天<span class="hi">过成你想成为的人</span>。
+      </div>
+    </div>
+
+    <div class="persona reveal">
+      <div class="persona-l">
+        <div class="pk">V1 主人公 · 美国</div>
+        <h3>Maya Brooks</h3>
+        <div class="meta">26 岁 · 芝加哥 · 社媒运营</div>
+        <div class="quote">「健身卡办了去过三次,收藏夹里一堆教程没看,睡前刷手机到一点。我不是不想变好——是每次都坚持不下去。」</div>
+      </div>
+      <div class="persona-r">
+        <div class="prow"><div class="pi">🎯</div><div class="pt"><b>想变好的事</b><span>改善久坐的腰背体态 · 系统学视频剪辑(为升职)· 早点睡、少刷手机</span></div></div>
+        <div class="prow"><div class="pi">🌀</div><div class="pt"><b>真实状态</b><span>间歇性踌躇满志,持续性混吃等死。会因为「又没做到」而自责。</span></div></div>
+        <div class="prow"><div class="pi">🧭</div><div class="pt"><b>为什么是她</b><span>不是临床 ADHD(Finch 的低能量人群,难抢、付费低),也不是高度自律的 Sunsama 用户(不需要动力系统)。她是中间最大的一块——「想变好」是硬条件:没有它,Agent 没目标可拆,动力系统也推不动。</span></div></div>
+      </div>
+    </div>
+
+    <div class="persona reveal" style="margin-top:16px;">
+      <div class="persona-l">
+        <div class="pk">另一位用户 · 中国</div>
+        <h3>陈昊</h3>
+        <div class="meta">34 岁 · 深圳 · 软件工程师 · 新手爸爸</div>
+        <div class="quote">「我不是拖延——是被埋住了。目标太多、脑力太少,总有几件事悄悄漏掉。」</div>
+      </div>
+      <div class="persona-r">
+        <div class="prow"><div class="pi">🎯</div><div class="pt"><b>想变好的事</b><span>防止视力进一步下降(整天盯屏幕)· 保持锻炼、改善久坐腰背 · 学育儿知识</span></div></div>
+        <div class="prow"><div class="pi">🌀</div><div class="pt"><b>真实状态</b><span>不缺动力,缺的是「带宽」。事情不是不想做,是记不过来、排不过来。</span></div></div>
+        <div class="prow"><div class="pi">🧭</div><div class="pt"><b>为什么也算他</b><span>他要的不是「推」,是「别让我漏」+「把模糊目标拆成今天的动作」。同一套 Jovida、换个侧重——证明它跨人群、跨市场都成立。</span></div></div>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:30px;">
+      <div class="sec-label" style="font-size:11.5px;">重点对手 — 相比 Finch</div>
+      <div class="fcmp">
+        <div class="fcmp-head">
+          <div class="fc-them"><img src="assets/comp-finch-icon.jpg" alt="">Finch</div>
+          <div class="fc-us"><img src="assets/rabbit-hello-t.png" alt="" style="background:#fff;">Jovida</div>
+        </div>
+        <div class="fcmp-row">
+          <div class="fc-them"><div class="fcmp-k">人群</div>低能量 / 泛 ADHD 人群,主打「轻松、别有压力」。</div>
+          <div class="fc-us"><div class="fcmp-k">人群</div>不是单一人群,核心都是<b>「有意愿、缺结构」</b>——
+            <div class="pseg"><span class="pgi">🎓</span><div><b>学生</b>:被 pre、ddl、考试、论文,加上日常琐事、社交、护肤…… 各种事拉扯着,行动力跟不上。</div></div>
+            <div class="pseg"><span class="pgi">💼</span><div><b>早期职场人</b>:想升职 / 成长,立了 flag 却总烂尾。</div></div>
+            <div class="pseg"><span class="pgi">🌱</span><div><b>有心没方法的年轻人</b>:想变好,但不知道怎么开始、也坚持不下来。</div></div>
+            <div class="pseg"><span class="pgi">🧩</span><div><b>泛 ADHD / 神经多样</b>:成人 + 低龄,执行功能弱;覆盖,但不是 V1 主推。</div></div>
+            <div class="pseg"><span class="pgi">👶</span><div><b>忙碌的新手父母</b>:目标多、带宽不足,总有事悄悄漏掉。</div></div>
+          </div>
+        </div>
+        <div class="fcmp-row">
+          <div class="fc-them"><div class="fcmp-k">动力机制</div>养一只虚拟宠物——你为了照顾它,而完成自己的任务。</div>
+          <div class="fc-us"><div class="fcmp-k">动力机制</div>一个<b>真正理解你、懂你的陪伴者</b>——它记得你做到的事、把它还给你,也越用越懂你的节奏;这种一天天累积起来的<b>投入感(stake)</b>,会让人自然放不下。不是把动力寄托在一只宠物身上。</div>
+        </div>
+        <div class="fcmp-row">
+          <div class="fc-them"><div class="fcmp-k">功能 · 更了解你</div>靠你手动打卡录入,不接入外部数据。</div>
+          <div class="fc-us"><div class="fcmp-k">功能 · 更了解你</div>导入 <b>Apple Health / 日历 / 提醒 / Gmail</b>,用你真实的一天起底稿,再智能生成——
+            <div class="fex">📊 <b>Apple Health</b>:看到你这周平均只睡 5.5 小时 → 生成一条建议「今晚 23:15 放下手机」,<b>你确认后</b>才加进计划。</div>
+            <div class="fex">✉️ <b>Gmail</b>:翻到一封「周五交季度复盘」的邮件 → 建议把它拆成「导数据 / 写三段 / 配图检查」三步,<b>你点确认</b>它才进你这周的计划。</div>
+          </div>
+        </div>
+        <div class="fcmp-row">
+          <div class="fc-them"><div class="fcmp-k">功能 · AI 生成</div>任务靠你自己想清楚、自己一条条建。</div>
+          <div class="fc-us"><div class="fcmp-k">功能 · AI 生成</div>你<b>不需要想清楚</b>——模糊的目标、一句话、一团乱麻,AI 结合对你的了解替你生成具体计划——
+            <div class="fex">💬 你说「想让身材好一点」(很模糊)→ AI 拆成「每天靠墙站 2 分钟」「午休走 7 分钟」「跟着周三 / 五的健身课」。</div>
+            <div class="fex">💬 你说「下周要见个重要客户,有点慌」(一团乱麻)→ AI 排出「周一查客户背景」「周三理 3 个谈点」「周四晚彩排一遍」。</div>
+          </div>
+        </div>
+        <div class="fcmp-row">
+          <div class="fc-them"><div class="fcmp-k">功能 · 多种导入</div>——(没有这层)</div>
+          <div class="fc-us"><div class="fcmp-k">功能 · 多种导入</div>日常琐事不用手动建,用<b>多种方式</b>随手丢给 Jovida,它替你安排进计划——
+            <div class="fex">🎙 <b>语音 / 文字快速录入</b>:随口说一句、打一行字,当场排进计划。</div>
+            <div class="fex">📸 <b>双击手机后背</b>:把当前屏幕截图直接传进来。</div>
+            <div class="fex">📋 <b>剪贴板陪伴</b>:你复制的内容它也接得住,更懂你的上下文。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MECHANISM ============ -->
+<section class="section" id="mechanism">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-label">03 — 核心机制</div>
+      <h2 class="sec-title">三个关键设计</h2>
+    </div>
+    <div class="mech">
+      <div class="mcard reveal">
+        <h3>① 软硬分层 —— Agent 怎么生成而不出错</h3>
+        <p class="msub">用户最怕 AI 乱排。解法:把一天分两层,Agent 只生成它擅长的那一层。</p>
+        <div class="layerwrap">
+          <div class="layer hard">
+            <span class="ltag">硬约束</span>
+            <div class="lt"><b>固定的事 —— 只导入,绝不发明、绝不挪动</b><p>会议、吃药、健身课、deadline。来自日历 / 提醒事项 / 截图。Agent 永远不碰它 → 「排错一个会议」这种致命失败基本消失。</p></div>
+          </div>
+          <div class="layer soft">
+            <span class="ltag">软推进</span>
+            <div class="lt"><b>朝着目标今天做什么 —— Agent 判断力增值的地方</b><p>把「想改善体态」这种模糊愿望,翻译成今天能做、且真的值得做的小事。生成时必须附理由。这才是最难、最有壁垒的活。</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mcard reveal">
+        <h3>② 暖版动力系统</h3>
+        <p class="msub">streak 判定单位 = 「今天有没有推进」(完成 ≥1 件事,或跟 Jovida 说句话)——不是「全部完成」。门槛低,所以用户很难断。</p>
+        <div class="warmrule" style="grid-template-columns:1fr;">
+          <div class="wr yes"><div class="wrh">✓ 我们要的</div><ul><li>streak、宝石、即时正反馈</li><li>进度可视化、角色和你一起成长</li><li>完成一件就续上,门槛足够低</li></ul></div>
+        </div>
+        <div class="note" style="background:rgba(207,124,51,.09);color:var(--ink-2);margin-top:14px;padding:13px 15px;border-radius:13px;font-size:13px;">关键是<b>不施压</b>:用户来的时候往往已经在自责了(他刚从短视频里出来)。如果再用红点、断 streak 的恐吓去逼他,他会干脆回去刷——那边至少不骂他。</div>
+      </div>
+
+      <div class="mcard reveal">
+        <h3>③ 抢三个短视频碰不到的时刻</h3>
+        <p class="msub">不在「杀时间」上跟抖音 / TikTok 打——赢不了。它们是零启动成本的无限多巴胺机器。Jovida 抢的是它们结构上够不着的时刻。</p>
+        <div class="moments">
+          <div class="moment"><div class="mn">时刻 01</div><div class="mt">想变好的那一刻</div><div class="mp">早上 / 月初 / 刷到励志内容。Agent 已经把计划做好,用户只面对「做一件小事」,不是「规划人生」——拼的是启动成本。</div></div>
+          <div class="moment"><div class="mn">时刻 02</div><div class="mt">刷完空虚的那一刻</div><div class="mp">comedown。短视频此刻什么都不给。Jovida 接住,而且绝不骂他。不审判的再进入,是它们给不了的。</div></div>
+          <div class="moment"><div class="mn">时刻 03</div><div class="mt">被温柔触达的那一刻</div><div class="mp">它们的推送是纯诱饵。Jovida 踩对时间、语气是温的——一个记得你、在等你的角色,它们结构上没有。</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROTOTYPE ============ -->
+<section class="section" id="prototype">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-label">04 — 界面原型</div>
+      <h2 class="sec-title">17 个界面 —— 一个完整的产品</h2>
+      <p class="sec-intro">一条故事线:跟着主人公 Maya,从 onboarding 走到一整天的推进、随手导入、陪伴、触达与坚持。每个界面下方注明它要证明什么。</p>
+    </div>
+
+    <!-- ACT 1 进入 Jovida -->
+    <div class="act reveal">
+      <div class="act-head"><span class="act-no">ACT 1</span><h3>进入 Jovida</h3><span class="ad">导入数据 → 和 Agent 聊清楚 → 生成你的计划</span></div>
+      <div class="gallery">
+
+        <!-- S1 导入数据源 -->
+        <figure class="ph">
+          <div class="phone"><div class="frame"><div class="screen"><div class="di"></div>
+            <div class="sb"><span>20:12</span><span class="si">📶 🔋</span></div>
+            <div class="sx">
+              <div class="ob-top"><div class="ob-prog"><i style="width:22%"></i></div><span class="ob-skip">跳过</span></div>
+              <div class="bub"><div class="rb"><img src="assets/rabbit-hello-t.png" alt=""></div>
+                <div class="btxt">嗨,我是 <b>Jovida</b>。先把你已经在用的东西连进来——我用它们帮你起个底稿,你就不用从零开始。</div></div>
+              <div class="x-sec">连接你的数据 · 点一个连一个</div>
+              <div class="imp"><div class="ii" style="background:#D8EEFF;">📅</div><div class="im"><div class="it">系统日历 Calendar</div><div class="id">会议、安排、固定的事</div></div><span class="imp-on">✓ 已连接</span></div>
+              <div class="imp"><div class="ii" style="background:#FFEBCB;">📋</div><div class="im"><div class="it">提醒事项 Reminders</div><div class="id">你已经记下的待办</div></div><span class="imp-btn">连接</span></div>
+              <div class="imp"><div class="ii" style="background:#FFDDE2;">❤️</div><div class="im"><div class="it">Apple 健康</div><div class="id">步数、睡眠、运动数据</div></div><span class="imp-btn">连接</span></div>
+              <div class="imp"><div class="ii" style="background:#E2E1FF;">✉️</div><div class="im"><div class="it">Gmail</div><div class="id">从邮件里找出该做的事</div></div><span class="imp-btn">连接</span></div>
+              <div class="note">连得越多,Jovida 越懂你真实的一天。也可以现在跳过,以后再连。</div>
+              <div class="btnrow"><button class="btn primary">下一步</button></div>
+            </div>
+          </div></div></div>
+          <figcaption class="cap"><span class="capn">01</span><b>导入数据源</b> — onboarding 第一步:逐个点亮 日历 / 提醒 / 健康 / Gmail。Agent 用真实数据起底稿,不让你从零开始。</figcaption>
+        </figure>
+
+        <!-- S2 Agent 完整对话 · Jovida 选项卡 -->
+        <figure class="ph">
+          <div class="phone"><div class="frame"><div class="screen"><div class="di"></div>
+            <div class="sb"><span>20:14</span><span class="si">📶 🔋</span></div>
+            <div class="sx">
+              <div class="ob-top"><div class="ob-prog"><i style="width:55%"></i></div><span class="ob-skip">跳过</span></div>
+              <div class="x-eyebrow" style="margin-bottom:2px;">和 Jovida 聊 7 个问题 · 多数点卡片就行 · ↑↓ 上下滑动</div>
+
+              <div class="thoughtp"><span class="tpck">✓</span>思考过程 · 我边问边拼你的画像<span class="tparr">›</span></div>
+
+              <div class="bub"><div class="rb"><img src="assets/rabbit-hello-t.png" alt=""></div>
+                <div class="btxt"><b>① </b>你现在最想要的是什么?<b>点卡片,可多选。</b></div></div>
+              <div class="jopt on"><span class="joi">⏰</span><div class="jot">安排好我的时间</div><span class="jock">✓</span></div>
+              <div class="jopt"><span class="joi">📌</span><div class="jot">别漏掉该做的事</div><span class="jock"></span></div>
+              <div class="jopt on"><span class="joi">🔁</span><div class="jot">坚持住一个习惯</div><span class="jock">✓</span></div>
+              <div class="jopt on"><span class="joi">🎯</span><div class="jot">在某个目标上往前走</div><span class="jock">✓</span></div>
+
+              <div class="bub" style="margin-top:15px;"><div class="rb"><img src="assets/rabbit-hello-t.png" alt=""></div>
+                <div class="btxt"><b>② </b>想先从哪些方面入手?同样可多选。</div></div>
+              <div class="jopt on"><span class="joi">🏃</span><div class="jot">身体 / 体态</div><span class="jock">✓</span></div>
+              <div class="jopt on"><span class="joi">💼</span><div class="jot">工作 / 成长</div><span class="jock">✓</span></div>
+              <div class="jopt on"><span class="joi">😴</span><div class="jot">睡眠 / 精力</div><span class="jock">✓</span></div>
+              <div class="jopt"><span class="joi">🧘</span><div class="jot">情绪 / 压力</div><span class="jock"></span></div>
+
+              <div class="bub" style="margin-top:15px;"><div class="rb"><img src="assets/rabbit-hello-t.png" alt=""></div>
+                <div class="btxt"><b>③ </b>这题想听你<b>自己说</b>——最近最不满意自己的,是什么?随便说。</div></div>
+              <div class="custom-in"><span>✎</span><span class="cv">感觉生活有点乱,该做的总没做,也不太满意自己…</span></div>
+
+              <div class="bub" style="margin-top:15px;"><div class="rb"><img src="assets/rabbit-hello-t.png" alt=""></div>
+                <div class="btxt"><b>④ </b>身体这块,最困扰你的是?(单选)</div></div>
+              <div class="jopt on"><span class="joi">🪑</span><div class="jot">久坐,腰酸背痛</div><span class="jock">✓</span></div>
+              <div class="jopt"><span class="joi">⚖️</span><div class="jot">想减重</div><span class="jock"></span></div>
+              <div class="jopt"><span class="joi">😮‍💨</span><div class="jot">总是没精神</div><span class="jock"></span></div>
+              <div class="jopt"><span class="joi">💪</span><div class="jot">想更有力量</div><span class="jock"></span></div>
+
+              <div class="bub" style="margin-top:15px;"><div class="rb"><img src="assets/rabbit-hello-t.png" alt=""></div>
+                <div class="btxt"><b>⑤ </b>工作上,你最想要的是?</div></div>
+              <div class="jopt on"><span class="joi">🎬</span><div class="jot">学视频剪辑 · 为升职</div><span class="jock">✓</span></div>
+              <div class="jopt"><span class="joi">📈</span><div class="jot">把手头的事做更好</div><span class="jock"></span></div>
+              <div class="jopt"><span class="joi">🚪</span><div class="jot">准备跳槽</div><span class="jock"></span></div>
+              <div class="jopt"><span class="joi">💰</span><div class="jot">接点私活</div><span class="jock"></span></div>
+
+              <div class="bub" style="margin-top:15px;"><div class="rb"><img src="assets/rabbit-hello-t.png" alt=""></div>
+                <div class="btxt"><b>⑥ </b>晚上的情况,更像哪一种?</div></div>
+              <div class="jopt on"><span class="joi">📱</span><div class="jot">熬夜刷手机,停不下来</div><span class="jock">✓</span></div>
+              <div class="jopt"><span class="joi">🌙</span><div class="jot">睡得晚,但不刷手机</div><span class="jock"></span></div>
+              <div class="jopt"><span class="joi">😌</span><div class="jot">睡眠还行</div><span class="jock"></span></div>
+
+              <div class="bub" style="margin-top:15px;"><div class="rb"><img src="assets/rabbit-cheer-t.png" alt=""></div>
+                <div class="btxt"><b>⑦ </b>最后一个——先动一个的话,你最想先看到哪个有变化?</div></div>
+              <div class="jopt on"><span class="joi">🪑</span><div class="jot">改善体态</div><span class="jock">✓</span></div>
+              <div class="jopt"><span class="joi">🎬</span><div class="jot">学会剪辑</div><span class="jock"></span></div>
+              <div class="jopt"><span class="joi">🌙</span><div class="jot">早点睡</div><span class="jock"></span></div>
+
+              <div class="bub" style="margin-top:16px;"><div class="rb"><img src="assets/rabbit-hello-t.png" alt=""></div>
+                <div class="btxt">好。你选的方面不少,又说了「生活有点乱」—— 我把它收成 <b>3 件具体的事</b> 👇</div></div>
+              <div class="synth"><div class="syi" style="background:#C9EFD6;">🪑</div><div><div class="syt">改善久坐体态</div><div class="syd">先从「每天靠墙站 2 分钟」开始</div></div></div>
+              <div class="synth"><div class="syi" style="background:#E2E1FF;">🎬</div><div><div class="syt">学视频剪辑(为升职)</div><div class="syd">先「每天看 1 节 + 跟练一遍」</div></div></div>
+              <div class="synth"><div class="syi" style="background:#D8EEFF;">🌙</div><div><div class="syt">早睡、少刷手机</div><div class="syd">先「23:30 收到放下手机的提醒」</div></div></div>
+              <div class="note">用 Jovida 的选项卡 UI,点一下就行——只有第 ③ 题自己说。模糊的「想变好」→ 3 个能落地的方向。</div>
+              <div class="btnrow"><button class="btn primary">看 Jovida 排好的计划 →</button></div>
+            </div>
+          </div></div></div>
+          <figcaption class="cap"><span class="capn">02</span><b>Agent 对话 · Jovida 选项卡</b> — 沿用 Jovida 的选项卡 UI(白色卡片 + emoji,点一下选中)。整段 7 问收进一个可上下滑的界面,把「生活有点乱」聊成 3 个具体方向。</figcaption>
+        </figure>
+
+        <!-- S3 生成中 -->
+        <figure class="ph">
+          <div class="phone"><div class="frame"><div class="screen"><div class="di"></div>
+            <div class="sb"><span>20:16</span><span class="si">📶 🔋</span></div>
+            <div class="sx" style="text-align:center;">
+              <div class="ob-top"><div class="ob-prog"><i style="width:80%"></i></div><span class="ob-skip" style="opacity:.3;">跳过</span></div>
+              <div class="gen-ring"></div>
+              <div class="x-h1" style="font-size:21px;">Jovida 正在为你<br>排第一版计划</div>
+              <div class="card" style="text-align:left;margin-top:20px;">
+                <div class="gstep done"><span class="gck">✓</span><div>读了你的日历和提醒事项</div></div>
+                <div class="gstep done"><span class="gck">✓</span><div>把 3 个目标拆成了可做的小步</div></div>
+                <div class="gstep now"><span class="gck"></span><div>正在安排今天和这一周…</div></div>
+                <div class="gstep wait"><span class="gck"></span><div>挑出哪些每天做、哪些某些天做</div></div>
+              </div>
+              <div class="note" style="text-align:left;">第一版不用完美——你边用,我边调。</div>
+            </div>
+          </div></div></div>
+          <figcaption class="cap"><span class="capn">03</span><b>生成你的计划</b> — Agent 把导入的数据 + 对话里的回答,排成第一版。过程透明:你看得见它在做什么。</figcaption>
+        </figure>
+
+        <!-- S4 计划生成好了 -->
+        <figure class="ph">
+          <div class="phone"><div class="frame"><div class="screen"><div class="di"></div>
+            <div class="sb"><span>20:17</span><span class="si">📶 🔋</span></div>
+            <div class="sx">
+              <div class="bub" style="margin-top:8px;"><div class="rb"><img src="assets/rabbit-cheer-t.png" alt=""></div>
+                <div class="btxt">好了 🎉 这是你的<b>第一版</b>计划——有的每天都有,有的只在某些天。不对就改,我们边用边调。</div></div>
+              <div class="x-sec">你的计划 · 12 项</div>
+              <div class="todo"><div class="tic" style="background:#C9EFD6;">🪑</div><div class="tm"><div class="tt">工位靠墙站 2 分钟</div><div class="tmeta">改善体态</div></div><span class="freq daily">每天</span></div>
+              <div class="todo"><div class="tic" style="background:#E2E1FF;">🎬</div><div class="tm"><div class="tt">看 1 节剪辑教程 + 跟练</div><div class="tmeta">学剪辑</div></div><span class="freq daily">每天</span></div>
+              <div class="todo"><div class="tic" style="background:#D8EEFF;">🌙</div><div class="tm"><div class="tt">23:30 放下手机</div><div class="tmeta">早睡 · 23:30</div></div><span class="freq daily">每天</span></div>
+              <div class="todo"><div class="tic" style="background:#FFEBCB;">💪</div><div class="tm"><div class="tt">健身课 · Z Gym</div><div class="tmeta">19:00 · 来自日历</div></div><span class="freq some">周三 / 五</span></div>
+              <div class="todo"><div class="tic" style="background:#FFEBCB;">📄</div><div class="tm"><div class="tt">交月度内容复盘</div><div class="tmeta">17:00 前</div></div><span class="freq once">周五一次</span></div>
+              <div class="todo"><div class="tic" style="background:#C9EFD6;">🚶</div><div class="tm"><div class="tt">午休走 7 分钟</div><div class="tmeta">改善体态</div></div><span class="freq free">无固定时间</span></div>
+              <div class="note">每天 / 某些天 / 一次性 / 无固定时间 —— Jovida 给每件事配好频率,你只管做。</div>
+              <div class="btnrow"><button class="btn primary">进入 Jovida →</button></div>
+            </div>
+          </div></div></div>
+          <figcaption class="cap"><span class="capn">04</span><b>计划生成好了</b> — onboarding 终点:一份带频率的 todo list(每天 / 某些天 / 一次性 / 无固定时间)。</figcaption>
+        </figure>
+
+      </div>
+    </div>
+
+    <!-- ACT 2 你的一天 -->
+    <div class="act reveal">
+      <div class="act-head"><span class="act-no">ACT 2</span><h3>你的一天</h3><span class="ad">首页点 ✅ 直接完成、语音随口加事 · 详情页只在想看拆解 / 资源时进</span></div>
+      <div class="gallery">
+
+        <!-- S5 今日首页 -->
+        <figure class="ph">
+          <div class="phone"><div class="frame"><div class="screen"><div class="di"></div>
+            <div class="sb"><span>8:42</span><span class="si">📶 🔋</span></div>
+            <div class="sx">
+              <div class="x-top">
+                <div class="menu"><div></div></div>
+                <div class="x-stats"><div class="pill">🔥 12</div><div class="pill">💎 247</div></div>
+              </div>
+              <div class="datehead"><div class="dh-t">今天 · 周三</div><div class="dh-m">2026年5月 ›</div></div>
+              <div class="weekcal">
+                <div class="wc"><span class="wcd">日</span><span class="wcn">17</span></div>
+                <div class="wc"><span class="wcd">一</span><span class="wcn">18</span><span class="wdot"></span></div>
+                <div class="wc"><span class="wcd">二</span><span class="wcn">19</span></div>
+                <div class="wc on"><span class="wcd">三</span><span class="wcn">20</span><span class="wdot"></span></div>
+                <div class="wc"><span class="wcd">四</span><span class="wcn">21</span><span class="wdot"></span></div>
+                <div class="wc"><span class="wcd">五</span><span class="wcn">22</span><span class="wdot"></span></div>
+                <div class="wc"><span class="wcd">六</span><span class="wcn">23</span></div>
+              </div>
+              <div class="bub" style="margin:9px 0 0;"><div class="rb" style="width:46px;height:46px;"><img src="assets/rabbit-cheer-t.png" style="width:42px;height:42px;" alt=""></div>
+                <div class="btxt">早,Maya ☀️ 今天有健身课,别的我都排<b>轻</b>了。完成<b>任意一件</b>,🔥 就续上。</div></div>
+              <div class="x-eyebrow" style="margin:14px 2px 0;">5 件待完成 · 已完成 1</div>
+              <div class="grp"><span class="gname">随时</span><span class="gcount">(1)</span><span class="gchev">▾</span></div>
+              <div class="todo"><div class="tic" style="background:#C9EFD6;">🪑</div><div class="tm"><div class="tt">工位靠墙站 2 分钟</div><div class="tmeta">改善体态 · <span class="tgem">💎15</span></div></div><span class="tcheck"></span></div>
+              <div class="grp"><span class="gname">上午</span><span class="gcount">(2)</span><span class="gchev">▾</span></div>
+              <div class="todo done"><div class="tic" style="background:#D8EEFF;">🚌</div><div class="tm"><div class="tt">通勤</div><div class="tmeta">15 分钟</div></div><span class="tcheck on">✓</span></div>
+              <div class="todo"><div class="tic" style="background:#E2E1FF;">🎬</div><div class="tm"><div class="tt">看 1 节转场教程 + 跟练</div><div class="tmeta">学剪辑 · <span class="tsrc">拆解 3 步</span> · <span class="tgem">💎25</span></div></div><span class="tcheck"></span></div>
+              <div class="grp"><span class="gname">白天</span><span class="gcount">(2)</span><span class="gchev">▾</span></div>
+              <div class="todo hard"><div class="tic" style="background:#fff;">📄</div><div class="tm"><div class="tt">交月度内容复盘</div><div class="tmeta">17:00 前 · <span class="tsrc">提醒事项</span></div></div><span class="tcheck"></span></div>
+              <div class="todo"><div class="tic" style="background:#C9EFD6;">🚶</div><div class="tm"><div class="tt">午休走 7 分钟</div><div class="tmeta">改善体态 · <span class="tgem">💎10</span></div></div><span class="tcheck"></span></div>
+              <div class="grp"><span class="gname">晚上</span><span class="gcount">(2)</span><span class="gchev">▾</span></div>
+              <div class="todo hard"><div class="tic" style="background:#fff;">💪</div><div class="tm"><div class="tt">健身课 · Z Gym</div><div class="tmeta">19:00 · <span class="tsrc">日历</span></div></div><span class="tcheck"></span></div>
+              <div class="todo"><div class="tic" style="background:#D8EEFF;">🌙</div><div class="tm"><div class="tt">23:30 放下手机,准备睡</div><div class="tmeta">早睡 · <span class="tgem">💎10</span></div></div><span class="tcheck"></span></div>
+            </div>
+            <div class="navbar">
+              <div class="nb-item on"><svg class="nb-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h11"/></svg><span>首页</span></div>
+              <div class="nb-item nb-chat"><div class="nb-rb"><img src="assets/rabbit-hello-t.png" alt=""></div><span>聊天</span></div>
+              <div class="nb-item"><svg class="nb-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V11M12 20V5M19 20v-6"/></svg><span>回顾</span></div>
+            </div>
+            <div class="voicefab">
+              <div class="vf-hint">说一句,我帮你排 →</div>
+              <div class="vf-glow"></div>
+              <div class="vf-btn">🎙</div>
+            </div>
+          </div></div></div>
+          <figcaption class="cap"><span class="capn">05</span><b>今日首页</b> — 顶部一周日历可切换看任意一天(有的 todo 跟日期绑定、只在某天出现,日历下有小圆点提示)。按时段分组,点右侧 ✅ 当场完成。底栏三 tab(首页 / 聊天 / 回顾);右下角发光的<b>语音圆圈</b>强引导——随口说一句,Jovida 就排进计划。</figcaption>
+        </figure>
+
+        <!-- S6 todo 详情 -->
+        <figure class="ph">
+          <div class="phone"><div class="frame"><div class="screen"><div class="di"></div>
+            <div class="sb"><span>8:43</span><span class="si">📶 🔋</span></div>
+            <div class="sx">
+              <div class="x-top"><div style="font-size:22px;">‹</div><span class="atag purple" style="font-size:11px;">学剪辑</span><div style="width:22px;"></div></div>
+              <div class="x-h1" style="font-size:23px;line-height:1.25;">看 1 节转场教程<br>+ 跟练一遍</div>
+              <div class="bub" style="margin-top:12px;"><div class="rb"><img src="assets/rabbit-hello-t.png" alt=""></div>
+                <div class="btxt">你收藏夹里那条《3 个让画面高级的转场》躺了 <b>11 天</b>了。今天只花 8 分钟,把第一个「叠化」学会——周五的月度复盘片头正好用得上 ✨</div></div>
+              <div style="display:flex;justify-content:flex-end;margin:10px 0 2px;"><span class="gem">完成 +💎25</span></div>
+              <details class="fold">
+                <summary>🧩 Jovida 帮你拆好了 · 每步可打勾 · 1/3<span class="fchev">▾</span></summary>
+                <div class="fbody">
+                  <div class="substep done"><span class="sscheck on">✓</span><div>看教程 <b>0:00–8:00</b>,只看第一个转场</div></div>
+                  <div class="substep"><span class="sscheck"></span><div>打开 CapCut,挑一段你拍过的素材</div></div>
+                  <div class="substep"><span class="sscheck"></span><div>套「叠化」,导出 15 秒</div></div>
+                </div>
+              </details>
+              <div class="x-sec">📎 这个任务的资源</div>
+              <div class="res"><div class="rico" style="background:#E2E1FF;">▶</div><div><div class="rt">《3 个让画面高级的转场》</div><div class="rd">教程 · 你的收藏夹 · 8 分钟</div></div></div>
+              <div class="res"><div class="rico" style="background:#C9EFD6;">🎬</div><div><div class="rt">叠化转场 · 跟练视频</div><div class="rd">边看边做 · 3 分钟</div></div></div>
+              <div class="btnrow"><button class="btn primary">✓ 完成</button><button class="btn ghost">↪ 挪到明天(snooze)</button></div>
+            </div>
+          </div></div></div>
+          <figcaption class="cap"><span class="capn">06</span><b>打开一个 todo</b> — 详情页是「想看拆解 / 资源」时才进的。<b>拆解的每一步都能单独打勾</b>(不是干巴巴的文本);资源给教程 / 跟练。todo 本身在首页点 ✅ 完成。</figcaption>
+        </figure>
+
+      </div>
+    </div>
+
+    <!-- ACT 3 快捷导入 -->
+    <div class="act reveal">
+      <div class="act-head"><span class="act-no">ACT 3</span><h3>随手往计划里加东西</h3><span class="ad">双击后背丢截图 —— 看到什么,随手交给 Agent,它帮你变成 todo</span></div>
+      <div class="gallery">
+
+        <!-- S7 截图快捷导入 -->
+        <figure class="ph">
+          <div class="phone"><div class="frame"><div class="screen"><div class="di"></div>
+            <div class="sb"><span>12:36</span><span class="si">📶 🔋</span></div>
+            <div class="sx">
+              <div class="x-eyebrow">刚刚 · 双击了手机后背 📸</div>
+              <div class="capshot" style="margin-top:10px;">
+                <div class="cs-img"><span style="color:#fff;font-weight:800;font-size:12.5px;background:rgba(0,0,0,.28);padding:5px 10px;border-radius:8px;">Instagram · 一套「靠墙天使」拉伸</span></div>
+                <div class="cs-cap">截图已进入 Jovida · 来自 Instagram</div>
+              </div>
+              <div class="bub" style="margin-top:12px;"><div class="rb"><img src="assets/rabbit-hello-t.png" alt=""></div>
+                <div class="btxt">收到 ✨ 这是一套「靠墙天使」拉伸,正好对着你的<b>圆肩</b>。要我怎么安排它?</div></div>
+              <div class="qmenu"><div class="qi" style="background:#C9EFD6;">🧘</div><div class="qt">加进「改善体态」计划<span class="qd">我建议隔天一次,跟练视频我配好</span></div><span class="qchev">›</span></div>
+              <div class="qmenu"><div class="qi" style="background:#FFEBCB;">☀️</div><div class="qt">就加到今天,先试一次<span class="qd">放进「随时」,有空就做</span></div><span class="qchev">›</span></div>
+              <div class="qmenu"><div class="qi" style="background:#D8EEFF;">📥</div><div class="qt">先存进 inbox<span class="qd">现在不想决定,以后再说</span></div><span class="qchev">›</span></div>
+              <div class="note">双击手机后背 → 当前屏幕直接进 Jovida。<b>不用切 App、不用复制粘贴。</b></div>
+            </div>
+          </div></div></div>
+          <figcaption class="cap"><span class="capn">07</span><b>截图快捷导入</b> — 双击后背把屏幕丢进来。Agent <b>读懂了截图内容</b>(认出是拉伸、对应你的圆肩),给出贴合的<b>自然选项</b>——加进对的计划 / 今天试一次 / 暂存,而不是机械的「新建 / 已有 / inbox」。</figcaption>
+        </figure>
+
+        <!-- S8 截图 → Agent 交互生成 -->
+        <figure class="ph">
+          <div class="phone"><div class="frame"><div class="screen"><div class="di"></div>
+            <div class="sb"><span>12:37</span><span class="si">📶 🔋</span></div>
+            <div class="sx">
+              <div class="x-top"><div style="font-size:22px;">‹</div><div style="font-weight:800;font-size:15px;">用截图新建计划</div><div style="width:22px;"></div></div>
+              <div class="bub" style="margin-top:6px;"><div class="rb"><img src="assets/rabbit-hello-t.png" alt=""></div>
+                <div class="btxt">这是一套「靠墙天使」拉伸,正好对着你的圆肩。一次大概 4 分钟。你想多久做一次?</div></div>
+              <div class="chips"><span class="chip">每天</span><span class="chip on">隔天一次</span><span class="chip">只周末</span></div>
+              <div class="bub me" style="margin-top:8px;"><div class="btxt">隔天吧,先不贪多</div></div>
+              <div class="bub"><div class="rb"><img src="assets/rabbit-cheer-t.png" alt=""></div>
+                <div class="btxt">好。我把它编进你的「改善体态」计划了,跟练视频也一起附上了 👇</div></div>
+              <div class="todo"><div class="tic" style="background:#C9EFD6;">🧘</div><div class="tm"><div class="tt">靠墙天使拉伸 · 4 分钟</div><div class="tmeta">改善体态 · <span class="tsrc">跟练视频</span></div></div><span class="freq some">隔天</span></div>
+              <div class="btnrow"><button class="btn primary">加入我的计划</button></div>
+            </div>
+          </div></div></div>
+          <figcaption class="cap"><span class="capn">08</span><b>截图 → Agent 交互生成</b> — Agent 读懂截图内容,问一两句(频率 / 难度),把它变成一条带资源的 todo。</figcaption>
+        </figure>
+
+      </div>
+    </div>
+
+    <!-- ACT 4 陪伴与情绪 -->
+    <div class="act reveal">
+      <div class="act-head"><span class="act-no">ACT 4</span><h3>陪伴与情绪</h3><span class="ad">用户主动倾诉 · Agent 主动互动 · 分享小成果 · 第 30 天的信</span></div>
+      <div class="gallery">
+
+        <!-- S9 用户主动倾诉 -->
+        <figure class="ph">
+          <div class="phone"><div class="frame"><div class="screen"><div class="di"></div>
+            <div class="sb"><span>15:20</span><span class="si">📶 🔋</span></div>
+            <div class="sx">
+              <div class="x-top"><div style="font-size:22px;">‹</div><div style="font-weight:800;font-size:15px;">Jovida</div><div style="width:22px;"></div></div>
+              <div class="bub me" style="margin-top:8px;"><div class="btxt">有点烦。感觉自己最近啥也没推进,一直在原地。</div></div>
+              <div class="bub me"><div class="btxt">是不是我就这样了</div></div>
+              <div class="bub"><div class="rb"><img src="assets/rabbit-care-t.png" alt=""></div>
+                <div class="btxt">我翻了下你这两周 ——<br>· 剪辑教程看了 <b>2 节</b><br>· 靠墙站做到了 <b>4 天</b><br>· 昨天还比前天<b>早睡了 40 分钟</b><br><br>不是没推进。是你做到的事,你自己没记着。<b>我帮你记着。</b></div></div>
+              <div style="display:flex;align-items:center;gap:8px;background:#fff;border-radius:99px;padding:13px 16px;margin-top:8px;box-shadow:0 4px 10px rgba(0,0,0,.05);">
+                <span class="muted" style="font-size:13.5px;">说点什么…</span><span style="margin-left:auto;">🎙</span>
+              </div>
+            </div>
+          </div></div></div>
+          <figcaption class="cap"><span class="capn">09</span><b>陪伴 a · 用户主动倾诉</b> — 用户说出困难 / 情绪。Agent 不讲道理,用「镜像」把他做到的事还给他。</figcaption>
+        </figure>
+
+        <!-- S10 Agent 主动互动 -->
+        <figure class="ph">
+          <div class="phone"><div class="frame"><div class="screen"><div class="di"></div>
+            <div class="sb"><span>9:02</span><span class="si">📶 🔋</span></div>
+            <div class="sx">
+              <div class="x-top"><div style="font-size:22px;">‹</div><div style="font-weight:800;font-size:15px;">Jovida</div><div style="width:22px;"></div></div>
+              <div class="bub" style="margin-top:8px;"><div class="rb"><img src="assets/rabbit-hello-t.png" alt=""></div>
+                <div class="btxt">打扰一下,我想跟你说件事 ☺️</div></div>
+              <div class="bub"><div class="rb"><img src="assets/rabbit-cheer-t.png" alt=""></div>
+                <div class="btxt">这一周你<b>早睡做到了 5 天</b>。<br>上个月,你一整个月只做到 <b>1 天</b>。<br><br>这个变化你自己可能没察觉——我察觉到了,想让你也知道。</div></div>
+              <div class="bub me"><div class="btxt">……真的假的,我都没注意</div></div>
+              <div class="bub"><div class="rb"><img src="assets/rabbit-hello-t.png" alt=""></div>
+                <div class="btxt">真的。我一直在数。这种事,该有人替你看着。</div></div>
+            </div>
+          </div></div></div>
+          <figcaption class="cap"><span class="capn">10</span><b>陪伴 b · Agent 主动互动</b> — 不催任务。Agent 主动发起,把「你做到的变化」递回给你 —— 见证者机制。</figcaption>
+        </figure>
+
+        <!-- S11 分享小成果 -->
+        <figure class="ph">
+          <div class="phone"><div class="frame"><div class="screen"><div class="di"></div>
+            <div class="sb"><span>22:10</span><span class="si">📶 🔋</span></div>
+            <div class="sx">
+              <div class="x-top"><div style="font-size:22px;">‹</div><div style="font-weight:800;font-size:15px;">Jovida</div><div style="width:22px;"></div></div>
+              <div class="bub me" style="margin-top:8px;"><div class="btxt">刚把转场作业做完了,你看看?</div></div>
+              <div style="display:flex;justify-content:flex-end;margin-bottom:9px;">
+                <div class="share-vid" style="width:64%;"><div class="sv-img">▶</div><div class="sv-cap">Maya 的剪辑练习 · 15 秒</div></div>
+              </div>
+              <div class="bub"><div class="rb"><img src="assets/rabbit-cheer-t.png" alt=""></div>
+                <div class="btxt">看了。你这个叠化<b>卡在鼓点上</b>了——比教程里那个还顺。第 11 天没白等 ✨ 周五的月度复盘片头,就用这个手法。</div></div>
+              <div class="bub me"><div class="btxt">嘿嘿,有点成就感</div></div>
+              <div class="bub"><div class="rb"><img src="assets/rabbit-hello-t.png" alt=""></div>
+                <div class="btxt">该有的。这是你自己一遍遍练出来的,不是我。</div></div>
+            </div>
+          </div></div></div>
+          <figcaption class="cap"><span class="capn">11</span><b>陪伴 c · 分享小成果</b> — 用户分享真东西。Agent 的回应是<b>具体的</b>(看见作品里的细节),不是敷衍的「真棒」。</figcaption>
+        </figure>
+
+        <!-- S12 第 30 天的信 -->
+        <figure class="ph">
+          <div class="phone"><div class="frame"><div class="screen"><div class="di"></div>
+            <div class="sb"><span>21:00</span><span class="si">📶 🔋</span></div>
+            <div class="sx">
+              <div class="x-eyebrow">陪伴 · 第 30 天</div>
+              <div class="letter" style="margin-top:10px;">
+                <div class="lseal">✉️</div>
+                <div class="lh">写给第 30 天的你</div>
+                <div class="lp" style="margin-top:9px;">Maya,<br>30 天前你说:「我不是不想变好,是每次都坚持不下去。」那天我记了下来。今天想跟你聊聊这 30 天。</div>
+              </div>
+              <div class="card">
+                <div class="card-h">📊 这 30 天,你做到了</div>
+                <div class="line"><span class="lc">🪑</span><div>工位靠墙站 · <b>22 天</b></div></div>
+                <div class="line"><span class="lc">🎬</span><div>剪辑教程 · <b>14 节</b>,还交了第一个作品</div></div>
+                <div class="line"><span class="lc">🌙</span><div>平均入睡 · 从 1:10 提前到了 <b>0:32</b></div></div>
+              </div>
+              <div class="card tint">
+                <div class="card-h" style="color:#a86a24;">💡 我发现的一件事</div>
+                <div style="font-size:13px;line-height:1.6;">你在「<b>先做了一件最小的事</b>」的那些天,后面会顺很多。难的从来不是坚持——是开始。所以我每天只先递给你一件小的。</div>
+              </div>
+              <div class="bub"><div class="rb"><img src="assets/rabbit-care-t.png" alt=""></div>
+                <div class="btxt">这一次,你没有「坚持不下去」。我想让你<b>自己也看见</b>这件事。<br>下一个 30 天,我还在。</div></div>
+            </div>
+          </div></div></div>
+          <figcaption class="cap"><span class="capn">12</span><b>陪伴 d · 第 30 天的信</b> — 数据复盘 + 一个非显然的洞察 + 情绪性的关心。重点陪伴时刻,把关系往前推一步。</figcaption>
+        </figure>
+
+      </div>
+    </div>
+
+    <!-- ACT 5 触达 -->
+    <div class="act reveal">
+      <div class="act-head"><span class="act-no">ACT 5</span><h3>触达</h3><span class="ad">push · 锁屏 Live Activity · 灵动岛 · 桌面小组件 —— 在对的时刻、用对的位置出现</span></div>
+      <div class="gallery">
+
+        <!-- S13 触达 · 锁屏 -->
+        <figure class="ph">
+          <div class="phone"><div class="frame"><div class="screen">
+            <div class="lock-wall"></div>
+            <div class="sb dark" style="position:relative;z-index:2;"><span>23:30</span><span class="si">📶 🔋</span></div>
+            <div class="lock-time">
+              <div class="ld">周三 · 5 月 20 日</div>
+              <div class="lt">23:30</div>
+            </div>
+            <div class="live">
+              <div class="lvh"><span class="nico"><img src="assets/rabbit-hello-t.png" alt=""></span>今日 JOVIDA<span class="lvtag">实时活动</span></div>
+              <div class="lvrow"><span>🔥 13</span><div class="lvbar"><i style="width:60%"></i></div><span>3 / 5</span></div>
+              <div style="font-size:11.5px;opacity:.7;margin-top:8px;">下一件 · 23:30 放下手机,准备睡</div>
+            </div>
+            <div class="notif">
+              <div class="nh"><span class="nico"><img src="assets/rabbit-cheer-t.png" alt=""></span>JOVIDA<span class="ntime">下午 3:10</span></div>
+              <div class="nb">你刚完成了靠墙站 · 连续第 13 天 🌿 不用打开 App——我就想让你知道,我看见了。</div>
+            </div>
+            <div class="notif">
+              <div class="nh"><span class="nico"><img src="assets/rabbit-hello-t.png" alt=""></span>JOVIDA<span class="ntime">现在</span></div>
+              <div class="nb">今天挺满的,该收尾了。手机放下吧,剩下的我帮你留到明天。🌙</div>
+            </div>
+          </div></div></div>
+          <figcaption class="cap"><span class="capn">13</span><b>触达 · 锁屏</b> — Live Activity 常驻,一眼看今天;push 在对的点出现(完成时的肯定 / 夜里的收尾),全是暖的。</figcaption>
+        </figure>
+
+        <!-- S14 触达 · 灵动岛 -->
+        <figure class="ph">
+          <div class="phone"><div class="frame"><div class="screen">
+            <div class="fakefeed"><div class="ff-card"></div><div class="ff-card"></div><div class="ff-card"></div></div>
+            <div class="sb"><span>21:48</span><span class="si">📶 🔋</span></div>
+            <div class="island big">
+              <div class="isl-ic"><img src="assets/rabbit-hello-t.png" alt=""></div>
+              <div>
+                <div class="isl-t">刷了一会儿了吧?没关系,不怪你。<br>要不要就做一件 <b>2 分钟</b>的小事?我陪着。</div>
+                <div class="isl-btns"><span style="background:#fff;color:#000;">好啊</span><span style="background:rgba(255,255,255,.18);color:#fff;">再待会儿</span></div>
+              </div>
+            </div>
+            <div style="position:relative;z-index:2;text-align:center;color:var(--sx-t3);font-size:12px;margin-top:344px;">你正在刷别的 App · 灵动岛轻轻展开,不抢屏、不弹窗</div>
+          </div></div></div>
+          <figcaption class="cap"><span class="capn">14</span><b>触达 · 灵动岛</b> — 你在别处刷手机时,灵动岛轻轻展开一句话(comedown 接住),给一个 2 分钟的小台阶,不审判。</figcaption>
+        </figure>
+
+        <!-- S15 触达 · 桌面小组件 -->
+        <figure class="ph">
+          <div class="phone"><div class="frame"><div class="screen">
+            <div class="homescreen"></div>
+            <div class="sb dark" style="position:relative;z-index:2;"><span>8:40</span><span class="si">📶 🔋</span></div>
+            <div class="hs-body">
+              <div class="hs-tag">iOS 桌面 · 不打开 App 也能看、能勾</div>
+              <div class="jwidget">
+                <div class="jw-head">
+                  <span class="jw-rb"><img src="assets/rabbit-hello-t.png" alt=""></span>
+                  <span class="jw-name">Jovida · 今天</span>
+                  <span class="jw-meta">🔥 13 · 1/5</span>
+                </div>
+                <div class="jw-todo done"><span class="jw-ck on">✓</span><span class="jt">工位靠墙站 2 分钟</span></div>
+                <div class="jw-todo"><span class="jw-ck"></span><span class="jt">看转场教程 + 跟练</span></div>
+                <div class="jw-todo"><span class="jw-ck"></span><span class="jt">健身课 · Z Gym</span><span class="jtime">19:00</span></div>
+                <div class="jw-foot">还有 2 件 · 在小组件上<b style="color:#1c1813;">直接打勾</b>,不用打开 App</div>
+              </div>
+              <div class="appgrid">
+                <div class="appicon" style="background:linear-gradient(160deg,#5ec8f5,#2a7fd4);">☀️</div>
+                <div class="appicon" style="background:linear-gradient(160deg,#9be36b,#3fae3f);">💬</div>
+                <div class="appicon" style="background:linear-gradient(160deg,#ffd36b,#f59e2c);">📷</div>
+                <div class="appicon" style="background:linear-gradient(160deg,#ff8f8f,#e9504f);">🎵</div>
+                <div class="appicon" style="background:linear-gradient(160deg,#c9b8ff,#7d6cf0);">🗓</div>
+                <div class="appicon" style="background:linear-gradient(160deg,#aebfd0,#6b7d92);">⚙️</div>
+                <div class="appicon" style="background:linear-gradient(160deg,#8fe6cf,#33b18f);">🗺️</div>
+                <div class="appicon" style="background:linear-gradient(160deg,#ffc98f,#f0883f);">📁</div>
+              </div>
+            </div>
+          </div></div></div>
+          <figcaption class="cap"><span class="capn">15</span><b>触达 · 桌面小组件</b> — iOS 主屏小组件常驻:一眼看今天剩几件、🔥 streak;支持<b>在组件上直接打勾</b>(iOS 交互式小组件)。对 todo 类产品,这是最高频的触点。</figcaption>
+        </figure>
+
+      </div>
+    </div>
+
+    <!-- ACT 6 完成与坚持 -->
+    <div class="act reveal">
+      <div class="act-head"><span class="act-no">ACT 6</span><h3>完成与坚持</h3><span class="ad">点 ✅ 当场的即时反馈 · 看得见的长期坚持</span></div>
+      <div class="gallery">
+
+        <!-- S15 完成的那一刻 · 不阻挡 -->
+        <figure class="ph">
+          <div class="phone"><div class="frame"><div class="screen"><div class="di"></div>
+            <div class="sb"><span>13:08</span><span class="si">📶 🔋</span></div>
+            <div class="sx">
+              <div class="x-top">
+                <div class="menu"><div></div></div>
+                <div class="x-stats"><div class="pill">🔥 13</div><div class="pill">💎 262</div></div>
+              </div>
+              <div class="datehead"><div class="dh-t">今天 · 周三</div><div class="dh-m">2026年5月 ›</div></div>
+              <div class="weekcal">
+                <div class="wc"><span class="wcd">日</span><span class="wcn">17</span></div>
+                <div class="wc"><span class="wcd">一</span><span class="wcn">18</span><span class="wdot"></span></div>
+                <div class="wc"><span class="wcd">二</span><span class="wcn">19</span></div>
+                <div class="wc on"><span class="wcd">三</span><span class="wcn">20</span><span class="wdot"></span></div>
+                <div class="wc"><span class="wcd">四</span><span class="wcn">21</span><span class="wdot"></span></div>
+                <div class="wc"><span class="wcd">五</span><span class="wcn">22</span><span class="wdot"></span></div>
+                <div class="wc"><span class="wcd">六</span><span class="wcn">23</span></div>
+              </div>
+              <div class="x-eyebrow" style="margin:14px 2px 0;">5 件待完成 · 已完成 2</div>
+              <div class="grp"><span class="gname">随时</span><span class="gcount">(1)</span><span class="gchev">▾</span></div>
+              <div class="todo done"><div class="tic" style="background:#C9EFD6;">🪑</div><div class="tm"><div class="tt">工位靠墙站 2 分钟</div><div class="tmeta">改善体态 · 💎15</div></div><span class="tcheck on">✓</span></div>
+              <div class="grp"><span class="gname">上午</span><span class="gcount">(2)</span><span class="gchev">▾</span></div>
+              <div class="todo done"><div class="tic" style="background:#D8EEFF;">🚌</div><div class="tm"><div class="tt">通勤</div><div class="tmeta">15 分钟</div></div><span class="tcheck on">✓</span></div>
+              <div class="todo"><div class="tic" style="background:#E2E1FF;">🎬</div><div class="tm"><div class="tt">看 1 节转场教程 + 跟练</div><div class="tmeta">学剪辑 · <span class="tgem">💎25</span></div></div><span class="tcheck"></span></div>
+              <div class="grp"><span class="gname">白天</span><span class="gcount">(2)</span><span class="gchev">▾</span></div>
+              <div class="todo"><div class="tic" style="background:#C9EFD6;">🚶</div><div class="tm"><div class="tt">午休走 7 分钟</div><div class="tmeta">改善体态 · <span class="tgem">💎10</span></div></div><span class="tcheck"></span></div>
+            </div>
+            <div class="navbar">
+              <div class="nb-item on"><svg class="nb-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h11"/></svg><span>首页</span></div>
+              <div class="nb-item nb-chat"><div class="nb-rb"><img src="assets/rabbit-hello-t.png" alt=""></div><span>聊天</span></div>
+              <div class="nb-item"><svg class="nb-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V11M12 20V5M19 20v-6"/></svg><span>回顾</span></div>
+            </div>
+            <div class="cele-toast">
+              <span class="spark" style="top:-9px;left:28px;">✨</span>
+              <span class="spark" style="top:-7px;right:50px;animation-delay:.4s;">🎉</span>
+              <div class="ct-rb"><img src="assets/rabbit-cheer-t.png" alt=""></div>
+              <div><div class="ct-t">靠墙站 · 完成 🎉</div><div class="ct-d">连续第 13 天有推进</div></div>
+              <div class="ct-rew"><div style="color:#1377cc;">+💎15</div><div style="color:#cf7c33;">🔥12→13</div></div>
+            </div>
+            <div class="voicefab">
+              <div class="vf-hint">说一句,我帮你排 →</div>
+              <div class="vf-glow"></div>
+              <div class="vf-btn">🎙</div>
+            </div>
+          </div></div></div>
+          <figcaption class="cap"><span class="capn">16</span><b>完成的那一刻</b> — 在首页点 ✅ 完成。庆祝<b>不阻挡</b>:一条带兔子的 toast 轻轻浮现(配震动 + 弹跳动效),几秒后自己消失,首页照常能滑能点 —— 不弹窗、不打断。</figcaption>
+        </figure>
+
+        <!-- S16 你的坚持 -->
+        <figure class="ph">
+          <div class="phone"><div class="frame"><div class="screen"><div class="di"></div>
+            <div class="sb"><span>8:30</span><span class="si">📶 🔋</span></div>
+            <div class="sx">
+              <div class="x-h1" style="margin-top:6px;">你的坚持</div>
+              <div class="flame" style="margin-top:10px;">
+                <div class="fbig">🔥</div>
+                <div><div class="fn">13</div><div class="fl">连续 13 天有推进</div></div>
+              </div>
+              <div class="note" style="margin-top:10px;">完成 1 件、或跟我说句话,这天就<b>算数</b> —— 所以你很难断。</div>
+              <div class="x-sec">📅 每件重点 todo · 过去 30 天</div>
+              <div class="dotcal">
+                <div class="dc-row">
+                  <div class="dc-head"><span class="dc-name">🪑 工位靠墙站</span><span class="dc-cnt">做到 22 / 30 天</span></div>
+                  <div class="dc-grid"><span class="dc-dot g"></span><span class="dc-dot g"></span><span class="dc-dot g"></span><span class="dc-dot"></span><span class="dc-dot g"></span><span class="dc-dot g"></span><span class="dc-dot g"></span><span class="dc-dot g"></span><span class="dc-dot"></span><span class="dc-dot g"></span><span class="dc-dot g"></span><span class="dc-dot g"></span><span class="dc-dot g"></span><span class="dc-dot"></span><span class="dc-dot g"></span><span class="dc-dot g"></span><span class="dc-dot"></span><span class="dc-dot g"></span><span class="dc-dot g"></span><span class="dc-dot g"></span><span class="dc-dot g"></span><span class="dc-dot"></span><span class="dc-dot g"></span><span class="dc-dot g"></span><span class="dc-dot"></span><span class="dc-dot g"></span><span class="dc-dot g"></span><span class="dc-dot"></span><span class="dc-dot g"></span><span class="dc-dot"></span></div>
+                </div>
+                <div class="dc-row">
+                  <div class="dc-head"><span class="dc-name">🎬 剪辑教程 + 跟练</span><span class="dc-cnt">做到 14 / 30 天</span></div>
+                  <div class="dc-grid"><span class="dc-dot p"></span><span class="dc-dot"></span><span class="dc-dot p"></span><span class="dc-dot"></span><span class="dc-dot p"></span><span class="dc-dot"></span><span class="dc-dot p"></span><span class="dc-dot"></span><span class="dc-dot p"></span><span class="dc-dot"></span><span class="dc-dot p"></span><span class="dc-dot"></span><span class="dc-dot p"></span><span class="dc-dot"></span><span class="dc-dot p"></span><span class="dc-dot"></span><span class="dc-dot p"></span><span class="dc-dot"></span><span class="dc-dot"></span><span class="dc-dot p"></span><span class="dc-dot"></span><span class="dc-dot"></span><span class="dc-dot p"></span><span class="dc-dot"></span><span class="dc-dot"></span><span class="dc-dot p"></span><span class="dc-dot"></span><span class="dc-dot p"></span><span class="dc-dot"></span><span class="dc-dot p"></span></div>
+                </div>
+                <div class="dc-row">
+                  <div class="dc-head"><span class="dc-name">🌙 23:30 放下手机</span><span class="dc-cnt">做到 19 / 30 天</span></div>
+                  <div class="dc-grid"><span class="dc-dot b"></span><span class="dc-dot b"></span><span class="dc-dot"></span><span class="dc-dot b"></span><span class="dc-dot b"></span><span class="dc-dot b"></span><span class="dc-dot"></span><span class="dc-dot b"></span><span class="dc-dot b"></span><span class="dc-dot"></span><span class="dc-dot b"></span><span class="dc-dot b"></span><span class="dc-dot"></span><span class="dc-dot b"></span><span class="dc-dot b"></span><span class="dc-dot"></span><span class="dc-dot b"></span><span class="dc-dot b"></span><span class="dc-dot"></span><span class="dc-dot b"></span><span class="dc-dot b"></span><span class="dc-dot"></span><span class="dc-dot b"></span><span class="dc-dot"></span><span class="dc-dot b"></span><span class="dc-dot b"></span><span class="dc-dot"></span><span class="dc-dot b"></span><span class="dc-dot"></span><span class="dc-dot"></span></div>
+                </div>
+              </div>
+              <div class="x-sec">💎 262 颗宝石 · 给兔子换装、解锁主题</div>
+              <div class="qmenu"><div class="qi" style="background:#FFEBCB;">🎁</div><div class="qt">纯装饰,绝不做成「付费才能用」</div></div>
+              <div class="note" style="background:#E2E1FF;color:#4f49d6;">👋 朋友 Mia 也连续 9 天了 · 点个赞 —— 没有排行榜,不比谁高。</div>
+            </div>
+            <div class="navbar">
+              <div class="nb-item"><svg class="nb-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h11"/></svg><span>首页</span></div>
+              <div class="nb-item nb-chat"><div class="nb-rb"><img src="assets/rabbit-hello-t.png" alt=""></div><span>聊天</span></div>
+              <div class="nb-item on"><svg class="nb-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V11M12 20V5M19 20v-6"/></svg><span>回顾</span></div>
+            </div>
+          </div></div></div>
+          <figcaption class="cap"><span class="capn">17</span><b>你的坚持 · 回顾 tab</b> — 从底栏「回顾」tab 进入(tab 已高亮)。streak + 宝石 + 每个重点 todo 的「过去 30 天点阵」,哪天做到了一眼看见。</figcaption>
+        </figure>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="fbig">让用户每天感到:有人真的看懂了我今天的难,而且没有怪我。</div>
+    <div class="fsm">Jovida v0.18 · Day Planner 概念稿 · 供讨论与反馈</div>
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

@@ -546,6 +546,128 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
 .foot{padding:54px 0 70px;border-top:1px solid var(--line);text-align:center;}
 .foot .fbig{font-size:23px;font-weight:800;letter-spacing:-.02em;max-width:20em;margin:0 auto;}
 .foot .fsm{font-size:13.5px;color:var(--ink-3);margin-top:14px;}
+
+/* ===== merged: companion depth ===== */
+.depth{margin-top:34px;}
+.depth .dph{font-size:21px;font-weight:800;letter-spacing:-.02em;}
+.depth .dpi{font-size:14.5px;color:var(--ink-2);margin-top:8px;max-width:48em;font-weight:500;}
+.depth .dpi b{color:var(--ink);font-weight:700;}
+.cdep{margin-top:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:13px;}
+.cdc{border-radius:18px;padding:18px 19px;border:1px solid var(--line);background:rgba(255,255,255,.6);}
+.cdc .cde{font-size:25px;}
+.cdc h4{font-size:15.5px;font-weight:800;margin:7px 0 2px;}
+.cdc .cdm{font-size:11.5px;color:var(--ink-3);font-weight:700;}
+.cdc .cdx{font-size:12px;color:var(--ink-3);margin:9px 0 8px;font-style:italic;}
+.cdc ul{list-style:none;font-size:12.5px;color:var(--ink-2);}
+.cdc ul li{padding:3px 0 3px 14px;position:relative;}
+.cdc ul li::before{content:"·";position:absolute;left:3px;color:var(--amber);font-weight:800;}
+.cdc .cdv{font-size:12px;font-weight:800;margin-top:9px;}
+.cdc .cdv.no{color:#c4453a;} .cdc .cdv.ok{color:#1f8f43;}
+.jpos{margin-top:13px;background:linear-gradient(120deg,#fff3e3,#ffe6c8);border:1px solid var(--amber-soft);border-radius:18px;padding:21px 23px;display:flex;gap:17px;align-items:flex-start;}
+.jpos .jpe{font-size:30px;flex:none;}
+.jpos .jpt b{font-size:16.5px;font-weight:800;}
+.jpos .jpt p{font-size:13.5px;color:var(--ink-2);margin-top:6px;line-height:1.62;}
+.jpos .jpt p b{color:var(--ink);font-weight:700;}
+@media(max-width:760px){.cdep{grid-template-columns:1fr;}.jpos{flex-direction:column;gap:10px;}}
+
+/* ===== merged: 10 personas ===== */
+.pseg-row{margin-top:24px;}
+.pseg-row:first-child{margin-top:18px;}
+.pseg-head{display:flex;align-items:baseline;gap:11px;padding:0 2px 9px;border-bottom:2px solid var(--ink);}
+.pseg-head .pse{font-size:21px;}
+.pseg-head .pst b{font-size:16.5px;font-weight:800;letter-spacing:-.01em;}
+.pseg-head .pst span{font-size:13px;color:var(--ink-2);font-weight:500;}
+.pcards{margin-top:13px;display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.pc{background:rgba(255,255,255,.74);border:1px solid var(--line);border-radius:18px;padding:19px 21px;position:relative;}
+.pc .pcf{font-size:11.5px;font-weight:800;letter-spacing:.04em;color:var(--amber);}
+.pc h4{font-size:18px;font-weight:800;margin:5px 0 2px;letter-spacing:-.01em;}
+.pc .pcm{font-size:12.5px;color:var(--ink-2);}
+.pc .pcq{font-size:13px;line-height:1.6;color:var(--ink-2);border-left:2px solid var(--amber);padding-left:12px;margin:13px 0;}
+.pc .pcw{font-size:12.5px;color:var(--ink-2);line-height:1.55;}
+.pc .pcw b{color:var(--ink);font-weight:700;}
+.pc .pcbadge{position:absolute;top:15px;right:18px;font-size:9.5px;font-weight:800;background:var(--ink);color:#fff;padding:3px 8px;border-radius:6px;letter-spacing:.04em;}
+@media(max-width:760px){.pcards{grid-template-columns:1fr;}}
+
+/* ===== merged: product architecture ===== */
+.pillars{margin-top:30px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.pillar{background:rgba(255,255,255,.72);border:1px solid var(--line);border-radius:22px;padding:24px;}
+.pillar .ple{font-size:30px;}
+.pillar .plk{font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--amber);text-transform:uppercase;margin-top:11px;}
+.pillar h3{font-size:19px;font-weight:800;margin:3px 0 13px;letter-spacing:-.01em;}
+.pillar .plp{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;}
+.pillar .plp.pain{color:#c4453a;} .pillar .plp.give{color:#1f8f43;margin-top:12px;}
+.pillar .plt{font-size:13.5px;color:var(--ink-2);margin-top:5px;line-height:1.56;}
+.pillar .plt b{color:var(--ink);font-weight:700;}
+.aloop{margin-top:16px;background:rgba(255,255,255,.72);border:1px solid var(--line);border-radius:22px;padding:24px 26px 26px;}
+.aloop .alh{font-size:14px;font-weight:800;text-align:center;margin-bottom:17px;}
+.alrow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:9px;align-items:stretch;}
+.alstep{background:#faf6ef;border:1px solid var(--line);border-radius:16px;padding:17px 15px;text-align:center;}
+.alstep .ali{font-size:25px;}
+.alstep .alt{font-size:15px;font-weight:800;margin:6px 0 5px;}
+.alstep .ald{font-size:12px;color:var(--ink-2);line-height:1.5;}
+.alarr{display:grid;place-items:center;font-size:17px;color:var(--amber);font-weight:800;}
+@media(max-width:760px){.pillars{grid-template-columns:1fr;}.alrow{grid-template-columns:1fr;}.alarr{transform:rotate(90deg);}}
+
+/* ===== merged: commercialization ===== */
+.fanchor{margin-top:28px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.fan{background:rgba(255,255,255,.74);border:1px solid var(--line);border-radius:18px;padding:21px 18px;text-align:center;}
+.fan .fak{font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);}
+.fan .fav{font-family:'Urbanist',sans-serif;font-weight:800;font-size:30px;color:var(--amber);margin:8px 0 4px;letter-spacing:-.02em;}
+.fan .fad{font-size:12px;color:var(--ink-2);}
+.princ{margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.prc{background:rgba(255,255,255,.72);border:1px solid var(--line);border-radius:18px;padding:21px 22px;}
+.prc .pre{font-size:24px;}
+.prc .prk{font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--amber);text-transform:uppercase;margin-top:9px;}
+.prc h4{font-size:16px;font-weight:800;margin:3px 0 7px;}
+.prc p{font-size:13px;color:var(--ink-2);line-height:1.56;}
+.prc p b{color:var(--ink);font-weight:700;}
+.bizblock{margin-top:34px;}
+.bizblock .bzh{font-size:20px;font-weight:800;letter-spacing:-.02em;}
+.bizblock .bzi{font-size:14px;color:var(--ink-2);margin-top:7px;max-width:48em;font-weight:500;}
+.clayers{margin-top:16px;display:grid;gap:10px;}
+.clayer{border-radius:15px;padding:16px 19px;display:flex;gap:15px;align-items:flex-start;background:linear-gradient(110deg,#fff3e3,#ffe9d0);border:1px solid var(--amber-soft);}
+.clayer .cln{font-family:'Urbanist',sans-serif;font-weight:800;font-size:22px;color:var(--amber);flex:none;line-height:1.1;}
+.clayer .clt b{font-size:14.5px;font-weight:800;}
+.clayer .clt p{font-size:12.5px;color:var(--ink-2);margin-top:4px;line-height:1.56;}
+.clayer .clt p b{color:var(--ink);font-weight:700;}
+.barcmp{margin-top:14px;display:grid;gap:8px;}
+.barrow{display:flex;align-items:center;gap:12px;}
+.barrow .bl{width:104px;font-size:12.5px;font-weight:700;flex:none;text-align:right;color:var(--ink-2);}
+.barrow .bl.hi{color:var(--ink);font-weight:800;}
+.barrow .bt{flex:1;background:rgba(0,0,0,.06);border-radius:99px;height:26px;overflow:hidden;}
+.barrow .bf{height:100%;border-radius:99px;display:flex;align-items:center;padding:0 11px;font-size:11.5px;font-weight:800;color:#fff;font-family:'Urbanist',sans-serif;white-space:nowrap;background:linear-gradient(90deg,#bdb4a4,#9f9686);min-width:fit-content;}
+.barrow .bf.amber{background:linear-gradient(90deg,#cf7c33,#e8a35f);}
+.barrow .bf.ink{background:linear-gradient(90deg,#1c1813,#4a4238);}
+.dualcmp{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.dualcmp .dch{font-size:14px;font-weight:800;}
+.dualcmp .dcs{font-size:12px;color:var(--ink-2);margin-top:3px;}
+@media(max-width:760px){.dualcmp{grid-template-columns:1fr;}}
+.scen{margin-top:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:13px;}
+.scard{background:linear-gradient(160deg,#2a241c,#171310);border-radius:18px;padding:21px;color:#fff;}
+.scard.best{border:1.5px solid #e8b06a;box-shadow:0 14px 30px rgba(232,176,106,.18);}
+.scard .sck{font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,.5);display:flex;justify-content:space-between;align-items:center;}
+.scard .sck .sctag{background:#e8b06a;color:#2a2138;padding:2px 8px;border-radius:6px;font-size:9.5px;}
+.scrow{display:flex;justify-content:space-between;align-items:baseline;font-size:12.5px;padding:7px 0;color:rgba(255,255,255,.66);}
+.scrow b{font-family:'Urbanist',sans-serif;font-weight:800;font-size:15px;color:#fff;}
+.scrow.arr{margin-top:9px;padding-top:12px;border-top:1px solid rgba(255,255,255,.14);}
+.scrow.arr .stl{font-size:10.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#f0c79a;}
+.scrow.arr b{font-size:25px;color:#f0c79a;}
+.arr5{margin-top:14px;display:flex;gap:14px;align-items:flex-end;background:rgba(255,255,255,.6);border:1px solid var(--line);border-radius:18px;padding:24px 24px 16px;height:236px;}
+.a5col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:8px;}
+.a5col .a5v{font-family:'Urbanist',sans-serif;font-weight:800;font-size:13.5px;color:#a86a24;}
+.a5col .a5b{width:100%;max-width:56px;border-radius:7px 7px 0 0;background:linear-gradient(180deg,#e8a35f,#cf7c33);}
+.a5col .a5y{font-size:12px;font-weight:800;color:var(--ink-2);}
+@media(max-width:760px){.fanchor,.princ{grid-template-columns:1fr 1fr;}.scen{grid-template-columns:1fr;}}
+
+/* ===== merged: focus / pomodoro screen ===== */
+.fcring{width:208px;height:208px;border-radius:50%;margin:26px auto 10px;display:grid;place-items:center;}
+.fcinner{width:176px;height:176px;border-radius:50%;background:var(--sx-bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;}
+.fctime{font-family:'Urbanist',sans-serif;font-weight:800;font-size:47px;letter-spacing:-.02em;line-height:1;}
+.fclab{font-size:11px;font-weight:700;color:var(--sx-t2);margin-top:3px;}
+.fcwrap{text-align:center;}
+.fcstat{display:flex;justify-content:center;gap:9px;margin-top:8px;}
+.fcstat div{background:var(--sx-surf);border-radius:12px;padding:8px 14px;font-size:11.5px;font-weight:700;box-shadow:0 4px 10px rgba(0,0,0,.05);}
+.fcstat div b{font-family:'Urbanist',sans-serif;font-weight:800;font-size:14px;}
 </style>
 </head>
 <body>
@@ -556,8 +678,10 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
     <div class="nav-links">
       <a href="#research">市场调研</a>
       <a href="#positioning">产品定位</a>
+      <a href="#architecture">产品架构</a>
       <a href="#mechanism">核心机制</a>
       <a href="#prototype">界面原型</a>
+      <a href="#business">商业化</a>
       <a href="#paywall">付费墙</a>
     </div>
   </div>
@@ -567,8 +691,8 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
   <div class="wrap">
     <div class="reveal in">
       <div class="eyebrow">Jovida v0.18 · Day Planner · 概念稿</div>
-      <h1>把「想变好」<br>翻译成<span class="br">今天能做的小事</span></h1>
-      <p class="lede">Day Flow 帮你把今天<b>排出来</b>。Jovida 帮你把今天<b>过成你想成为的人</b>——一个懂你、会陪你、用动力系统推着你走的 Agent。</p>
+      <h1>陪伴驱动的<br><span class="br">待办 · 日程 · 专注</span> 管理<br>帮你真的变好</h1>
+      <p class="lede">待办、日程、专注 三件事——别人给你一个<b>工具</b>,Jovida 给你一个<b>陪着你的 Agent</b>:它把模糊的「想变好」拆成今天能做的小事,用动力系统推着你,直到你真的变好。</p>
       <div class="tagstrip">
         <span>🐰 有情绪的陪伴者</span><span>🧩 Agent 替你拆解</span><span>🔥 暖版动力系统</span><span>📲 截图 / 语音导入</span>
       </div>
@@ -717,31 +841,149 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
       </div>
     </div>
 
-    <div class="persona reveal">
-      <div class="persona-l">
-        <div class="pk">V1 主人公 · 美国</div>
-        <h3>Maya Brooks</h3>
-        <div class="meta">26 岁 · 芝加哥 · 社媒运营</div>
-        <div class="quote">「健身卡办了去过三次,收藏夹里一堆教程没看,睡前刷手机到一点。我不是不想变好——是每次都坚持不下去。」</div>
+    <div class="reveal">
+      <div class="depth">
+        <div class="dph">谁会用 —— 5 种人群,中美各一个人</div>
+        <div class="dpi">不是单一人群,核心都是<b>「有意愿、缺结构」</b>。下面 10 个人:5 种画像,每种各举一个美国用户、一个中国用户——证明同一套 Jovida 跨人群、跨市场都成立。</div>
       </div>
-      <div class="persona-r">
-        <div class="prow"><div class="pi">🎯</div><div class="pt"><b>想变好的事</b><span>改善久坐的腰背体态 · 系统学视频剪辑(为升职)· 早点睡、少刷手机</span></div></div>
-        <div class="prow"><div class="pi">🌀</div><div class="pt"><b>真实状态</b><span>间歇性踌躇满志,持续性混吃等死。会因为「又没做到」而自责。</span></div></div>
-        <div class="prow"><div class="pi">🧭</div><div class="pt"><b>为什么是她</b><span>不是临床 ADHD(Finch 的低能量人群,难抢、付费低),也不是高度自律的 Sunsama 用户(不需要动力系统)。她是中间最大的一块——「想变好」是硬条件:没有它,Agent 没目标可拆,动力系统也推不动。</span></div></div>
+
+      <div class="pseg-row">
+        <div class="pseg-head"><span class="pse">🎓</span><div class="pst"><b>学生</b> <span>被 ddl、考试、论文,加上日常琐事一起拉扯,行动力跟不上</span></div></div>
+        <div class="pcards">
+          <div class="pc">
+            <div class="pcf">🇺🇸 美国</div>
+            <h4>Sophie Tran</h4>
+            <div class="pcm">20 岁 · 波士顿 · 大三传媒生</div>
+            <div class="pcq">「Reading 永远拖到考前一晚,实习简历改了三周还没投,护肤步骤天天跳过。」</div>
+            <div class="pcw"><b>想变好的事</b>　把暑期实习简历投出去 · 跟上每周 reading · 不再熬夜补进度</div>
+          </div>
+          <div class="pc">
+            <div class="pcf">🇨🇳 中国</div>
+            <h4>周楠</h4>
+            <div class="pcm">21 岁 · 武汉 · 大三师范生</div>
+            <div class="pcq">「考研、教资、毕业论文堆在一起,一刷手机半天就没了,然后熬夜补。」</div>
+            <div class="pcw"><b>想变好的事</b>　推进考研复习 · 准备教资面试 · 改掉晚睡</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pseg-row">
+        <div class="pseg-head"><span class="pse">💼</span><div class="pst"><b>早期职场人</b> <span>想升职、想成长,立了 flag 却总在第一步烂尾</span></div></div>
+        <div class="pcards">
+          <div class="pc">
+            <div class="pcbadge">V1 主人公</div>
+            <div class="pcf">🇺🇸 美国</div>
+            <h4>Maya Brooks</h4>
+            <div class="pcm">26 岁 · 芝加哥 · 社媒运营</div>
+            <div class="pcq">「健身卡办了去过三次,收藏夹里一堆教程没看,睡前刷手机到一点。我不是不想变好——是每次都坚持不下去。」</div>
+            <div class="pcw"><b>想变好的事</b>　改善久坐腰背 · 学视频剪辑(为升职)· 早点睡、少刷手机</div>
+          </div>
+          <div class="pc">
+            <div class="pcf">🇨🇳 中国</div>
+            <h4>李哲</h4>
+            <div class="pcm">28 岁 · 杭州 · 互联网产品经理</div>
+            <div class="pcq">「想转岗、想考证、想早睡,每个都进了 to-do,每个都停在第一步。」</div>
+            <div class="pcw"><b>想变好的事</b>　系统补产品课 · 把通勤时间用起来 · 规律健身</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pseg-row">
+        <div class="pseg-head"><span class="pse">🌱</span><div class="pst"><b>有心没方法的年轻人</b> <span>想变好,但不知道怎么开始、也坚持不下来</span></div></div>
+        <div class="pcards">
+          <div class="pc">
+            <div class="pcf">🇺🇸 美国</div>
+            <h4>Jordan Reyes</h4>
+            <div class="pcm">24 岁 · 奥斯汀 · 自由职业插画师</div>
+            <div class="pcq">「我很清楚想过什么样的生活,就是不知道明天具体先动哪一件。」</div>
+            <div class="pcw"><b>想变好的事</b>　稳定接稿节奏 · 重新开始画个人作品 · 规律三餐</div>
+          </div>
+          <div class="pc">
+            <div class="pcf">🇨🇳 中国</div>
+            <h4>吴桐</h4>
+            <div class="pcm">25 岁 · 成都 · 银行柜员</div>
+            <div class="pcq">「下班想学点东西、想运动,结果永远瘫在沙发上刷到半夜。」</div>
+            <div class="pcw"><b>想变好的事</b>　学一门副业技能 · 每周运动 3 次 · 少点外卖</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pseg-row">
+        <div class="pseg-head"><span class="pse">🧩</span><div class="pst"><b>泛 ADHD / 神经多样</b> <span>执行功能弱——覆盖,但不是 V1 主推人群</span></div></div>
+        <div class="pcards">
+          <div class="pc">
+            <div class="pcf">🇺🇸 美国</div>
+            <h4>Casey Miller</h4>
+            <div class="pcm">29 岁 · 西雅图 · UX 设计师(ADHD)</div>
+            <div class="pcq">「我有一百个想法,就是没法把任何一个塞进真实的一天。」</div>
+            <div class="pcw"><b>想变好的事</b>　把项目拆到能动手的颗粒度 · 准时交付 · 别忘了吃饭</div>
+          </div>
+          <div class="pc">
+            <div class="pcf">🇨🇳 中国</div>
+            <h4>高翔</h4>
+            <div class="pcm">23 岁 · 南京 · 应届毕业生</div>
+            <div class="pcq">「事情不难,难的是开始;一坐下就走神,半天过去什么都没动。」</div>
+            <div class="pcw"><b>想变好的事</b>　备战秋招 · 稳定作息 · 一次只做一件事</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pseg-row">
+        <div class="pseg-head"><span class="pse">👶</span><div class="pst"><b>忙碌的新手父母</b> <span>目标多、带宽不足,总有几件事悄悄漏掉</span></div></div>
+        <div class="pcards">
+          <div class="pc">
+            <div class="pcf">🇺🇸 美国</div>
+            <h4>Emily Carter</h4>
+            <div class="pcm">33 岁 · 丹佛 · 市场经理 · 新手妈妈</div>
+            <div class="pcq">「孩子、工作、我自己的健康,总有一个被漏掉,通常是我自己。」</div>
+            <div class="pcw"><b>想变好的事</b>　找回锻炼习惯 · 别再漏掉孩子的事 · 每天留 30 分钟给自己</div>
+          </div>
+          <div class="pc">
+            <div class="pcf">🇨🇳 中国</div>
+            <h4>陈昊</h4>
+            <div class="pcm">34 岁 · 深圳 · 软件工程师 · 新手爸爸</div>
+            <div class="pcq">「我不是拖延——是被埋住了。目标太多、脑力太少,总有几件事悄悄漏掉。」</div>
+            <div class="pcw"><b>想变好的事</b>　防止视力进一步下降 · 改善久坐腰背 · 学育儿知识</div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="persona reveal" style="margin-top:16px;">
-      <div class="persona-l">
-        <div class="pk">另一位用户 · 中国</div>
-        <h3>陈昊</h3>
-        <div class="meta">34 岁 · 深圳 · 软件工程师 · 新手爸爸</div>
-        <div class="quote">「我不是拖延——是被埋住了。目标太多、脑力太少,总有几件事悄悄漏掉。」</div>
+    <div class="reveal depth">
+      <div class="dph">什么样的陪伴 —— 浅互动,深关系</div>
+      <div class="dpi">「陪伴」常被画成一条线,在「深度陪伴 / 鼓励式 / 工具」里三选一。但它其实是<b>两个维度</b>:<b>互动时长</b>(每次聊多久)和<b>关系深度</b>(它有多了解你、你有多放不下它)。把这两者分开,答案才清楚。</div>
+      <div class="cdep">
+        <div class="cdc">
+          <div class="cde">💕</div>
+          <h4>深度陪伴</h4>
+          <div class="cdm">每次互动 30–60 分钟</div>
+          <div class="cdx">Replika / Tolan / Character.ai</div>
+          <ul><li>best friend / soulmate</li><li>长聊天、情感寄托</li><li>主要服务孤独感</li></ul>
+          <div class="cdv no">✕ 长会话和「把事做完」抢时间、也烧 token</div>
+        </div>
+        <div class="cdc">
+          <div class="cde">🌱</div>
+          <h4>鼓励式陪伴</h4>
+          <div class="cdm">每次互动 2–5 分钟</div>
+          <div class="cdx">Finch / Duolingo / Habitica</div>
+          <ul><li>cheerful sidekick</li><li>为小胜利庆祝</li><li>高频、低摩擦</li></ul>
+          <div class="cdv ok">✓ 互动时长对了——但只做到这层就太浅</div>
+        </div>
+        <div class="cdc">
+          <div class="cde">⚙️</div>
+          <h4>轻人格工具</h4>
+          <div class="cdm">每次互动 5–15 分钟</div>
+          <div class="cdx">Sunsama / Notion AI</div>
+          <ul><li>带一点点人格的工具</li><li>优化者心态、偏冷</li><li>高效但不暖</li></ul>
+          <div class="cdv no">✕ 留不住「想变好却坚持不下来」的人</div>
+        </div>
       </div>
-      <div class="persona-r">
-        <div class="prow"><div class="pi">🎯</div><div class="pt"><b>想变好的事</b><span>防止视力进一步下降(整天盯屏幕)· 保持锻炼、改善久坐腰背 · 学育儿知识</span></div></div>
-        <div class="prow"><div class="pi">🌀</div><div class="pt"><b>真实状态</b><span>不缺动力,缺的是「带宽」。事情不是不想做,是记不过来、排不过来。</span></div></div>
-        <div class="prow"><div class="pi">🧭</div><div class="pt"><b>为什么也算他</b><span>他要的不是「推」,是「别让我漏」+「把模糊目标拆成今天的动作」。同一套 Jovida、换个侧重——证明它跨人群、跨市场都成立。</span></div></div>
+      <div class="jpos">
+        <div class="jpe">🐰</div>
+        <div class="jpt">
+          <b>Jovida 不在这条线上选一个点 —— 而是「浅互动 × 深关系」</b>
+          <p><b>互动时长要浅</b>:默认是 2–5 分钟的轻触点,不和「把事做完」抢时间,也不让 token 失控(深聊每天 100 条封顶)。<b>关系深度要深</b>:它记得你说过的话、你坚持了多久、你哪天破防过——一个没有记忆、没有牵挂的「鼓励 sidekick」,只是一个有脸的推送通知,留存撑不过新鲜感。<b>Finch 的高留存,靠的正是用户对那只宠物的深度依恋</b>——深关系不与生产力冲突,它本身就是留存的发动机。Jovida 要的是:像 Finch 一样轻,却比 Finch 更懂你;在你状态很糟的时刻,它也能陪你深聊几句(见 ACT 4 陪伴与情绪)。</p>
+        </div>
       </div>
     </div>
 
@@ -793,11 +1035,73 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
   </div>
 </section>
 
+<!-- ============ ARCHITECTURE ============ -->
+<section class="section" id="architecture">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-label">03 — 产品架构</div>
+      <h2 class="sec-title">三大支柱 + Agent 三步闭环</h2>
+      <p class="sec-intro">「陪伴驱动」落到产品上,是三件具体的事:待办、日程、专注。每一根支柱对着一个明确的痛点;而 Agent 用「收集 → 计划 → 触达」三步,把三根支柱串成一个闭环。</p>
+    </div>
+    <div class="pillars reveal">
+      <div class="pillar">
+        <div class="ple">📝</div>
+        <div class="plk">支柱 ①</div>
+        <h3>待办管理</h3>
+        <div class="plp pain">痛点</div>
+        <div class="plt">脑子里几十件「应该做却一直没做」的事,记不全、也排不动。</div>
+        <div class="plp give">Jovida 提供</div>
+        <div class="plt">多渠道<b>收集</b> → <b>软 / 硬分层</b> → 每天只挑 <b>1–2 件</b> → AI 把步骤预备好 → 你花几分钟确认。</div>
+      </div>
+      <div class="pillar">
+        <div class="ple">📅</div>
+        <div class="plk">支柱 ②</div>
+        <h3>日程管理</h3>
+        <div class="plp pain">痛点</div>
+        <div class="plt">日历散在 Google / Apple / 提醒事项 / 邮件里,总有事悄悄漏掉。</div>
+        <div class="plp give">Jovida 提供</div>
+        <div class="plt">接入<b>日历授权</b> + 从 <b>Gmail</b> 翻出 deadline,再<b>提前用温的语气</b>提醒——不是冷冰冰的红点。</div>
+      </div>
+      <div class="pillar">
+        <div class="ple">🎯</div>
+        <div class="plk">支柱 ③</div>
+        <h3>专注管理</h3>
+        <div class="plp pain">痛点</div>
+        <div class="plt">想做却一直拖,真坐下来又一会儿就走神。</div>
+        <div class="plp give">Jovida 提供</div>
+        <div class="plt"><b>简版番茄钟</b> + 兔子陪你坐满这一程、帮你挡住干扰 + 一程结束<b>当场庆祝</b>。</div>
+      </div>
+    </div>
+    <div class="aloop reveal">
+      <div class="alh">Agent 三步闭环 —— 把三根支柱串起来</div>
+      <div class="alrow">
+        <div class="alstep">
+          <div class="ali">📥</div>
+          <div class="alt">收集</div>
+          <div class="ald">对话 / 语音 / 双击后背截图 / 剪贴板,加上日历 · 提醒 · Apple Health · Gmail</div>
+        </div>
+        <div class="alarr">→</div>
+        <div class="alstep">
+          <div class="ali">🧠</div>
+          <div class="alt">计划</div>
+          <div class="ald">软硬分层:固定的事只导入,目标的事 AI 生成 + 你确认;每天只挑 1–2 件</div>
+        </div>
+        <div class="alarr">→</div>
+        <div class="alstep">
+          <div class="ali">🔔</div>
+          <div class="alt">触达</div>
+          <div class="ald">锁屏 / 灵动岛 / 桌面组件,在对的时刻、用温的语气把你叫回来</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ MECHANISM ============ -->
 <section class="section" id="mechanism">
   <div class="wrap">
     <div class="reveal">
-      <div class="sec-label">03 — 核心机制</div>
+      <div class="sec-label">04 — 核心机制</div>
       <h2 class="sec-title">三个关键设计</h2>
     </div>
     <div class="mech">
@@ -843,8 +1147,8 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
 <section class="section" id="prototype">
   <div class="wrap">
     <div class="reveal">
-      <div class="sec-label">04 — 界面原型</div>
-      <h2 class="sec-title">17 个界面 —— 一个完整的产品</h2>
+      <div class="sec-label">05 — 界面原型</div>
+      <h2 class="sec-title">18 个界面 —— 一个完整的产品</h2>
       <p class="sec-intro">一条故事线:跟着主人公 Maya,从 onboarding 走到一整天的推进、随手导入、陪伴、触达与坚持。每个界面下方注明它要证明什么。</p>
     </div>
 
@@ -986,7 +1290,7 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
 
     <!-- ACT 2 你的一天 -->
     <div class="act reveal">
-      <div class="act-head"><span class="act-no">ACT 2</span><h3>你的一天</h3><span class="ad">首页点 ✅ 直接完成、语音随口加事 · 详情页只在想看拆解 / 资源时进</span></div>
+      <div class="act-head"><span class="act-no">ACT 2</span><h3>你的一天</h3><span class="ad">首页点 ✅ 直接完成、语音随口加事 · 详情页看拆解 / 资源 · 需要时进专注模式</span></div>
       <div class="gallery">
 
         <!-- S5 今日首页 -->
@@ -1064,6 +1368,36 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
           <figcaption class="cap"><span class="capn">06</span><b>打开一个 todo</b> — 详情页是「想看拆解 / 资源」时才进的。<b>拆解的每一步都能单独打勾</b>(不是干巴巴的文本);资源给教程 / 跟练。todo 本身在首页点 ✅ 完成。</figcaption>
         </figure>
 
+        <!-- S7 专注模式 · 番茄钟 -->
+        <figure class="ph">
+          <div class="phone"><div class="frame"><div class="screen"><div class="di"></div>
+            <div class="sb"><span>9:06</span><span class="si">📶 🔋</span></div>
+            <div class="sx">
+              <div class="x-top"><div style="font-size:22px;">‹</div><div style="font-weight:800;font-size:15px;">专注 · 看转场教程</div><div style="width:22px;"></div></div>
+              <div class="fcwrap">
+                <div class="fcring" style="background:conic-gradient(#cf7c33 0% 64%,rgba(0,0,0,.08) 64% 100%);">
+                  <div class="fcinner">
+                    <div class="fctime">16:04</div>
+                    <div class="fclab">第 1 程 · 还剩 16 分钟</div>
+                  </div>
+                </div>
+                <div class="bub" style="justify-content:center;"><div class="rb"><img src="assets/rabbit-care-t.png" alt=""></div>
+                  <div class="btxt" style="text-align:left;">我陪你坐满这 25 分钟,手机的通知先帮你挡着 🐰 做完第一个「叠化」就够了。</div></div>
+                <div class="fcstat">
+                  <div>🍅 今天 <b>2</b> 程</div>
+                  <div>⏱ 已专注 <b>43</b> 分</div>
+                </div>
+              </div>
+              <div class="btnrow">
+                <button class="btn primary">✓ 完成这一程</button>
+                <button class="btn ghost">⏸ 暂停 · 我有点走神了</button>
+              </div>
+              <div class="note">走神不算失败 —— 点「暂停」,Jovida 不会扣你什么,回来接着坐就行。</div>
+            </div>
+          </div></div></div>
+          <figcaption class="cap"><span class="capn">07</span><b>专注模式 · 简版番茄钟</b> — 从 todo 详情进入。一程 25 分钟,兔子<b>陪你坐满</b>、帮你挡住通知;走神可随时暂停,<b>不羞辱、不扣分</b>。一程结束当场庆祝(衔接 ACT 6)。这是支柱 ③「专注管理」的落点。</figcaption>
+        </figure>
+
       </div>
     </div>
 
@@ -1090,7 +1424,7 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
               <div class="note">双击手机后背 → 当前屏幕直接进 Jovida。<b>不用切 App、不用复制粘贴。</b></div>
             </div>
           </div></div></div>
-          <figcaption class="cap"><span class="capn">07</span><b>截图快捷导入</b> — 双击后背把屏幕丢进来。Agent <b>读懂了截图内容</b>(认出是拉伸、对应你的圆肩),给出贴合的<b>自然选项</b>——加进对的计划 / 今天试一次 / 暂存,而不是机械的「新建 / 已有 / inbox」。</figcaption>
+          <figcaption class="cap"><span class="capn">08</span><b>截图快捷导入</b> — 双击后背把屏幕丢进来。Agent <b>读懂了截图内容</b>(认出是拉伸、对应你的圆肩),给出贴合的<b>自然选项</b>——加进对的计划 / 今天试一次 / 暂存,而不是机械的「新建 / 已有 / inbox」。</figcaption>
         </figure>
 
         <!-- S8 截图 → Agent 交互生成 -->
@@ -1109,7 +1443,7 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
               <div class="btnrow"><button class="btn primary">加入我的计划</button></div>
             </div>
           </div></div></div>
-          <figcaption class="cap"><span class="capn">08</span><b>截图 → Agent 交互生成</b> — Agent 读懂截图内容,问一两句(频率 / 难度),把它变成一条带资源的 todo。</figcaption>
+          <figcaption class="cap"><span class="capn">09</span><b>截图 → Agent 交互生成</b> — Agent 读懂截图内容,问一两句(频率 / 难度),把它变成一条带资源的 todo。</figcaption>
         </figure>
 
       </div>
@@ -1135,7 +1469,7 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
               </div>
             </div>
           </div></div></div>
-          <figcaption class="cap"><span class="capn">09</span><b>陪伴 a · 用户主动倾诉</b> — 用户说出困难 / 情绪。Agent 不讲道理,用「镜像」把他做到的事还给他。</figcaption>
+          <figcaption class="cap"><span class="capn">10</span><b>陪伴 a · 用户主动倾诉</b> — 用户说出困难 / 情绪。Agent 不讲道理,用「镜像」把他做到的事还给他。</figcaption>
         </figure>
 
         <!-- S10 Agent 主动互动 -->
@@ -1153,7 +1487,7 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
                 <div class="btxt">真的。我一直在数。这种事,该有人替你看着。</div></div>
             </div>
           </div></div></div>
-          <figcaption class="cap"><span class="capn">10</span><b>陪伴 b · Agent 主动互动</b> — 不催任务。Agent 主动发起,把「你做到的变化」递回给你 —— 见证者机制。</figcaption>
+          <figcaption class="cap"><span class="capn">11</span><b>陪伴 b · Agent 主动互动</b> — 不催任务。Agent 主动发起,把「你做到的变化」递回给你 —— 见证者机制。</figcaption>
         </figure>
 
         <!-- S11 分享小成果 -->
@@ -1173,7 +1507,7 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
                 <div class="btxt">该有的。这是你自己一遍遍练出来的,不是我。</div></div>
             </div>
           </div></div></div>
-          <figcaption class="cap"><span class="capn">11</span><b>陪伴 c · 分享小成果</b> — 用户分享真东西。Agent 的回应是<b>具体的</b>(看见作品里的细节),不是敷衍的「真棒」。</figcaption>
+          <figcaption class="cap"><span class="capn">12</span><b>陪伴 c · 分享小成果</b> — 用户分享真东西。Agent 的回应是<b>具体的</b>(看见作品里的细节),不是敷衍的「真棒」。</figcaption>
         </figure>
 
         <!-- S12 第 30 天的信 -->
@@ -1201,7 +1535,7 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
                 <div class="btxt">这一次,你没有「坚持不下去」。我想让你<b>自己也看见</b>这件事。<br>下一个 30 天,我还在。</div></div>
             </div>
           </div></div></div>
-          <figcaption class="cap"><span class="capn">12</span><b>陪伴 d · 第 30 天的信</b> — 数据复盘 + 一个非显然的洞察 + 情绪性的关心。重点陪伴时刻,把关系往前推一步。</figcaption>
+          <figcaption class="cap"><span class="capn">13</span><b>陪伴 d · 第 30 天的信</b> — 数据复盘 + 一个非显然的洞察 + 情绪性的关心。重点陪伴时刻,把关系往前推一步。</figcaption>
         </figure>
 
       </div>
@@ -1235,7 +1569,7 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
               <div class="nb">今天挺满的,该收尾了。手机放下吧,剩下的我帮你留到明天。🌙</div>
             </div>
           </div></div></div>
-          <figcaption class="cap"><span class="capn">13</span><b>触达 · 锁屏</b> — Live Activity 常驻,一眼看今天;push 在对的点出现(完成时的肯定 / 夜里的收尾),全是暖的。</figcaption>
+          <figcaption class="cap"><span class="capn">14</span><b>触达 · 锁屏</b> — Live Activity 常驻,一眼看今天;push 在对的点出现(完成时的肯定 / 夜里的收尾),全是暖的。</figcaption>
         </figure>
 
         <!-- S14 触达 · 灵动岛 -->
@@ -1252,7 +1586,7 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
             </div>
             <div style="position:relative;z-index:2;text-align:center;color:var(--sx-t3);font-size:12px;margin-top:344px;">你正在刷别的 App · 灵动岛轻轻展开,不抢屏、不弹窗</div>
           </div></div></div>
-          <figcaption class="cap"><span class="capn">14</span><b>触达 · 灵动岛</b> — 你在别处刷手机时,灵动岛轻轻展开一句话(comedown 接住),给一个 2 分钟的小台阶,不审判。</figcaption>
+          <figcaption class="cap"><span class="capn">15</span><b>触达 · 灵动岛</b> — 你在别处刷手机时,灵动岛轻轻展开一句话(comedown 接住),给一个 2 分钟的小台阶,不审判。</figcaption>
         </figure>
 
         <!-- S15 触达 · 桌面小组件 -->
@@ -1285,7 +1619,7 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
               </div>
             </div>
           </div></div></div>
-          <figcaption class="cap"><span class="capn">15</span><b>触达 · 桌面小组件</b> — iOS 主屏小组件常驻:一眼看今天剩几件、🔥 streak;支持<b>在组件上直接打勾</b>(iOS 交互式小组件)。对 todo 类产品,这是最高频的触点。</figcaption>
+          <figcaption class="cap"><span class="capn">16</span><b>触达 · 桌面小组件</b> — iOS 主屏小组件常驻:一眼看今天剩几件、🔥 streak;支持<b>在组件上直接打勾</b>(iOS 交互式小组件)。对 todo 类产品,这是最高频的触点。</figcaption>
         </figure>
 
       </div>
@@ -1342,7 +1676,7 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
               <div class="vf-btn">🎙</div>
             </div>
           </div></div></div>
-          <figcaption class="cap"><span class="capn">16</span><b>完成的那一刻</b> — 在首页点 ✅ 完成。庆祝<b>不阻挡</b>:一条带兔子的 toast 轻轻浮现(配震动 + 弹跳动效),几秒后自己消失,首页照常能滑能点 —— 不弹窗、不打断。</figcaption>
+          <figcaption class="cap"><span class="capn">17</span><b>完成的那一刻</b> — 在首页点 ✅ 完成。庆祝<b>不阻挡</b>:一条带兔子的 toast 轻轻浮现(配震动 + 弹跳动效),几秒后自己消失,首页照常能滑能点 —— 不弹窗、不打断。</figcaption>
         </figure>
 
         <!-- S16 你的坚持 -->
@@ -1381,10 +1715,142 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
               <div class="nb-item on"><svg class="nb-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V11M12 20V5M19 20v-6"/></svg><span>回顾</span></div>
             </div>
           </div></div></div>
-          <figcaption class="cap"><span class="capn">17</span><b>你的坚持 · 回顾 tab</b> — 从底栏「回顾」tab 进入(tab 已高亮)。streak + 宝石 + 每个重点 todo 的「过去 30 天点阵」,哪天做到了一眼看见。</figcaption>
+          <figcaption class="cap"><span class="capn">18</span><b>你的坚持 · 回顾 tab</b> — 从底栏「回顾」tab 进入(tab 已高亮)。streak + 宝石 + 每个重点 todo 的「过去 30 天点阵」,哪天做到了一眼看见。</figcaption>
         </figure>
 
       </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ BUSINESS ============ -->
+<section class="section" id="business">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-label">06 — 商业化</div>
+      <h2 class="sec-title">钱从哪来,有多大确定性</h2>
+      <p class="sec-intro">回答唯一最关键的问题:付费率和 ARPU 的确定性从哪来。方法上守三条纪律——探索上限、不靠幻想、拿当下高 ARR 的产品做绝对参照。</p>
+    </div>
+
+    <div class="reveal bizblock" style="margin-top:30px;">
+      <div class="bzh">核心数据锚点 —— Finch 已经在美国跑通了 hybrid</div>
+      <div class="bzi">「陪伴 + 习惯」这条 hybrid 路不是没人验证过的方向。Finch 用一只虚拟宠物 + 自我照顾,在美国跑出了大规模的用户与收入——而它<b>几乎零融资</b>(种子轮仅约 $12.5 万)。这是这条赛道从「没被验证」变成「已验证 + 有上升空间」的关键证据。</div>
+      <div class="fanchor">
+        <div class="fan"><div class="fak">用户规模</div><div class="fav">500万+</div><div class="fad">累计下载</div></div>
+        <div class="fan"><div class="fak">商业化</div><div class="fav">~$24M</div><div class="fad">ARR(2024 估)</div></div>
+        <div class="fan"><div class="fak">付费率</div><div class="fav">7–10%</div><div class="fad">免费转付费(估)</div></div>
+        <div class="fan"><div class="fak">人群</div><div class="fav">~75%</div><div class="fad">女性,25–35 为主</div></div>
+      </div>
+    </div>
+
+    <div class="reveal bizblock">
+      <div class="bzh">推演之前,先立三条纪律</div>
+      <div class="bzi">所有商业化判断都按这三条执行,避免拍脑袋的数字。</div>
+      <div class="princ">
+        <div class="prc"><div class="pre">🎯</div><div class="prk">原则 ①</div><h4>探索最大的可能</h4><p>不只看下限,更要论证上限——<b>天花板在哪、什么条件会触发</b>。</p></div>
+        <div class="prc"><div class="pre">🚫</div><div class="prk">原则 ②</div><h4>不能幻想</h4><p>必须证明:目标用户有<b>明确付费能力</b>,且此场景下有<b>明确付费意愿</b>。</p></div>
+        <div class="prc"><div class="pre">📊</div><div class="prk">原则 ③</div><h4>用高 ARR 产品做绝对判断</h4><p>不自己 YY——拿当下 ARR 能力强的产品作<b>绝对参照</b>。</p></div>
+      </div>
+    </div>
+
+    <div class="reveal bizblock">
+      <div class="bzh">商业化确定性的 4 层支撑</div>
+      <div class="bzi">为什么相信付费率和 ARPU 能成立——从「人群有没有钱」一路推到「我们手上有没有确定的入门盘」。</div>
+      <div class="clayers">
+        <div class="clayer"><div class="cln">①</div><div class="clt"><b>人群已经在付费 —— 钱包是稳的</b><p>目标人群每月已经在 ChatGPT、Spotify、流媒体、Finch、Notion 这些订阅上花钱。问题从来不是「付不起」,而是要给一个「值得付」的理由。</p></div></div>
+        <div class="clayer"><div class="cln">②</div><div class="clt"><b>同类产品已经验证了付费意愿与 ARPU</b><p>Finch 7–10% 转化、Tiimo 付费用户 75% 自认神经多样、Sunsama 双位数转化——这条赛道的 unit economics 不用我们从零证明。</p></div></div>
+        <div class="clayer"><div class="cln">③</div><div class="clt"><b>定价不冒进 —— 和 Finch 同价位,却多给真生产力</b><p>$9.99/月、年付 $59.99(≈$5/月),不高于对手;但比 Finch 多了「待办 / 日程 / 专注」这层真生产力,用户更容易理解「为什么该升级」。</p></div></div>
+        <div class="clayer"><div class="cln">④</div><div class="clt"><b>现有 Jovida 用户 = 高确定性的入门盘</b><p>不靠纯冷启动:现有角色付费用户做首月 cross-sell,是早期 ARR 里最稳的一块基本盘。</p></div></div>
+      </div>
+    </div>
+
+    <div class="reveal bizblock">
+      <div class="bzh">定价对标 —— Jovida 不靠贵取胜</div>
+      <div class="bzi">$9.99/月(年付 ≈$5/月)与 Finch 同价位,远低于 Sunsama / Inflow / Motion。用不高于对手的价格,给「陪伴 + 真生产力」两份价值。</div>
+      <div class="barcmp">
+        <div class="barrow"><span class="bl">Habitica</span><div class="bt"><div class="bf" style="width:15%;">$5</div></div></div>
+        <div class="barrow"><span class="bl">Replika</span><div class="bt"><div class="bf" style="width:21%;">$7</div></div></div>
+        <div class="barrow"><span class="bl">Duolingo</span><div class="bt"><div class="bf" style="width:33%;">$7–13</div></div></div>
+        <div class="barrow"><span class="bl">Finch</span><div class="bt"><div class="bf" style="width:29%;">$9.99</div></div></div>
+        <div class="barrow"><span class="bl">Notion AI</span><div class="bt"><div class="bf" style="width:30%;">$10</div></div></div>
+        <div class="barrow"><span class="bl hi">⭐ Jovida</span><div class="bt"><div class="bf ink" style="width:30%;">$9.99/月 · 年付≈$5</div></div></div>
+        <div class="barrow"><span class="bl">Sunsama</span><div class="bt"><div class="bf" style="width:59%;">$20</div></div></div>
+        <div class="barrow"><span class="bl">Inflow</span><div class="bt"><div class="bf" style="width:88%;">$30</div></div></div>
+        <div class="barrow"><span class="bl">Motion</span><div class="bt"><div class="bf" style="width:100%;">$34</div></div></div>
+      </div>
+    </div>
+
+    <div class="reveal bizblock">
+      <div class="bzh">付费率与 ARPU —— 都有对标,不是空想</div>
+      <div class="bzi">行业基准付费率 3–5%;Jovida 目标 8%(保守)— 12%(强信号),不高于已被验证的同类产品。</div>
+      <div class="dualcmp" style="margin-top:16px;">
+        <div>
+          <div class="dch">📈 付费转化率对标</div>
+          <div class="dcs">免费 → 付费</div>
+          <div class="barcmp">
+            <div class="barrow"><span class="bl">行业基准</span><div class="bt"><div class="bf" style="width:27%;">3–5%</div></div></div>
+            <div class="barrow"><span class="bl">Finch</span><div class="bt"><div class="bf" style="width:57%;">7–10%</div></div></div>
+            <div class="barrow"><span class="bl">Tiimo</span><div class="bt"><div class="bf" style="width:67%;">~10%</div></div></div>
+            <div class="barrow"><span class="bl">Sunsama</span><div class="bt"><div class="bf" style="width:83%;">10–15%</div></div></div>
+            <div class="barrow"><span class="bl hi">Jovida 目标</span><div class="bt"><div class="bf amber" style="width:53%;">8%</div></div></div>
+            <div class="barrow"><span class="bl hi">Jovida 强信号</span><div class="bt"><div class="bf ink" style="width:80%;">12%</div></div></div>
+          </div>
+        </div>
+        <div>
+          <div class="dch">💵 年化 ARPU 对标</div>
+          <div class="dcs">单付费用户 / 年</div>
+          <div class="barcmp">
+            <div class="barrow"><span class="bl">Finch</span><div class="bt"><div class="bf" style="width:21%;">~$70</div></div></div>
+            <div class="barrow"><span class="bl hi">Jovida 目标</span><div class="bt"><div class="bf amber" style="width:26%;">~$85</div></div></div>
+            <div class="barrow"><span class="bl">Sunsama</span><div class="bt"><div class="bf" style="width:71%;">~$240</div></div></div>
+            <div class="barrow"><span class="bl">Motion</span><div class="bt"><div class="bf" style="width:100%;">~$340</div></div></div>
+          </div>
+          <div class="note" style="margin-top:11px;">天花板看 Sunsama / Motion 的 $240–340,但那是另一个人群——Jovida 先稳稳站在 Finch 这一档。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal bizblock">
+      <div class="bzh">上线 45 天后 —— ARR run rate 三情景</div>
+      <div class="bzi">不同营销预算下的 ARR 投影,每一档都基于 Finch 实测的漏斗。按本方案定价测算(年付占多数时,混合约 $7/月)。</div>
+      <div class="scen">
+        <div class="scard">
+          <div class="sck">保守 · $30k 营销</div>
+          <div class="scrow"><span>Trial 用户</span><b>10k</b></div>
+          <div class="scrow"><span>付费转化 6%</span><b>600</b></div>
+          <div class="scrow"><span>月流水 MRR</span><b>$4.2k</b></div>
+          <div class="scrow arr"><span class="stl">ARR Run Rate</span><b>~$50k</b></div>
+        </div>
+        <div class="scard best">
+          <div class="sck">中等 · $60k 营销 <span class="sctag">推荐</span></div>
+          <div class="scrow"><span>Trial 用户</span><b>25k</b></div>
+          <div class="scrow"><span>付费转化 8%</span><b>2,000</b></div>
+          <div class="scrow"><span>月流水 MRR</span><b>$14k</b></div>
+          <div class="scrow arr"><span class="stl">ARR Run Rate</span><b>~$170k</b></div>
+        </div>
+        <div class="scard">
+          <div class="sck">激进 · $150k 营销</div>
+          <div class="scrow"><span>Trial 用户</span><b>60k</b></div>
+          <div class="scrow"><span>付费转化 10%</span><b>6,000</b></div>
+          <div class="scrow"><span>月流水 MRR</span><b>$42k</b></div>
+          <div class="scrow arr"><span class="stl">ARR Run Rate</span><b>~$500k</b></div>
+        </div>
+      </div>
+      <div class="note" style="background:rgba(207,124,51,.09);color:var(--ink-2);margin-top:14px;padding:13px 15px;border-radius:13px;font-size:13px;">即便最保守的 ~$50k ARR,也足以验证 unit economics 跑得通;中等情景 ~$170k 已是「这门生意成立」的扎实信号。45 天后任意一档达成,都值得继续投入。</div>
+    </div>
+
+    <div class="reveal bizblock">
+      <div class="bzh">如果跑通 —— 5 年 ARR 路径</div>
+      <div class="bzi">基于 Finch 的实测增速 + Jovida 多一层生产力价值的合理外推(中性情景)。</div>
+      <div class="arr5">
+        <div class="a5col"><div class="a5v">$0.4M</div><div class="a5b" style="height:5%;"></div><div class="a5y">Year 1</div></div>
+        <div class="a5col"><div class="a5v">$1.8M</div><div class="a5b" style="height:12%;"></div><div class="a5y">Year 2</div></div>
+        <div class="a5col"><div class="a5v">$4.5M</div><div class="a5b" style="height:24%;"></div><div class="a5y">Year 3</div></div>
+        <div class="a5col"><div class="a5v">$9M</div><div class="a5b" style="height:44%;"></div><div class="a5y">Year 4</div></div>
+        <div class="a5col"><div class="a5v">$16M</div><div class="a5b" style="height:70%;"></div><div class="a5y">Year 5</div></div>
+      </div>
+      <div class="note" style="margin-top:12px;">中性情景;保守约为其 6 折,顺利可到约 2 倍。这是一门<b>踏实赚钱</b>的生意——先拿到「一定的收入」,而不是先讲一个估值故事。</div>
     </div>
 
   </div>
@@ -1394,7 +1860,7 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
 <section class="section" id="paywall">
   <div class="wrap">
     <div class="reveal">
-      <div class="sec-label">05 — 付费墙</div>
+      <div class="sec-label">07 — 付费墙</div>
       <h2 class="sec-title">免费把人留住,付费解锁 AI</h2>
       <p class="sec-intro">变现逻辑:免费版 = 纯工具,几乎不烧 token,负责把人留住;付费版 = AI 重的能力,负责变现。onboarding 末尾用「愿景 → 付费墙」强引导,但留一个小入口可跳过;日常里在几个关键时刻用蒙层引导解锁。</p>
     </div>
@@ -1446,7 +1912,7 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
               <div class="btnrow"><button class="btn primary">就这么定 · 看看怎么开始 →</button></div>
             </div>
           </div></div></div>
-          <figcaption class="cap"><span class="capn">18</span><b>Onboarding · 愿景</b> — 付费墙之前先给愿景:把刚生成的计划包装成「30 天后的你」,像成熟产品 onboarding 的广告页,先把「想要」勾起来。暖色调,和产品其它部分区分。</figcaption>
+          <figcaption class="cap"><span class="capn">19</span><b>Onboarding · 愿景</b> — 付费墙之前先给愿景:把刚生成的计划包装成「30 天后的你」,像成熟产品 onboarding 的广告页,先把「想要」勾起来。暖色调,和产品其它部分区分。</figcaption>
         </figure>
 
         <!-- S19 付费墙 -->
@@ -1479,7 +1945,7 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
               <div class="pw-skip">先用免费版,以后再说</div>
             </div>
           </div></div></div>
-          <figcaption class="cap"><span class="capn">19</span><b>Onboarding · 付费墙</b> — 独立的<b>深色 + 暖金「升级」氛围</b>,和产品其它部分区分开。年付突出(省 50%)、7 天免费试用降门槛;<b>底部留一个不起眼的小入口</b>「先用免费版」。</figcaption>
+          <figcaption class="cap"><span class="capn">20</span><b>Onboarding · 付费墙</b> — 独立的<b>深色 + 暖金「升级」氛围</b>,和产品其它部分区分开。年付突出(省 50%)、7 天免费试用降门槛;<b>底部留一个不起眼的小入口</b>「先用免费版」。</figcaption>
         </figure>
 
       </div>
@@ -1510,7 +1976,7 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
               <div class="lk-btn">解锁深聊 →</div>
             </div>
           </div></div></div>
-          <figcaption class="cap"><span class="capn">20</span><b>卡点 · 多轮深聊</b> — 免费能聊几句;聊到关键处蒙层引导解锁。深度陪伴是 AI 重的能力,放付费。</figcaption>
+          <figcaption class="cap"><span class="capn">21</span><b>卡点 · 多轮深聊</b> — 免费能聊几句;聊到关键处蒙层引导解锁。深度陪伴是 AI 重的能力,放付费。</figcaption>
         </figure>
 
         <!-- S21 卡点 · 数据趋势 -->
@@ -1543,7 +2009,7 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
               <div class="lk-btn">解锁数据回顾 →</div>
             </div>
           </div></div></div>
-          <figcaption class="cap"><span class="capn">21</span><b>卡点 · 数据趋势</b> — streak 免费(留住人);深一层的 30 天趋势、点阵、洞察默认蒙层,点开解锁。</figcaption>
+          <figcaption class="cap"><span class="capn">22</span><b>卡点 · 数据趋势</b> — streak 免费(留住人);深一层的 30 天趋势、点阵、洞察默认蒙层,点开解锁。</figcaption>
         </figure>
 
         <!-- S22 卡点 · 拆任务 + 看资源 -->
@@ -1567,7 +2033,7 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
               <div class="lk-btn">解锁拆解与资源 →</div>
             </div>
           </div></div></div>
-          <figcaption class="cap"><span class="capn">22</span><b>卡点 · 拆任务 + 看资源</b> — 详情页里 Jovida 的「钩子话」免费可见(让你想点);任务拆解 + 配套资源默认蒙层,点开解锁。</figcaption>
+          <figcaption class="cap"><span class="capn">23</span><b>卡点 · 拆任务 + 看资源</b> — 详情页里 Jovida 的「钩子话」免费可见(让你想点);任务拆解 + 配套资源默认蒙层,点开解锁。</figcaption>
         </figure>
 
         <!-- S23 卡点 · AI 次数 -->
@@ -1587,7 +2053,7 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
               <div class="lk-btn">解锁更多 AI →</div>
             </div>
           </div></div></div>
-          <figcaption class="cap"><span class="capn">23</span><b>卡点 · AI 生成次数</b> — 免费每天 3 次 AI 生成 / 重排,用完蒙层。这是付费意愿最强的时刻:用户正需要 AI 帮忙。也把成本(烧 token)和付费直接挂钩。</figcaption>
+          <figcaption class="cap"><span class="capn">24</span><b>卡点 · AI 生成次数</b> — 免费每天 3 次 AI 生成 / 重排,用完蒙层。这是付费意愿最强的时刻:用户正需要 AI 帮忙。也把成本(烧 token)和付费直接挂钩。</figcaption>
         </figure>
 
         <!-- S24 卡点 · streak 里程碑 -->
@@ -1613,7 +2079,7 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
               <div style="font-size:12px;color:#9a7a52;margin-top:13px;font-weight:600;text-decoration:underline;">继续用免费版</div>
             </div>
           </div></div></div>
-          <figcaption class="cap"><span class="capn">24</span><b>卡点 · streak 里程碑</b> — 不是蒙层,是<b>情绪高点触发</b>:用户坚持到里程碑、正自我感觉良好时,用「里程碑专属折扣」引导付费。调研结论——付费在情绪上升期触发。</figcaption>
+          <figcaption class="cap"><span class="capn">25</span><b>卡点 · streak 里程碑</b> — 不是蒙层,是<b>情绪高点触发</b>:用户坚持到里程碑、正自我感觉良好时,用「里程碑专属折扣」引导付费。调研结论——付费在情绪上升期触发。</figcaption>
         </figure>
 
       </div>

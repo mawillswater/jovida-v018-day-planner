@@ -573,7 +573,7 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
 /* ===== merged: 10 personas ===== */
 .pseg-row{margin-top:24px;}
 .pseg-row:first-child{margin-top:18px;}
-.pseg-head{display:flex;align-items:baseline;gap:11px;padding:0 2px 9px;border-bottom:2px solid var(--ink);}
+.pseg-head{display:flex;align-items:center;gap:11px;padding:0 2px 9px;border-bottom:2px solid var(--ink);}
 .pseg-head .pse{font-size:21px;}
 .pseg-head .pst b{font-size:16.5px;font-weight:800;letter-spacing:-.01em;}
 .pseg-head .pst span{font-size:13px;color:var(--ink-2);font-weight:500;}
@@ -677,6 +677,11 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
 .coreper .cpd{font-size:14px;color:rgba(255,255,255,.66);margin-top:13px;line-height:1.66;}
 .coreper .cpd b{color:#f0c79a;font-weight:700;}
 @media(max-width:760px){.coreper{padding:22px 20px;}.coreper .cpt{font-size:20px;}}
+.pseg-head .ptier{margin-left:auto;flex:none;font-size:10.5px;font-weight:800;letter-spacing:.05em;padding:4px 10px;border-radius:7px;}
+.pseg-head .ptier.p0{background:var(--amber);color:#fff;}
+.pseg-head .ptier.p1{background:#e7ddcb;color:#9a571c;}
+.pcw+.pcw{margin-top:6px;}
+.pc.p0{border-color:rgba(207,124,51,.55);background:rgba(255,247,236,.82);}
 </style>
 </head>
 <body>
@@ -858,11 +863,33 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
       <div class="coreper">
         <div class="cpk">核心画像 · 一句话</div>
         <div class="cpt">他们都<span class="hl">真心想把日子过得更好</span>,只是<span class="hl">缺了那一点行动力</span>。</div>
-        <div class="cpd">下面 10 个人——5 种画像、中美各一个,职业 / 年龄 / 国家各不相同;但把这些都拿掉,他们是同一种人:<b>有意愿、缺结构</b>。Jovida 要服务的就是这种人——这也正好证明同一套产品跨人群、跨市场都成立。</div>
+        <div class="cpd">下面 12 个人——6 种画像、中美各一个,职业 / 年龄 / 国家各不相同;但把这些都拿掉,他们是同一种人:<b>有意愿、缺结构</b>。其中 <b>P0</b> 是痛感最强、最该先打的主攻人群,<b>P1</b> 同样成立、但次一级优先。这也正好证明同一套产品跨人群、跨市场都成立。</div>
       </div>
 
       <div class="pseg-row">
-        <div class="pseg-head"><span class="pse">🎓</span><div class="pst"><b>学生</b> <span>被 ddl、考试、论文,加上日常琐事一起拉扯,行动力跟不上</span></div></div>
+        <div class="pseg-head"><span class="pse">🌀</span><div class="pst"><b>工作几年了,日子却一团乱</b> <span>Established but messy —— ADHD-adjacent、executive dysfunction,痛感最强,且本来就在为效率工具付费</span></div><span class="ptier p0">P0 · 首要</span></div>
+        <div class="pcards">
+          <div class="pc p0">
+            <div class="pcf">🇺🇸 美国</div>
+            <h4>Rachel Kim</h4>
+            <div class="pcm">30 岁 · 波特兰 · 客户成功经理(工作 7 年)</div>
+            <div class="pcq">「事情我全知道该怎么做,就是启动不了。Sunsama 用过两个月——它没毛病,就是太冷,像一张一直盯着我的表格。」</div>
+            <div class="pcw"><b>想做好的事</b>　把工作和生活的待办收进同一个地方 · 把拖了半年的报税、体检真的做掉 · 晚上别再瘫着刷到两点</div>
+            <div class="pcw"><b>卡在哪</b>　典型的 executive dysfunction —— 不缺方法、不缺意愿,缺的是迈出第一步那一下;工具越像「工具」,她越用不下去</div>
+          </div>
+          <div class="pc p0">
+            <div class="pcf">🇨🇳 中国</div>
+            <h4>韩雪</h4>
+            <div class="pcm">29 岁 · 上海 · 外企市场经理(工作 6 年)</div>
+            <div class="pcq">「Notion 模板我搭了一整晚,第二天就再没打开过。脑子像同时开着 30 个标签页,哪个都点不动。」</div>
+            <div class="pcw"><b>想做好的事</b>　把脑子里几十件事清出来、排进一天 · 推进在职读研、攒钱这些「大事」· 规律吃饭睡觉</div>
+            <div class="pcw"><b>卡在哪</b>　不是懒、也不是不会 —— 任务一多就整个卡死;冷冰冰的效率工具只会让她更焦虑</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pseg-row">
+        <div class="pseg-head"><span class="pse">🎓</span><div class="pst"><b>学生</b> <span>被 ddl、考试、论文,加上日常琐事一起拉扯,行动力跟不上</span></div><span class="ptier p1">P1</span></div>
         <div class="pcards">
           <div class="pc">
             <div class="pcf">🇺🇸 美国</div>
@@ -882,7 +909,7 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
       </div>
 
       <div class="pseg-row">
-        <div class="pseg-head"><span class="pse">💼</span><div class="pst"><b>早期职场人</b> <span>想升职、想成长,立了 flag 却总在第一步烂尾</span></div></div>
+        <div class="pseg-head"><span class="pse">💼</span><div class="pst"><b>早期职场人</b> <span>想升职、想成长,立了 flag 却总在第一步烂尾</span></div><span class="ptier p1">P1</span></div>
         <div class="pcards">
           <div class="pc">
             <div class="pcbadge">V1 主人公</div>
@@ -903,7 +930,7 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
       </div>
 
       <div class="pseg-row">
-        <div class="pseg-head"><span class="pse">🌱</span><div class="pst"><b>有心没方法的年轻人</b> <span>想变好,但不知道怎么开始、也坚持不下来</span></div></div>
+        <div class="pseg-head"><span class="pse">🌱</span><div class="pst"><b>有心没方法的年轻人</b> <span>想变好,但不知道怎么开始、也坚持不下来</span></div><span class="ptier p1">P1</span></div>
         <div class="pcards">
           <div class="pc">
             <div class="pcf">🇺🇸 美国</div>
@@ -923,7 +950,7 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
       </div>
 
       <div class="pseg-row">
-        <div class="pseg-head"><span class="pse">🧩</span><div class="pst"><b>泛 ADHD / 神经多样</b> <span>执行功能弱——覆盖,但不是 V1 主推人群</span></div></div>
+        <div class="pseg-head"><span class="pse">🧩</span><div class="pst"><b>泛 ADHD / 神经多样</b> <span>执行功能弱——覆盖,但不是 V1 主推人群</span></div><span class="ptier p1">P1</span></div>
         <div class="pcards">
           <div class="pc">
             <div class="pcf">🇺🇸 美国</div>
@@ -943,7 +970,7 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
       </div>
 
       <div class="pseg-row">
-        <div class="pseg-head"><span class="pse">👶</span><div class="pst"><b>忙碌的新手父母</b> <span>目标多、带宽不足,总有几件事悄悄漏掉</span></div></div>
+        <div class="pseg-head"><span class="pse">👶</span><div class="pst"><b>忙碌的新手父母</b> <span>目标多、带宽不足,总有几件事悄悄漏掉</span></div><span class="ptier p1">P1</span></div>
         <div class="pcards">
           <div class="pc">
             <div class="pcf">🇺🇸 美国</div>

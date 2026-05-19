@@ -467,6 +467,42 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
 .jw-foot{font-size:11px;color:var(--sx-t2);margin-top:9px;font-weight:600;}
 .appgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px 16px;margin-top:26px;}
 .appicon{aspect-ratio:1;border-radius:15px;box-shadow:0 5px 10px rgba(0,0,0,.2);display:grid;place-items:center;font-size:22px;}
+/* ---- paywall ---- */
+.fvp{margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fvp-col{border:1px solid var(--line);border-radius:18px;padding:20px 22px;}
+.fvp-col.free{background:rgba(255,255,255,.72);}
+.fvp-col.paid{background:var(--ink);color:#fff;border-color:var(--ink);}
+.fvp-k{font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;}
+.fvp-col.free .fvp-k{color:var(--ink-3);}
+.fvp-col.paid .fvp-k{color:#f0c79a;}
+.fvp-col h4{font-size:17px;font-weight:800;margin:6px 0 12px;}
+.fvp-col ul{list-style:none;}
+.fvp-col li{font-size:13px;padding:5px 0 5px 19px;position:relative;line-height:1.5;}
+.fvp-col.free li{color:var(--ink-2);}
+.fvp-col.paid li{color:rgba(255,255,255,.86);}
+.fvp-col li::before{content:"";position:absolute;left:0;top:10px;width:9px;height:9px;border-radius:3px;}
+.fvp-col.free li::before{background:var(--ink-3);}
+.fvp-col.paid li::before{background:#f0c79a;}
+@media(max-width:760px){.fvp{grid-template-columns:1fr;}}
+.lockmask{position:absolute;left:0;right:0;z-index:22;backdrop-filter:blur(6px);background:linear-gradient(180deg,rgba(231,233,236,.25),rgba(231,233,236,.82) 32%,rgba(231,233,236,.97));display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;}
+.lockmask .lk-ic{width:46px;height:46px;border-radius:50%;background:linear-gradient(150deg,#cf7c33,#e8a35f);display:grid;place-items:center;font-size:20px;box-shadow:0 10px 20px rgba(207,124,51,.42);}
+.lockmask .lk-t{font-size:15.5px;font-weight:800;margin-top:12px;}
+.lockmask .lk-d{font-size:12px;color:var(--sx-t2);margin-top:5px;line-height:1.55;max-width:19em;}
+.lockmask .lk-btn{margin-top:14px;height:44px;padding:0 22px;border-radius:99px;background:linear-gradient(180deg,#000,#575757);color:#ACFF4E;font-size:14px;font-weight:700;display:flex;align-items:center;gap:6px;}
+.plan{display:flex;align-items:center;gap:11px;background:var(--sx-surf);border:2px solid transparent;border-radius:16px;padding:13px 14px;margin-bottom:9px;box-shadow:0 4px 10px rgba(0,0,0,.05);}
+.plan.on{border-color:#cf7c33;background:#fff9f1;}
+.plan .pl-r{flex:none;width:21px;height:21px;border-radius:50%;border:2px solid var(--sx-t3);display:grid;place-items:center;font-size:11px;font-weight:800;}
+.plan.on .pl-r{border-color:#cf7c33;background:#cf7c33;color:#fff;}
+.plan .pl-m{flex:1;}
+.plan .pl-t{font-size:14.5px;font-weight:800;}
+.plan .pl-t .pl-save{font-size:9.5px;font-weight:800;background:#cf7c33;color:#fff;padding:2px 7px;border-radius:6px;margin-left:6px;vertical-align:middle;}
+.plan .pl-d{font-size:11.5px;color:var(--sx-t2);margin-top:2px;}
+.plan .pl-price{text-align:right;font-family:'Urbanist',sans-serif;flex:none;}
+.plan .pl-price b{font-size:18px;font-weight:800;}
+.plan .pl-price small{display:block;font-size:10px;color:var(--sx-t2);font-family:inherit;}
+.pwfeat{display:flex;gap:9px;font-size:13px;padding:6px 0;align-items:center;line-height:1.4;}
+.pwfeat .pf-ck{color:#0a8e3b;font-weight:800;flex:none;}
+.skiplink{display:block;text-align:center;font-size:12px;color:var(--sx-t3);font-weight:600;margin-top:15px;text-decoration:underline;}
 
 .foot{padding:54px 0 70px;border-top:1px solid var(--line);text-align:center;}
 .foot .fbig{font-size:23px;font-weight:800;letter-spacing:-.02em;max-width:20em;margin:0 auto;}
@@ -483,6 +519,7 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
       <a href="#positioning">产品定位</a>
       <a href="#mechanism">核心机制</a>
       <a href="#prototype">界面原型</a>
+      <a href="#paywall">付费墙</a>
     </div>
   </div>
 </nav>
@@ -1304,6 +1341,191 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
             </div>
           </div></div></div>
           <figcaption class="cap"><span class="capn">17</span><b>你的坚持 · 回顾 tab</b> — 从底栏「回顾」tab 进入(tab 已高亮)。streak + 宝石 + 每个重点 todo 的「过去 30 天点阵」,哪天做到了一眼看见。</figcaption>
+        </figure>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ PAYWALL ============ -->
+<section class="section" id="paywall">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-label">05 — 付费墙</div>
+      <h2 class="sec-title">免费把人留住,付费解锁 AI</h2>
+      <p class="sec-intro">变现逻辑:免费版 = 纯工具,几乎不烧 token,负责把人留住;付费版 = AI 重的能力,负责变现。onboarding 末尾用「愿景 → 付费墙」强引导,但留一个小入口可跳过;日常里在几个关键时刻用蒙层引导解锁。</p>
+    </div>
+
+    <div class="fvp reveal">
+      <div class="fvp-col free">
+        <div class="fvp-k">免费版 · 负责留住人</div>
+        <h4>纯工具,一直免费</h4>
+        <ul>
+          <li>无限 todo / 日历 / 打勾 / streak</li>
+          <li>一周日历、按时段分组</li>
+          <li>桌面小组件看今天、基础提醒</li>
+          <li>每天少量 AI 试用额度</li>
+        </ul>
+      </div>
+      <div class="fvp-col paid">
+        <div class="fvp-k">付费版 · 负责变现</div>
+        <h4>解锁完整的 Agent</h4>
+        <ul>
+          <li>无限 AI 生成 / 重排 / 拆解计划</li>
+          <li>和 Jovida 无限深聊、情绪陪伴</li>
+          <li>任务拆解 + 配套教程 / 跟练资源</li>
+          <li>30 天数据趋势、跨天记忆与洞察</li>
+          <li>全部触达(锁屏 / 灵动岛 / 桌面组件)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PAYWALL A -->
+    <div class="act reveal">
+      <div class="act-head"><span class="act-no">付费墙 A</span><h3>Onboarding 末尾 · 强引导</h3><span class="ad">先给愿景,再上付费墙 —— 留一个小入口可跳过</span></div>
+      <div class="gallery">
+
+        <!-- S18 愿景 -->
+        <figure class="ph">
+          <div class="phone"><div class="frame"><div class="screen"><div class="di"></div>
+            <div class="sb"><span>20:18</span><span class="si">📶 🔋</span></div>
+            <div class="sx" style="text-align:center;">
+              <div class="x-eyebrow" style="margin-top:4px;">认识你 · 你的方案</div>
+              <div style="width:104px;margin:14px auto 2px;"><img src="assets/rabbit-cheer-t.png" style="width:100%;" alt=""></div>
+              <div class="x-h1" style="font-size:25px;text-align:center;line-height:1.28;">坚持 30 天,<br>你会变成另一个人</div>
+              <div class="muted" style="font-size:13px;margin-top:8px;">Jovida 已经为你排好了路。照着走,这是你能拿到的——</div>
+              <div class="card" style="text-align:left;margin-top:16px;">
+                <div class="line" style="border:none;"><span class="lc">🪑</span><div><b>改善体态</b> —— 不再一坐一天就腰酸</div></div>
+                <div class="line"><span class="lc">🎬</span><div><b>学会剪辑</b> —— 月报片头自己就能做</div></div>
+                <div class="line"><span class="lc">🌙</span><div><b>早睡</b> —— 平均提前 1 小时入睡</div></div>
+              </div>
+              <div class="note" style="text-align:left;">和你情况相似的人,<b>87%</b> 在第一周就完成了至少 3 件 —— 难的从来是开始,而 Jovida 帮你开始。</div>
+              <div class="btnrow"><button class="btn primary">就这么定 · 看看怎么开始 →</button></div>
+            </div>
+          </div></div></div>
+          <figcaption class="cap"><span class="capn">18</span><b>Onboarding · 愿景</b> — 付费墙之前先给愿景:把刚生成的计划包装成「30 天后的你」,像成熟产品 onboarding 的广告页,先把「想要」勾起来。</figcaption>
+        </figure>
+
+        <!-- S19 付费墙 -->
+        <figure class="ph">
+          <div class="phone"><div class="frame"><div class="screen"><div class="di"></div>
+            <div class="sb"><span>20:18</span><span class="si">📶 🔋</span></div>
+            <div class="sx">
+              <div class="x-eyebrow" style="margin-top:4px;">解锁完整的 Jovida</div>
+              <div class="x-h1" style="font-size:22px;margin-top:4px;">让 Jovida 真正<br>陪你走完这 30 天</div>
+              <div class="card" style="margin-top:12px;">
+                <div class="pwfeat"><span class="pf-ck">✓</span><div>无限 AI 生成、重排你的计划</div></div>
+                <div class="pwfeat"><span class="pf-ck">✓</span><div>和 Jovida 无限深聊、情绪陪伴</div></div>
+                <div class="pwfeat"><span class="pf-ck">✓</span><div>任务拆解 + 配套教程 / 跟练资源</div></div>
+                <div class="pwfeat"><span class="pf-ck">✓</span><div>30 天数据趋势与跨天记忆</div></div>
+                <div class="pwfeat"><span class="pf-ck">✓</span><div>锁屏 / 灵动岛 / 桌面组件全触达</div></div>
+              </div>
+              <div class="plan on">
+                <span class="pl-r">✓</span>
+                <div class="pl-m"><div class="pl-t">年付 <span class="pl-save">省 41%</span></div><div class="pl-d">合 ¥16.5/月,一次付清</div></div>
+                <div class="pl-price"><b>¥198</b><small>/年</small></div>
+              </div>
+              <div class="plan">
+                <span class="pl-r"></span>
+                <div class="pl-m"><div class="pl-t">月付</div><div class="pl-d">随时取消</div></div>
+                <div class="pl-price"><b>¥28</b><small>/月</small></div>
+              </div>
+              <div class="btnrow"><button class="btn primary">开启 7 天免费试用</button></div>
+              <div class="muted" style="text-align:center;font-size:11.5px;margin-top:8px;">7 天内可随时取消,不扣费</div>
+              <div class="skiplink">先用免费版,以后再说</div>
+            </div>
+          </div></div></div>
+          <figcaption class="cap"><span class="capn">19</span><b>Onboarding · 付费墙</b> — 强引导:年付突出、7 天免费试用降低门槛。<b>底部留一个不起眼的小入口</b>「先用免费版」—— 不强制,但默认往付费推。</figcaption>
+        </figure>
+
+      </div>
+    </div>
+
+    <!-- PAYWALL B -->
+    <div class="act reveal">
+      <div class="act-head"><span class="act-no">付费墙 B</span><h3>日常卡点 · 蒙层引导</h3><span class="ad">关键时刻默认蒙层,点开即解锁 —— 不打断免费的工具体验</span></div>
+      <div class="gallery">
+
+        <!-- S20 卡点 · 多轮深聊 -->
+        <figure class="ph">
+          <div class="phone"><div class="frame"><div class="screen"><div class="di"></div>
+            <div class="sb"><span>22:40</span><span class="si">📶 🔋</span></div>
+            <div class="sx">
+              <div class="x-top"><div style="font-size:22px;">‹</div><div style="font-weight:800;font-size:15px;">Jovida</div><div style="width:22px;"></div></div>
+              <div class="bub me" style="margin-top:6px;"><div class="btxt">今天好累,什么都不想做</div></div>
+              <div class="bub"><div class="rb"><img src="assets/rabbit-care-t.png" alt=""></div>
+                <div class="btxt">那就先不做。你今天通勤了、也回了工作消息——不是什么都没做。</div></div>
+              <div class="bub me"><div class="btxt">可我感觉自己一直在原地</div></div>
+              <div class="bub"><div class="rb"><img src="assets/rabbit-care-t.png" alt=""></div>
+                <div class="btxt">我翻了下你这两周,其实有几个变化你自己没注意到……</div></div>
+            </div>
+            <div class="lockmask" style="top:60%;bottom:0;">
+              <div class="lk-ic">🔒</div>
+              <div class="lk-t">今天的免费深聊到这儿</div>
+              <div class="lk-d">Jovida 还有话想跟你说。解锁后任何时候都能聊,它也记得你说过的每一句。</div>
+              <div class="lk-btn">解锁无限深聊 →</div>
+            </div>
+          </div></div></div>
+          <figcaption class="cap"><span class="capn">20</span><b>卡点 · 多轮深聊</b> — 免费能聊几句;聊到关键处蒙层引导解锁。深度陪伴是 AI 重的能力,放付费。</figcaption>
+        </figure>
+
+        <!-- S21 卡点 · 数据趋势 -->
+        <figure class="ph">
+          <div class="phone"><div class="frame"><div class="screen"><div class="di"></div>
+            <div class="sb"><span>8:30</span><span class="si">📶 🔋</span></div>
+            <div class="sx">
+              <div class="x-h1" style="margin-top:6px;">回顾</div>
+              <div class="flame" style="margin-top:10px;">
+                <div class="fbig">🔥</div>
+                <div><div class="fn">13</div><div class="fl">连续 13 天有推进</div></div>
+              </div>
+              <div class="note">基础 streak 一直免费 —— 它负责把你留住。</div>
+              <div class="x-sec">📈 你的 30 天趋势</div>
+              <div class="dotcal">
+                <div class="dc-row">
+                  <div class="dc-head"><span class="dc-name">🪑 工位靠墙站</span><span class="dc-cnt">22 / 30 天</span></div>
+                  <div class="dc-grid"><span class="dc-dot g"></span><span class="dc-dot g"></span><span class="dc-dot g"></span><span class="dc-dot"></span><span class="dc-dot g"></span><span class="dc-dot g"></span><span class="dc-dot g"></span><span class="dc-dot g"></span><span class="dc-dot"></span><span class="dc-dot g"></span><span class="dc-dot g"></span><span class="dc-dot g"></span><span class="dc-dot g"></span><span class="dc-dot"></span><span class="dc-dot g"></span></div>
+                </div>
+                <div class="dc-row">
+                  <div class="dc-head"><span class="dc-name">🌙 23:30 放下手机</span><span class="dc-cnt">19 / 30 天</span></div>
+                  <div class="dc-grid"><span class="dc-dot b"></span><span class="dc-dot b"></span><span class="dc-dot"></span><span class="dc-dot b"></span><span class="dc-dot b"></span><span class="dc-dot b"></span><span class="dc-dot"></span><span class="dc-dot b"></span><span class="dc-dot b"></span><span class="dc-dot"></span><span class="dc-dot b"></span><span class="dc-dot b"></span><span class="dc-dot"></span><span class="dc-dot b"></span><span class="dc-dot b"></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="lockmask" style="top:43%;bottom:0;">
+              <div class="lk-ic">🔒</div>
+              <div class="lk-t">看见你这 30 天</div>
+              <div class="lk-d">入睡提前了多少、每件事坚持的曲线、Jovida 发现的规律 —— 解锁回顾趋势。</div>
+              <div class="lk-btn">解锁数据回顾 →</div>
+            </div>
+          </div></div></div>
+          <figcaption class="cap"><span class="capn">21</span><b>卡点 · 数据趋势</b> — streak 免费(留住人);深一层的 30 天趋势、点阵、洞察默认蒙层,点开解锁。</figcaption>
+        </figure>
+
+        <!-- S22 卡点 · 拆任务 + 看资源 -->
+        <figure class="ph">
+          <div class="phone"><div class="frame"><div class="screen"><div class="di"></div>
+            <div class="sb"><span>8:43</span><span class="si">📶 🔋</span></div>
+            <div class="sx">
+              <div class="x-top"><div style="font-size:22px;">‹</div><span class="atag purple" style="font-size:11px;">学剪辑</span><div style="width:22px;"></div></div>
+              <div class="x-h1" style="font-size:23px;line-height:1.25;">看 1 节转场教程<br>+ 跟练一遍</div>
+              <div class="bub" style="margin-top:12px;"><div class="rb"><img src="assets/rabbit-hello-t.png" alt=""></div>
+                <div class="btxt">你收藏夹里那条《3 个让画面高级的转场》躺了 11 天了。今天只花 8 分钟,把第一个学会 ✨</div></div>
+              <div class="x-sec">🧩 拆解 + 📎 资源</div>
+              <div class="fold"><summary style="list-style:none;display:flex;align-items:center;gap:8px;padding:14px;font-size:14px;font-weight:700;">🧩 Jovida 帮你拆好了 · 3 步<span style="margin-left:auto;color:var(--sx-t3);">▾</span></summary></div>
+              <div class="res"><div class="rico" style="background:#E2E1FF;">▶</div><div><div class="rt">《3 个让画面高级的转场》</div><div class="rd">教程 · 你的收藏夹 · 8 分钟</div></div></div>
+              <div class="res"><div class="rico" style="background:#C9EFD6;">🎬</div><div><div class="rt">叠化转场 · 跟练视频</div><div class="rd">边看边做 · 3 分钟</div></div></div>
+            </div>
+            <div class="lockmask" style="top:49%;bottom:0;">
+              <div class="lk-ic">🔒</div>
+              <div class="lk-t">让 Jovida 拆解这个任务</div>
+              <div class="lk-d">拆成能逐步打勾的步骤,再配好教程、跟练视频 —— 这一层是付费解锁的。</div>
+              <div class="lk-btn">解锁拆解与资源 →</div>
+            </div>
+          </div></div></div>
+          <figcaption class="cap"><span class="capn">22</span><b>卡点 · 拆任务 + 看资源</b> — 详情页里 Jovida 的「钩子话」免费可见(让你想点);任务拆解 + 配套资源默认蒙层,点开解锁。</figcaption>
         </figure>
 
       </div>

@@ -470,39 +470,78 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
 /* ---- paywall ---- */
 .fvp{margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 .fvp-col{border:1px solid var(--line);border-radius:18px;padding:20px 22px;}
-.fvp-col.free{background:rgba(255,255,255,.72);}
-.fvp-col.paid{background:var(--ink);color:#fff;border-color:var(--ink);}
 .fvp-k{font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;}
-.fvp-col.free .fvp-k{color:var(--ink-3);}
-.fvp-col.paid .fvp-k{color:#f0c79a;}
 .fvp-col h4{font-size:17px;font-weight:800;margin:6px 0 12px;}
 .fvp-col ul{list-style:none;}
 .fvp-col li{font-size:13px;padding:5px 0 5px 19px;position:relative;line-height:1.5;}
-.fvp-col.free li{color:var(--ink-2);}
-.fvp-col.paid li{color:rgba(255,255,255,.86);}
 .fvp-col li::before{content:"";position:absolute;left:0;top:10px;width:9px;height:9px;border-radius:3px;}
-.fvp-col.free li::before{background:var(--ink-3);}
-.fvp-col.paid li::before{background:#f0c79a;}
 @media(max-width:760px){.fvp{grid-template-columns:1fr;}}
-.lockmask{position:absolute;left:0;right:0;z-index:22;backdrop-filter:blur(6px);background:linear-gradient(180deg,rgba(231,233,236,.25),rgba(231,233,236,.82) 32%,rgba(231,233,236,.97));display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;}
-.lockmask .lk-ic{width:46px;height:46px;border-radius:50%;background:linear-gradient(150deg,#cf7c33,#e8a35f);display:grid;place-items:center;font-size:20px;box-shadow:0 10px 20px rgba(207,124,51,.42);}
-.lockmask .lk-t{font-size:15.5px;font-weight:800;margin-top:12px;}
-.lockmask .lk-d{font-size:12px;color:var(--sx-t2);margin-top:5px;line-height:1.55;max-width:19em;}
-.lockmask .lk-btn{margin-top:14px;height:44px;padding:0 22px;border-radius:99px;background:linear-gradient(180deg,#000,#575757);color:#ACFF4E;font-size:14px;font-weight:700;display:flex;align-items:center;gap:6px;}
-.plan{display:flex;align-items:center;gap:11px;background:var(--sx-surf);border:2px solid transparent;border-radius:16px;padding:13px 14px;margin-bottom:9px;box-shadow:0 4px 10px rgba(0,0,0,.05);}
-.plan.on{border-color:#cf7c33;background:#fff9f1;}
-.plan .pl-r{flex:none;width:21px;height:21px;border-radius:50%;border:2px solid var(--sx-t3);display:grid;place-items:center;font-size:11px;font-weight:800;}
-.plan.on .pl-r{border-color:#cf7c33;background:#cf7c33;color:#fff;}
-.plan .pl-m{flex:1;}
-.plan .pl-t{font-size:14.5px;font-weight:800;}
-.plan .pl-t .pl-save{font-size:9.5px;font-weight:800;background:#cf7c33;color:#fff;padding:2px 7px;border-radius:6px;margin-left:6px;vertical-align:middle;}
-.plan .pl-d{font-size:11.5px;color:var(--sx-t2);margin-top:2px;}
-.plan .pl-price{text-align:right;font-family:'Urbanist',sans-serif;flex:none;}
-.plan .pl-price b{font-size:18px;font-weight:800;}
-.plan .pl-price small{display:block;font-size:10px;color:var(--sx-t2);font-family:inherit;}
-.pwfeat{display:flex;gap:9px;font-size:13px;padding:6px 0;align-items:center;line-height:1.4;}
-.pwfeat .pf-ck{color:#0a8e3b;font-weight:800;flex:none;}
-.skiplink{display:block;text-align:center;font-size:12px;color:var(--sx-t3);font-weight:600;margin-top:15px;text-decoration:underline;}
+/* #paywall — distinct dark theme */
+#paywall{background:#16121f;border-top:0;position:relative;overflow:hidden;}
+#paywall::before{content:"";position:absolute;inset:0;background:radial-gradient(680px 420px at 86% 4%,rgba(232,176,106,.16),transparent),radial-gradient(620px 520px at 8% 64%,rgba(125,95,210,.18),transparent);pointer-events:none;}
+#paywall .wrap{position:relative;}
+#paywall .sec-label{color:#e8b06a;}
+#paywall .sec-title{color:#fff;}
+#paywall .sec-intro{color:rgba(255,255,255,.62);}
+#paywall .act-head{border-bottom-color:rgba(255,255,255,.22);}
+#paywall .act-head h3{color:#fff;}
+#paywall .act-head .ad{color:rgba(255,255,255,.55);}
+#paywall .act-no{color:#e8b06a;}
+#paywall figcaption.cap{color:rgba(255,255,255,.6);}
+#paywall figcaption.cap b{color:#fff;}
+#paywall figcaption.cap .capn{background:#e8b06a;color:#16121f;}
+#paywall .fvp-col.free{background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.13);}
+#paywall .fvp-col.free .fvp-k{color:rgba(255,255,255,.5);}
+#paywall .fvp-col.free h4{color:#fff;}
+#paywall .fvp-col.free li{color:rgba(255,255,255,.68);}
+#paywall .fvp-col.free li::before{background:rgba(255,255,255,.38);}
+#paywall .fvp-col.paid{background:linear-gradient(160deg,#3a2a1c,#2c2030);border:1.5px solid #e8b06a;box-shadow:0 18px 44px rgba(232,176,106,.16);}
+#paywall .fvp-col.paid .fvp-k{color:#f0c79a;}
+#paywall .fvp-col.paid h4{color:#fff;}
+#paywall .fvp-col.paid li{color:rgba(255,255,255,.85);}
+#paywall .fvp-col.paid li::before{background:#f0c79a;}
+/* in-app lock mask — premium dark + gold */
+.lockmask{position:absolute;left:0;right:0;z-index:22;backdrop-filter:blur(8px);background:linear-gradient(180deg,rgba(18,15,11,0),rgba(18,15,11,.66) 30%,rgba(18,15,11,.95) 58%);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;text-align:center;padding:24px 22px 30px;}
+.lockmask .lk-ic{width:50px;height:50px;border-radius:50%;background:linear-gradient(150deg,#f3c987,#d98f3f);display:grid;place-items:center;font-size:22px;box-shadow:0 0 30px rgba(232,176,106,.6);}
+.lockmask .lk-t{font-size:16px;font-weight:800;margin-top:12px;color:#fff;}
+.lockmask .lk-d{font-size:12px;color:rgba(255,255,255,.62);margin-top:6px;line-height:1.55;max-width:19em;}
+.lockmask .lk-btn{margin-top:15px;height:46px;padding:0 26px;border-radius:99px;background:linear-gradient(180deg,#f3c987,#d98f3f);color:#2a2138;font-size:14.5px;font-weight:800;display:flex;align-items:center;gap:6px;box-shadow:0 12px 26px rgba(232,176,106,.42);}
+/* vision screen — warm, aspirational */
+.vision-screen{background:linear-gradient(172deg,#fff1da,#ffd9b2 46%,#f4bda2)!important;}
+.vision-screen .sb{background:transparent;}
+.vrb{position:relative;width:108px;margin:14px auto 2px;}
+.vrb::before{content:"";position:absolute;inset:-22px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.85),transparent 66%);}
+.vrb img{width:100%;position:relative;}
+.vbox{background:rgba(255,255,255,.62);border-radius:13px;padding:11px 13px;font-size:12px;line-height:1.55;color:#6a4a2e;text-align:left;}
+/* paywall screen — premium dark */
+.pw-screen{background:linear-gradient(178deg,#2c2238,#15111c)!important;}
+.pw-screen .sb{background:transparent;color:#fff;}
+.pw-glow{position:absolute;top:34px;left:50%;transform:translateX(-50%);width:300px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(243,201,135,.4),transparent 68%);filter:blur(16px);pointer-events:none;z-index:1;}
+.pw-eyebrow{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#e8b06a;text-align:center;}
+.pw-title{font-size:23px;font-weight:800;color:#fff;text-align:center;letter-spacing:-.02em;line-height:1.32;margin-top:7px;}
+.pw-feats{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:13px 15px;margin-top:17px;}
+.pw-feats .pwf{display:flex;gap:9px;align-items:center;font-size:12.5px;color:rgba(255,255,255,.88);padding:6px 0;}
+.pw-feats .pwf+.pwf{border-top:1px solid rgba(255,255,255,.07);}
+.pw-feats .pwf .pfk{color:#e8b06a;font-weight:800;flex:none;}
+.pw-plan{display:flex;align-items:center;gap:11px;background:rgba(255,255,255,.045);border:2px solid rgba(255,255,255,.12);border-radius:16px;padding:13px 14px;margin-bottom:9px;}
+.pw-plan.on{border-color:#e8b06a;background:linear-gradient(120deg,rgba(232,176,106,.2),rgba(232,176,106,.05));box-shadow:0 10px 26px rgba(232,176,106,.2);}
+.pw-plan .ppr{flex:none;width:21px;height:21px;border-radius:50%;border:2px solid rgba(255,255,255,.32);display:grid;place-items:center;font-size:11px;font-weight:800;}
+.pw-plan.on .ppr{border-color:#e8b06a;background:#e8b06a;color:#2a2138;}
+.pw-plan .ppm{flex:1;}
+.pw-plan .ppt{font-size:14.5px;font-weight:800;color:#fff;}
+.pw-plan .ppt .ppsave{font-size:9px;font-weight:800;background:#e8b06a;color:#2a2138;padding:2px 7px;border-radius:6px;margin-left:6px;vertical-align:middle;}
+.pw-plan .ppd{font-size:11px;color:rgba(255,255,255,.5);margin-top:2px;}
+.pw-plan .ppp{text-align:right;font-family:'Urbanist',sans-serif;flex:none;color:#fff;}
+.pw-plan .ppp b{font-size:18px;font-weight:800;}
+.pw-plan .ppp small{display:block;font-size:10px;color:rgba(255,255,255,.5);font-family:inherit;}
+.pw-cta{height:52px;border-radius:99px;display:flex;align-items:center;justify-content:center;gap:7px;font-size:16px;font-weight:800;width:100%;background:linear-gradient(180deg,#f3c987,#d98f3f);color:#2a2138;box-shadow:0 14px 30px rgba(232,176,106,.42);}
+.pw-fine{text-align:center;font-size:11px;color:rgba(255,255,255,.45);margin-top:9px;}
+.pw-skip{display:block;text-align:center;font-size:12px;color:rgba(255,255,255,.42);margin-top:14px;text-decoration:underline;}
+/* milestone upgrade card */
+.msup{background:linear-gradient(150deg,#2c2238,#3a2a1c);border:1.5px solid rgba(232,176,106,.5);border-radius:20px;padding:17px;color:#fff;box-shadow:0 14px 30px rgba(0,0,0,.18);}
+.msup .ms-k{font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#e8b06a;}
+.msup .ms-t{font-size:15.5px;font-weight:800;margin:5px 0 5px;}
+.msup .ms-d{font-size:12px;color:rgba(255,255,255,.66);line-height:1.55;}
 
 .foot{padding:54px 0 70px;border-top:1px solid var(--line);text-align:center;}
 .foot .fbig{font-size:23px;font-weight:800;letter-spacing:-.02em;max-width:20em;margin:0 auto;}
@@ -778,12 +817,13 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
       </div>
 
       <div class="mcard reveal">
-        <h3>② 暖版动力系统</h3>
-        <p class="msub">streak 判定单位 = 「今天有没有推进」(完成 ≥1 件事,或跟 Jovida 说句话)——不是「全部完成」。门槛低,所以用户很难断。</p>
-        <div class="warmrule" style="grid-template-columns:1fr;">
-          <div class="wr yes"><div class="wrh">✓ 我们要的</div><ul><li>streak、宝石、即时正反馈</li><li>进度可视化、角色和你一起成长</li><li>完成一件就续上,门槛足够低</li></ul></div>
+        <h3>② 暖版动力系统 —— 有牵挂,但不羞辱</h3>
+        <p class="msub">streak 判定 = 「今天有没有推进」(完成 ≥1 件、或跟 Jovida 说句话),门槛低、很难断。但「门槛低」不等于「没有让人回来的力」—— Finch 靠的正是「宠物会难过」。问题不是要不要这种力,而是<b>这种力指向谁</b>。</p>
+        <div class="warmrule">
+          <div class="wr yes"><div class="wrh">✓ 牵挂 —— 力指向「关系」</div><ul><li>兔子有真实状态:会想你、好几天没见会担心你</li><li>你回来,是不想让这个在乎你的小家伙白等</li><li>streak / 宝石 / 即时正反馈、角色和你一起长大</li></ul></div>
+          <div class="wr no"><div class="wrh">✕ 羞辱 —— 力指向「你本人」</div><ul><li>红点轰炸、断 streak 的恐吓</li><li>「你还有 7 个没做」、进度条没满的焦虑</li><li>这些攻击用户本人,把已在自责的人推走</li></ul></div>
         </div>
-        <div class="note" style="background:rgba(207,124,51,.09);color:var(--ink-2);margin-top:14px;padding:13px 15px;border-radius:13px;font-size:13px;">关键是<b>不施压</b>:用户来的时候往往已经在自责了(他刚从短视频里出来)。如果再用红点、断 streak 的恐吓去逼他,他会干脆回去刷——那边至少不骂他。</div>
+        <div class="note" style="background:rgba(207,124,51,.09);color:var(--ink-2);margin-top:14px;padding:13px 15px;border-radius:13px;font-size:13px;">同样是「让你舍不得走」:Finch 的宠物会难过,但从不说「你不行」。我们要那只<b>会牵挂你</b>的兔子,不要那只<b>会指责你</b>的猫头鹰。</div>
       </div>
 
       <div class="mcard reveal">
@@ -826,11 +866,12 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
               <div class="imp"><div class="ii" style="background:#FFEBCB;">📋</div><div class="im"><div class="it">提醒事项 Reminders</div><div class="id">你已经记下的待办</div></div><span class="imp-btn">连接</span></div>
               <div class="imp"><div class="ii" style="background:#FFDDE2;">❤️</div><div class="im"><div class="it">Apple 健康</div><div class="id">步数、睡眠、运动数据</div></div><span class="imp-btn">连接</span></div>
               <div class="imp"><div class="ii" style="background:#E2E1FF;">✉️</div><div class="im"><div class="it">Gmail</div><div class="id">从邮件里找出该做的事</div></div><span class="imp-btn">连接</span></div>
+              <div class="imp"><div class="ii" style="background:#D6EFE6;">⏳</div><div class="im"><div class="it">屏幕使用时间</div><div class="id">知道你刷了多久,陪你少刷一点</div></div><span class="imp-btn">连接</span></div>
               <div class="note">连得越多,Jovida 越懂你真实的一天。也可以现在跳过,以后再连。</div>
               <div class="btnrow"><button class="btn primary">下一步</button></div>
             </div>
           </div></div></div>
-          <figcaption class="cap"><span class="capn">01</span><b>导入数据源</b> — onboarding 第一步:逐个点亮 日历 / 提醒 / 健康 / Gmail。Agent 用真实数据起底稿,不让你从零开始。</figcaption>
+          <figcaption class="cap"><span class="capn">01</span><b>导入数据源</b> — onboarding 第一步:逐个点亮 日历 / 提醒 / 健康 / Gmail / 屏幕使用时间(很多用户想少刷手机,屏幕时间正好用得上)。Agent 用真实数据起底稿。</figcaption>
         </figure>
 
         <!-- S2 Agent 完整对话 · Jovida 选项卡 -->
@@ -1389,55 +1430,56 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
 
         <!-- S18 愿景 -->
         <figure class="ph">
-          <div class="phone"><div class="frame"><div class="screen"><div class="di"></div>
+          <div class="phone"><div class="frame"><div class="screen vision-screen"><div class="di"></div>
             <div class="sb"><span>20:18</span><span class="si">📶 🔋</span></div>
             <div class="sx" style="text-align:center;">
-              <div class="x-eyebrow" style="margin-top:4px;">认识你 · 你的方案</div>
-              <div style="width:104px;margin:14px auto 2px;"><img src="assets/rabbit-cheer-t.png" style="width:100%;" alt=""></div>
-              <div class="x-h1" style="font-size:25px;text-align:center;line-height:1.28;">坚持 30 天,<br>你会变成另一个人</div>
-              <div class="muted" style="font-size:13px;margin-top:8px;">Jovida 已经为你排好了路。照着走,这是你能拿到的——</div>
+              <div class="x-eyebrow" style="margin-top:4px;color:#a8702e;">认识你 · 你的方案</div>
+              <div class="vrb"><img src="assets/rabbit-cheer-t.png" alt=""></div>
+              <div class="x-h1" style="font-size:25px;text-align:center;line-height:1.3;">坚持 30 天,<br>你会变成另一个人</div>
+              <div style="font-size:13px;color:#7a5a3a;margin-top:8px;font-weight:600;">Jovida 已经为你排好了路。照着走,这是你能拿到的——</div>
               <div class="card" style="text-align:left;margin-top:16px;">
                 <div class="line" style="border:none;"><span class="lc">🪑</span><div><b>改善体态</b> —— 不再一坐一天就腰酸</div></div>
                 <div class="line"><span class="lc">🎬</span><div><b>学会剪辑</b> —— 月报片头自己就能做</div></div>
                 <div class="line"><span class="lc">🌙</span><div><b>早睡</b> —— 平均提前 1 小时入睡</div></div>
               </div>
-              <div class="note" style="text-align:left;">和你情况相似的人,<b>87%</b> 在第一周就完成了至少 3 件 —— 难的从来是开始,而 Jovida 帮你开始。</div>
+              <div class="vbox">和你情况相似的人,<b style="color:#1c1813;">87%</b> 在第一周就完成了至少 3 件 —— 难的从来是开始,而 Jovida 帮你开始。</div>
               <div class="btnrow"><button class="btn primary">就这么定 · 看看怎么开始 →</button></div>
             </div>
           </div></div></div>
-          <figcaption class="cap"><span class="capn">18</span><b>Onboarding · 愿景</b> — 付费墙之前先给愿景:把刚生成的计划包装成「30 天后的你」,像成熟产品 onboarding 的广告页,先把「想要」勾起来。</figcaption>
+          <figcaption class="cap"><span class="capn">18</span><b>Onboarding · 愿景</b> — 付费墙之前先给愿景:把刚生成的计划包装成「30 天后的你」,像成熟产品 onboarding 的广告页,先把「想要」勾起来。暖色调,和产品其它部分区分。</figcaption>
         </figure>
 
         <!-- S19 付费墙 -->
         <figure class="ph">
-          <div class="phone"><div class="frame"><div class="screen"><div class="di"></div>
+          <div class="phone"><div class="frame"><div class="screen pw-screen"><div class="di"></div>
+            <div class="pw-glow"></div>
             <div class="sb"><span>20:18</span><span class="si">📶 🔋</span></div>
-            <div class="sx">
-              <div class="x-eyebrow" style="margin-top:4px;">解锁完整的 Jovida</div>
-              <div class="x-h1" style="font-size:22px;margin-top:4px;">让 Jovida 真正<br>陪你走完这 30 天</div>
-              <div class="card" style="margin-top:12px;">
-                <div class="pwfeat"><span class="pf-ck">✓</span><div>无限 AI 生成、重排你的计划</div></div>
-                <div class="pwfeat"><span class="pf-ck">✓</span><div>和 Jovida 无限深聊、情绪陪伴</div></div>
-                <div class="pwfeat"><span class="pf-ck">✓</span><div>任务拆解 + 配套教程 / 跟练资源</div></div>
-                <div class="pwfeat"><span class="pf-ck">✓</span><div>30 天数据趋势与跨天记忆</div></div>
-                <div class="pwfeat"><span class="pf-ck">✓</span><div>锁屏 / 灵动岛 / 桌面组件全触达</div></div>
+            <div class="sx" style="position:relative;z-index:2;">
+              <div class="pw-eyebrow" style="margin-top:6px;">✦ Jovida Plus ✦</div>
+              <div class="pw-title">让 Jovida 真正<br>陪你走完这 30 天</div>
+              <div class="pw-feats">
+                <div class="pwf"><span class="pfk">✓</span><div>无限 AI 生成、重排你的计划</div></div>
+                <div class="pwf"><span class="pfk">✓</span><div>和 Jovida 无限深聊、情绪陪伴</div></div>
+                <div class="pwf"><span class="pfk">✓</span><div>任务拆解 + 配套教程 / 跟练资源</div></div>
+                <div class="pwf"><span class="pfk">✓</span><div>30 天数据趋势与跨天记忆</div></div>
+                <div class="pwf"><span class="pfk">✓</span><div>锁屏 / 灵动岛 / 桌面组件全触达</div></div>
               </div>
-              <div class="plan on">
-                <span class="pl-r">✓</span>
-                <div class="pl-m"><div class="pl-t">年付 <span class="pl-save">省 41%</span></div><div class="pl-d">合 ¥16.5/月,一次付清</div></div>
-                <div class="pl-price"><b>¥198</b><small>/年</small></div>
+              <div class="pw-plan on" style="margin-top:16px;">
+                <span class="ppr">✓</span>
+                <div class="ppm"><div class="ppt">年付 <span class="ppsave">省 50%</span></div><div class="ppd">$5.00 / 月,一次付清</div></div>
+                <div class="ppp"><b>$59.99</b><small>/ 年</small></div>
               </div>
-              <div class="plan">
-                <span class="pl-r"></span>
-                <div class="pl-m"><div class="pl-t">月付</div><div class="pl-d">随时取消</div></div>
-                <div class="pl-price"><b>¥28</b><small>/月</small></div>
+              <div class="pw-plan">
+                <span class="ppr"></span>
+                <div class="ppm"><div class="ppt">月付</div><div class="ppd">随时取消</div></div>
+                <div class="ppp"><b>$9.99</b><small>/ 月</small></div>
               </div>
-              <div class="btnrow"><button class="btn primary">开启 7 天免费试用</button></div>
-              <div class="muted" style="text-align:center;font-size:11.5px;margin-top:8px;">7 天内可随时取消,不扣费</div>
-              <div class="skiplink">先用免费版,以后再说</div>
+              <div class="btnrow"><button class="pw-cta">开启 7 天免费试用</button></div>
+              <div class="pw-fine">7 天内随时取消,不扣费 · 试用后按 $59.99/年</div>
+              <div class="pw-skip">先用免费版,以后再说</div>
             </div>
           </div></div></div>
-          <figcaption class="cap"><span class="capn">19</span><b>Onboarding · 付费墙</b> — 强引导:年付突出、7 天免费试用降低门槛。<b>底部留一个不起眼的小入口</b>「先用免费版」—— 不强制,但默认往付费推。</figcaption>
+          <figcaption class="cap"><span class="capn">19</span><b>Onboarding · 付费墙</b> — 独立的<b>深色 + 暖金「升级」氛围</b>,和产品其它部分区分开。年付突出(省 50%)、7 天免费试用降门槛;<b>底部留一个不起眼的小入口</b>「先用免费版」。</figcaption>
         </figure>
 
       </div>
@@ -1445,7 +1487,7 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
 
     <!-- PAYWALL B -->
     <div class="act reveal">
-      <div class="act-head"><span class="act-no">付费墙 B</span><h3>日常卡点 · 蒙层引导</h3><span class="ad">关键时刻默认蒙层,点开即解锁 —— 不打断免费的工具体验</span></div>
+      <div class="act-head"><span class="act-no">付费墙 B</span><h3>日常里的付费引导</h3><span class="ad">关键时刻蒙层卡点 + 里程碑情绪高点 —— 不打断免费的工具体验</span></div>
       <div class="gallery">
 
         <!-- S20 卡点 · 多轮深聊 -->
@@ -1526,6 +1568,52 @@ figcaption.cap b{color:var(--ink);font-weight:800;}
             </div>
           </div></div></div>
           <figcaption class="cap"><span class="capn">22</span><b>卡点 · 拆任务 + 看资源</b> — 详情页里 Jovida 的「钩子话」免费可见(让你想点);任务拆解 + 配套资源默认蒙层,点开解锁。</figcaption>
+        </figure>
+
+        <!-- S23 卡点 · AI 次数 -->
+        <figure class="ph">
+          <div class="phone"><div class="frame"><div class="screen"><div class="di"></div>
+            <div class="sb"><span>21:30</span><span class="si">📶 🔋</span></div>
+            <div class="sx">
+              <div class="x-top"><div style="font-size:22px;">‹</div><div style="font-weight:800;font-size:15px;">Jovida</div><div style="width:22px;"></div></div>
+              <div class="bub me" style="margin-top:6px;"><div class="btxt">今天临时加班,刚到家。帮我把今天剩下的重排一下吧</div></div>
+              <div class="bub"><div class="rb"><img src="assets/rabbit-care-t.png" alt=""></div>
+                <div class="btxt">辛苦了。我看看今天怎么帮你收一收……</div></div>
+            </div>
+            <div class="lockmask" style="top:45%;bottom:0;">
+              <div class="lk-ic">🔒</div>
+              <div class="lk-t">今天的免费 AI 重排用完了</div>
+              <div class="lk-d">免费版每天 3 次 AI 生成 / 重排(今天 3 / 3)。解锁后想重排几次都行——状态不好的日子,这个最有用。</div>
+              <div class="lk-btn">解锁无限 AI →</div>
+            </div>
+          </div></div></div>
+          <figcaption class="cap"><span class="capn">23</span><b>卡点 · AI 生成次数</b> — 免费每天 3 次 AI 生成 / 重排,用完蒙层。这是付费意愿最强的时刻:用户正需要 AI 帮忙。也把成本(烧 token)和付费直接挂钩。</figcaption>
+        </figure>
+
+        <!-- S24 卡点 · streak 里程碑 -->
+        <figure class="ph">
+          <div class="phone"><div class="frame"><div class="screen vision-screen"><div class="di"></div>
+            <div class="sb"><span>8:30</span><span class="si">📶 🔋</span></div>
+            <div class="sx" style="text-align:center;">
+              <div class="x-eyebrow" style="margin-top:6px;color:#a8702e;">🎉 里程碑</div>
+              <div style="position:relative;margin-top:16px;">
+                <span class="spark" style="top:-2px;left:58px;">✨</span>
+                <span class="spark" style="top:34px;right:54px;animation-delay:.4s;">⭐</span>
+                <div style="font-size:62px;line-height:1;">🔥</div>
+                <div style="font-family:'Urbanist',sans-serif;font-weight:800;font-size:46px;color:#1c1813;line-height:1;margin-top:2px;">14</div>
+                <div style="font-size:14px;font-weight:800;margin-top:4px;">连续 14 天有推进</div>
+              </div>
+              <div style="font-size:13px;color:#7a5a3a;margin-top:11px;font-weight:600;line-height:1.55;">一个月前你说「每次都坚持不下去」。<br>看看现在的你。</div>
+              <div class="msup" style="margin-top:18px;text-align:left;">
+                <div class="ms-k">🎁 里程碑解锁</div>
+                <div class="ms-t">给坚持了 14 天的你</div>
+                <div class="ms-d">你已经证明了你能坚持。解锁完整版 Jovida,让它陪你走得更远——里程碑专属,首年 5 折。</div>
+                <div style="margin-top:13px;"><button class="pw-cta">5 折解锁 · 首年 $29.99</button></div>
+              </div>
+              <div style="font-size:12px;color:#9a7a52;margin-top:13px;font-weight:600;text-decoration:underline;">继续用免费版</div>
+            </div>
+          </div></div></div>
+          <figcaption class="cap"><span class="capn">24</span><b>卡点 · streak 里程碑</b> — 不是蒙层,是<b>情绪高点触发</b>:用户坚持到里程碑、正自我感觉良好时,用「里程碑专属折扣」引导付费。调研结论——付费在情绪上升期触发。</figcaption>
         </figure>
 
       </div>
